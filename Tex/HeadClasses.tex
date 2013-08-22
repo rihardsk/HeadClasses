@@ -1,10 +1,41 @@
 \documentclass{llncs}
-\usepackage{graphicx}
-\usepackage{float}
 \usepackage{enumerate}
 \usepackage{amssymb,amsmath}
 \usepackage{enumitem}
 \usepackage{verbatim}
+
+
+% xelatex
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+%valodas. nez, vai vajag
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguages{latvian,russian}
+
+% bibliography
+%\usepackage{csquotes}
+\usepackage[
+    backend=biber,
+    style=numeric-comp,
+    sorting=none,
+    natbib=true,
+    url=false,
+    doi=true%,
+    %eprint=false
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+
+%images
+\usepackage{graphicx}
+\usepackage{float}
+
+%dalīšana kolonnās
+\usepackage{multicol}
+
 
 \newcommand{\norm}[1]{\left\| #1 \right\|}
 
@@ -254,3 +285,7 @@ $(3)$ Pierādījis ~\citet{Freivalds1982}, pierādījums līdzīgai valodai atro
 \end{pieradijums}
 
 Jāpiebilst, ka ar konstantu galviņu skaitu $L_k$ atpazīšanai pietiek arī varbūtiskiem automātiem. ~\citet{Freivalds1982} ir parādījis, ka jebkuram $\epsilon > 0$ eksistē $1pfa$, kas atpazīst katru vārdu $L_k$ ar varbūtību $1$, un noraida katru vārdu, kas nepieder, ar varbūtību vismaz $1 - \epsilon$.
+
+
+
+\printbibliography
