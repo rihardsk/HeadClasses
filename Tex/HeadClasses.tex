@@ -86,7 +86,7 @@ but the results of subtraction can be general $p$-adic numbers.
 It is obvious that for every $q \in \mathbb{Q}$ there exists a prime number $p$ such that $q$ can be expressed as a $p$-adic number. The same does not hold for real numbers. For every $p$ there exists an irrational number such that it cannot be expressed as a $p$-adic number. However that does not imply that for some $p$ $p$-adic numbers are a subset of real numbers. There is a continuum of $p$-adic numbers %TODO for every p?
 that cannot be expressed as a real number ~\citep{Freivalds2012}.
 
-\subsection{$p$-adic absolute values}
+\section{$p$-adic absolute values}
 A function $d: X \times X \rightarrow R_{\geq 0}$ where $X$ is a non-empty set is called a metric iff it satisfies the following conditions:
 \begin{enumerate}
 \item $d(x,y) = 0$ iff $x = y$,
@@ -171,3 +171,86 @@ $\triangleright w \triangleleft$. More precisely --
 If for any start state $\delta$ gives $\leq 1$ end state %TODO tā tulko izejas un izejas stāvokļus
 then the automaton is said to be deterministic ($2dfa(k)$). If at any given moment the heads of an automaton move only right (or don't move) then the automaton is two-way. Nondeterministic and deterministic $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
 %TODO pabeigt par 2DFA(k). <-todo no bak darba
+
+
+\section{Relation to classical automata}
+Strictly inclusive classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata ~\citep{Holzer2009,Yao1978}. In 1978 ~\citet{Yao1978} showed that in order to separate the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$ it is sufficient to use the language
+\[
+	L_n = \left\{w_1\$w_2\$ \ldots \$w_{2n} | w_i \in \left\{a,b\right\}^* \textrm{ un } w_i = w_{2n+1−i} \textrm{ visiem } 1 \leq i \leq n \right\}.
+\]
+We will consider a similar language -- $L_k$.
+\begin{theorem}
+For every $k \geq 1 \in \mathbb{N}$ there exists a language $L_k$ such that:
+\begin{enumerate}[label={(\arabic*)}]
+	\item for every $k \geq 1 \in \mathbb{N}$ there exists a $1u_pfa(1)$ that recognizes $L_k$,
+	\item $L_k$ cannot be recognized by any $1dfa(k)$,
+	\item $L_k$ cannot be recognized by any $1nfa(k)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof} The sought language is
+\[
+L_k = \left\{ w_1 1 w_2 1 \ldots 1 w_{2n} |
+		w_i \in \left\{ 0 \right\}^m \wedge
+		m \geq 1 \in \mathbb{N} \wedge
+		w_i = w_{2n-i+1} \wedge
+		n={k\choose 2}+1 \right\}.
+\]
+Now we prove that $L_k$ satisfies the points of our theorem.
+
+$(1)$ We show that for an arbitrary language $L_k$ an $1u_pfa(1)$ can be built for every prime number $p$. The automaton starts its in $n$ different starting states $q_{1,1,1},q_{1,2,1},\ldots,q_{1,n,1}$ with amplitude $1$. Each of these states starts a "branch" that is intended for accumulating amplitude in one of $n$ different accepting states $q_{2n,1,2},q_{2n,2,2},\ldots,q_{2n,n,2}$. Every branch contains two kinds of states -- states of the 1st group $q_{i,j,1}$ are responsible for generating amplitudes and states of the 2nd group $q_{i,j,2}$ are intended for amplitude accumulation, $i \in \left[1, 2n \right], j \in \left[1, n \right]$.
+
+If $0$ is read from the input and the automaton is in one of the 1st group states $q_{i,j,1}$ where $i \leq n$ then the amplitude of the state stays the same and with amplitude $1$ the automaton goes to a 2nd group state $q_{i,j,2}$. By doing so the states accumulated amplitude is added to $q_{i,j,2}$. If $0$ is read in a 2nd group state $q_{i,j,2}$ the states amplitude stays the same. If $1$ is read in a 1st group state $q_{i,j,1}$ where $i < n$ then the automaton with amplitude $j + 1$ transitions to $q_{i + 1,j,1}$ thereby transiting there with amplitude $(j + 1) \cdot \left| q_{i + 1,j,1} \right|$ (by $|q_i|$ we denote the amplitude the state $q_i$).
+Whereas if $0$ is read in 1st group state $q_{i,j,1}$ where $i > n$ the amplitude of the state is kept unchanged and the transition to $q_{i,j,2}$ is made with amplitude $-1$. If $1$ is read in 1st group state $q_{i,j,1}$ where $i \geq n$ the transition to $q_{i + 1,j,1}$ is made with amplitude $-(j + 1)$. If $1$ is read in a 2nd group state a transition is made from $q_{i,j,1}$ to $q_{i + 1,j,1}$ with amplitude $1$. The exception is the last column of states -- $q_{2n,j,1}$ and $q_{2n,j,2}$ -- since they are responsible for reading in the last block of the word then the transition if $1$ is read is not defined. A schematic representation of the described automaton can be seen in \ref{fig:1pfa}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{Img/1pfa.pdf}
+\caption{Automaton to recognize $0^n10^m10^h1 \cdots 10^h10^m10^n$.}
+\label{fig:1pfa}
+\end{figure}
+
+In result if a word $0^{a_1}10^{a_2}10^{a_3}1\ldots 10^{a_{2n}}$ was read then each of the accepting states $q_{2n,j,2}$ has accumulated an amplitude equal to
+\[
+	a_1 + a_2 \cdot (j + 1) + a_3 \cdot (j + 1)^2 + \cdots + a_n \cdot (j + 1)^{n - 1} - a_{n+1} \cdot (j + 1)^{n - 1} - a_{n+2} \cdot (j + 1)^{n - 2} - \cdots - a_{2n},
+\]
+which is equal to $0$ if the word belongs to the language; i.e. if
+\[
+	a_1 = a_{2n} \wedge a_2 = a_{2n-1} \wedge \ldots \wedge a_n = a_{n+1}.
+\]
+It follows that a word belongs to the language $L_k$ iff the following system holds:
+\begin{gather*}
+\allowdisplaybreaks
+	\begin{cases}
+		a_1 + a_2 \cdot 2 + a_3 \cdot 2^2 + \cdots + a_n \cdot 2^{n - 1} - a_{n+1} \cdot 2^{n - 1} - a_{n+2} \cdot 2^{n - 2} - \cdots - a_{2n} = 0 \\
+		a_1 + a_2 \cdot 3 + a_3 \cdot 3^2 + \cdots + a_n \cdot 3^{n - 1} - a_{n+1} \cdot 3^{n - 1} - a_{n+2} \cdot 3^{n - 2} - \cdots - a_{2n} = 0\\
+		a_1 + a_2 \cdot 4 + a_3 \cdot 4^2 + \cdots + a_n \cdot 4^{n - 1} - a_{n+1} \cdot 4^{n - 1} - a_{n+2} \cdot 4^{n - 2} - \cdots - a_{2n} = 0\\
+		\cdots \\
+		\begin{split}
+		a_1 + a_2 \cdot (n + 1) + a_3 \cdot (n + 1)^2 + \cdots + a_n \cdot (n + 1)^{n - 1} - a_{n+1} \cdot (n + 1)^{n - 1} \\
+		\qquad- a_{n+2} \cdot (n + 1)^{n - 2} - \cdots - a_{2n} = 0\\
+		\end{split}
+	\end{cases}\\
+\intertext{rewriting}
+	\begin{cases}
+		(a_1 - a_{2n}) + 2 \cdot (a_2 - a_{2n-1}) + 2^2 \cdot (a_3 - a_{2n-2}) + \cdots + 2^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
+		(a_1 - a_{2n}) + 3 \cdot (a_2 - a_{2n-1}) + 3^2 \cdot (a_3 - a_{2n-2}) + \cdots + 3^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
+		(a_1 - a_{2n}) + 4 \cdot (a_2 - a_{2n-1}) + 4^2 \cdot (a_3 - a_{2n-2}) + \cdots + 4^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
+		\cdots \\
+		\begin{split}
+		(a_1 - a_{2n}) + (n + 1) \cdot (a_2 - a_{2n-1}) + (n + 1)^2 \cdot (a_3 - a_{2n-2}) + \cdots \\
+		\qquad+ (n + 1)^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
+		\end{split}	
+	\end{cases}
+\end{gather*}
+
+We see that the coefficients of the system form a Vandermonde matrix therefore its determinant is non-zero and since the given system is homogeneous only the trivial solution exists.
+
+However if the word does not belong to $L_k$ then some no more than $4$ lines can hold true but even then there will be atleast one line which is not equal to $0$. %(citādi būtu nenulles risinājums, un sistēmai būtu netriviāls atrisinājums)
+Therefore we can choose $0$ as a threshold for the acceptance condition -- we say that a word belongs to $L_k$ iff the accepting state end amplitude norm sum is $\leq 0$ and it does not belong to the language if contrary.
+
+$(2)$ Pierādījis ~\citet{Freivalds1982} ~\citep{Freivalds1979}, pierādījums līdzīgai valodai atrodams arī ~\citep{Yao1978}. Pierādījuma ideja balstās uz faktu, ka divas galviņas, kas izmantotas kāda viena pāra pārbaudīšanai, nevar izmantot vairs neviena cita pāra pārbaudei. No tā arī seko, ka, ja valodas pāru fragmentu skaits $n$ ir lielāks par visu iespējamo galviņu pāru skaitu ${k\choose 2}$, tad valodu nevar atpazīt ar $k$ galviņām.
+
+$(3)$ Pierādījis ~\citet{Freivalds1982}, pierādījums līdzīgai valodai atrodams arī ~\citep{Yao1978}.
+\end{pieradijums}
+
+Jāpiebilst, ka ar konstantu galviņu skaitu $L_k$ atpazīšanai pietiek arī varbūtiskiem automātiem. ~\citet{Freivalds1982} ir parādījis, ka jebkuram $\epsilon > 0$ eksistē $1pfa$, kas atpazīst katru vārdu $L_k$ ar varbūtību $1$, un noraida katru vārdu, kas nepieder, ar varbūtību vismaz $1 - \epsilon$.
