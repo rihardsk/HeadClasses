@@ -279,12 +279,13 @@ We see that the coefficients of the system form a Vandermonde matrix therefore i
 However if the word does not belong to $L_k$ then some no more than $4$ lines can hold true but even then there will be atleast one line which is not equal to $0$. %(citādi būtu nenulles risinājums, un sistēmai būtu netriviāls atrisinājums)
 Therefore we can choose $0$ as a threshold for the acceptance condition -- we say that a word belongs to $L_k$ iff the accepting state end amplitude norm sum is $\leq 0$ and it does not belong to the language if contrary.
 
-$(2)$ Pierādījis ~\citet{Freivalds1982} ~\citep{Freivalds1979}, pierādījums līdzīgai valodai atrodams arī ~\citep{Yao1978}. Pierādījuma ideja balstās uz faktu, ka divas galviņas, kas izmantotas kāda viena pāra pārbaudīšanai, nevar izmantot vairs neviena cita pāra pārbaudei. No tā arī seko, ka, ja valodas pāru fragmentu skaits $n$ ir lielāks par visu iespējamo galviņu pāru skaitu ${k\choose 2}$, tad valodu nevar atpazīt ar $k$ galviņām.
+$(2)$ Proven by ~\citet{Freivalds1982} ~\citep{Freivalds1979} a proof for a similar language can also be found in ~\citep{Yao1978}. The idea of the proof relies on the fact that, any two heads that have been used to compare a pair cannot be used to compare another pair. This implies that if the number of block pairs in a word $n$ is greater than the number of pairs of heads ${k\choose 2}$ then the language cannot be recognized with $k$ heads.
 
-$(3)$ Pierādījis ~\citet{Freivalds1982}, pierādījums līdzīgai valodai atrodams arī ~\citep{Yao1978}.
-\end{pieradijums}
+$(3)$ Proven by ~\citet{Freivalds1982} a proof for a similar language can be found in ~\citep{Yao1978}.
+\end{proof}
 
-Jāpiebilst, ka ar konstantu galviņu skaitu $L_k$ atpazīšanai pietiek arī varbūtiskiem automātiem. ~\citet{Freivalds1982} ir parādījis, ka jebkuram $\epsilon > 0$ eksistē $1pfa$, kas atpazīst katru vārdu $L_k$ ar varbūtību $1$, un noraida katru vārdu, kas nepieder, ar varbūtību vismaz $1 - \epsilon$.
+%TODO nākamais lieki tērē vietu?
+It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. ~\citet{Freivalds1982} has prooved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
 
 
 
