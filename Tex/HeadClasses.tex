@@ -287,6 +287,47 @@ $(3)$ Proven by ~\citet{Freivalds1982} a proof for a similar language can be fou
 %TODO nākamais lieki tērē vietu?
 It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. ~\citet{Freivalds1982} has prooved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
 
+\chapter{One-way multi-head automata}
+%TODO
 
+\chapter{Two-way automata}
+\section{Definitions}
+Ultrametric multi-head automata are defined by generalizing ~\citep{KasparsBalodis2013} definition of ultrametric automata in a most natural way. The definition of multi-head automata due by ~\citep{Holzer2009} is used as well.
+
+\begin{definition}
+A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a 7-tuple $\langle S, \Sigma, k, s_0, \delta, F, \Lambda \rangle$ where
+\begin{itemize}
+	\item $S$ a finite set of states,
+	\item $\Sigma$ a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- input alphabet,
+	\item $k\geq 1$ the number of heads, 
+	\item $s_0:S \rightarrow \mathbb{Q}_p$ the initial distribution of amplitudes,
+	\item $\delta: \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \times S \times S \rightarrow \mathbb{Q}_p \times \left\{-1,0,1\right\}^k$ the transition function where $\triangleright$ and $\triangleleft$ are the start and end markers,
+	\item $F \subseteq S$ is the set if accepting states,
+	\item $\Lambda = \left( \lambda, \diamond \right)$ the acceptance condition where $\lambda \in \mathbb{R}$ is the acceptance threshold $\diamond \in \left\{ \leq, \geq \right\}$.
+\end{itemize}
+\end{definition}
+
+$2u_pfa(k)$ works in a similar way than $u_pfa$ with the exception that the automaton now has $k$ heads which can move freely similarly as in a $2nfa(k)$. In difference from a $u_pfa$ now amplitudes are given for a pair consisting of the positions of the heads and a state. The amplitude of the state $y \in S$ with heads in positions
+$\left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $
+after the $i$-th operation is given by
+\[
+s_i (y, (p_1, \ldots, p_k)) =
+\sum_{\mathclap{\substack{ x \in S \wedge \\
+		\exists (p'_1, \ldots, p'_k):
+		(p'_1, \ldots, p'_k) +
+		\delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_2 =
+		(p_1, \ldots, p_k)}}}
+	{s_{i-1}(x) \cdot \delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_1 }
+\].
+
+Similarly than before the acceptance condition is applied to the final amplitude $p$-norm sum of the accepting states. That is, if
+\[
+\sum_{\mathclap{\substack{x \in F \wedge\\
+		\exists (p_1, \ldots, p_k):
+		\textrm{ automāts beidz darbu stāvoklī } x
+		\textrm{ ar galviņām pozicijās } (p_1, \ldots, p_k) }}}
+	{\left| s_{n+1}(x, (p_1, \ldots, p_k)) \right|_p} \diamond \lambda
+\]
+then we say that $w$ belongs to the language and it doesn't if contrary.
 
 \printbibliography
