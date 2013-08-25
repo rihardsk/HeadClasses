@@ -41,11 +41,11 @@
 
 \begin{document}
 
-\title{On the Classes of Finite Ultrametric automata}
+\title{On the Hierarchy Classes of Finite Ultrametric automata}
 
 
 \author{
-Rihards Kri\v slauks}
+Rihards Kri\v slauks, Kaspars Balodis}
 \institute{University of Latvia Faculty of computing,\\ Rai\c na bulv\= aris 19, Riga, LV-1459, Latvia
 }
 
@@ -330,4 +330,27 @@ Similarly than before the acceptance condition is applied to the final amplitude
 \]
 then we say that $w$ belongs to the language and it doesn't if contrary.
 
+Ultrametric Turing machines are defined to be used as a device to help prove results regarding multi-head automata classes. The basis for the definition is a definition for Turing machine by J. Hopcroft un J. Ullman ~\citep{Hopcroft1979} 1979. Well define a multi-tape Turing machine.
+\begin{definition}
+A $p$-ultrametric turing machine with $k$ work tapes $(U_pTM(k))$ is a 7-tuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
+\begin{itemize}
+	\item $Q$ is a nonemty set of states,
+	\item $\Sigma$ is a nonempty set -- the working alphabet,
+	\item $b \in \Sigma$ the "empty" symbol,
+	\item $\Sigma\subseteq\Sigma\setminus\{b\}$ the input alphabet,
+	\item $q_0 \in Q_p$ is the initial amplitude distribution,
+	\item $F \subseteq Q$ is the accepting state set,
+	\item $\delta: Q \setminus F \times \Sigma^k \rightarrow Q \times \left(\Sigma \times \{L,N,R\} \times \mathbb{Q}_p \right)^k$ is a partly defined transition function where $L$ denotes moving the head to the left, $R$ -- to the right and $N$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
+\end{itemize}
+\end{definition}
+
+Similarly than with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of state of the logic block %TODO noteikti jānoskaidro, kā tulkojas vadības bloks
+and the contents of all $k$ tapes. The amplitude with which 
+
+Līdzīgi kā ultrametrisku vairākgalviņu automātu gadījumā mašīna ar noteiktu amplitūdu atrodas kāda no tās iespējamajām konfigurācijām, bet tagad konfigurācija iekļauj vadības bloka stāvokli un visu $k$ lenšu saturu. Amplitūda, ar kādu mašīna $i$-tajā solī atrodas kāda konfigurācijā tiek aprēķināta analogi tam, kā norādīts ultrametrisko vairākgalviņu automātu gadījumā. Darba robežās, sakot, ka Tjūringa mašīna akceptē vārdu, mēs sapratīsim, ka mašīna apstājas vadības bloka akceptējoša stāvoklī. Līdz ar to, vārda akceptēšanai var izvirzīt analoģiskus nosacījumus kā ultrametriskiem vairākgalviņu automātiem (jāievēro tikai, ka tagad automāta konfigurācijā ietilpst arī no lentes saturs, un amplitūda tiek piekārtota tam kombinācijā ar vadības bloka stāvokli).
+
+Ultrametriski vairāku reģistru automāti arī tiks izmantoti kā starpposms pierādījumos.
+\begin{definicija}
+Galīgs $p$-ultrametrisks $k$ reģistru automāts (turpmāk arī mašīna) ($2u_pra(k)$) sastāv no vadības bloka ar ultrametriskām pārejām, un $k$ reģistriem, kas satur naturālus skaitļus. Automāts sāk darbu ar ieejas vārdu pirmajā reģistrā, un ar amplitūdu, kas atbilst sākotnējajam amplitūdu sadalījumam, kāda no vadības bloka stāvokļiem. Katram no reģistriem var tikt pielietots predikāts $\stackrel{?}{=} 0$ un operācija $+1$ vai $-1$. Katrai vadības bloka pārejai var tikt norādīts predikāts vai operācija, kas izpildās veicot pāreju, kā arī amplitūda. Vārda akceptēšanas kritēriji ir analogi ultrametrisko automātu definīcijā izmantotajiem.
+\end{definicija}
 \printbibliography
