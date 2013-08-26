@@ -68,8 +68,8 @@ of a random variable not yet fully explored ~\citep{Freivalds2012}. In addition 
 In this paper most of the attention is given to the question of the language hierarchy associated with the head count of ultrametric multi-head automata. %TODO pārfrāzēt
 Several results can be found in the literature which consider deterministic, nondeterministic and probabilistic finite automata in both -- the two-way and one-way -- cases ~\citep{Holzer2009, Yao1978, Monien1980, Macarie1995}. The paper examines whether similar results regarding the seperation in classes with respect to the head count can be achieved for ultrametric multi-head finite automata. Other results consider the relationships of the language classes recognized by ultrametric and classical automata.
 
-\chapter{$p$-adic numbers}
-\section{Introduction to $p$-adic numbers}
+\section{$p$-adic numbers}
+\subsection{Introduction to $p$-adic numbers}
 A $p$-adic digit is a natural number in the range of $0$ to $p-1$ (inclusive) where by $p$ we denote an arbitrary prime number. A $p$-adic natural number is a sequence %TODO varūt vajadzēja p-adic integers
 $(a_i)_{i \in \mathbb{N}}$ where $a_i$ is a $p$-adic digit. This is the same as $\cdots a_i \cdots a_2a_1a_0$.
 Which corresponds to a natural number given by
@@ -117,7 +117,7 @@ but the results of subtraction can be general $p$-adic numbers.
 It is obvious that for every $q \in \mathbb{Q}$ there exists a prime number $p$ such that $q$ can be expressed as a $p$-adic number. The same does not hold for real numbers. For every $p$ there exists an irrational number such that it cannot be expressed as a $p$-adic number. However that does not imply that for some $p$ $p$-adic numbers are a subset of real numbers. There is a continuum of $p$-adic numbers %TODO for every p?
 that cannot be expressed as a real number ~\citep{Freivalds2012}.
 
-\section{$p$-adic absolute values}
+\subsection{$p$-adic absolute values}
 A function $d: X \times X \rightarrow R_{\geq 0}$ where $X$ is a non-empty set is called a metric iff it satisfies the following conditions:
 \begin{enumerate}
 \item $d(x,y) = 0$ iff $x = y$,
@@ -147,8 +147,8 @@ p^{-\alpha_p}, &\textrm{if } \alpha \neq 0 \\
 
 $p$-adic numbers in more detail are discussed in ~\citep{Madore}. The use of $p$-adics in other sciences can be seen in ~\citep{V.S.Vladimirov1995,Kozyrev2006,Dragovich2009}.
 
-\chapter{One-way multi-head automata}
-\section{Definitions}
+\section{One-way multi-head automata}
+\subsection{Definitions}
 Ultrametric automata are defined as in ~\citep{KasparsBalodis2013}.
 \begin{definicija}
 A finite $p$-ultrametric automata ($U_pFA$) is a sextuple %TODO 6-tuple?
@@ -204,7 +204,7 @@ then the automaton is said to be deterministic ($2dfa(k)$). If at any given mome
 %TODO pabeigt par 2DFA(k). <-todo no bak darba
 
 
-\section{Relation to classical automata}
+\subsection{Relation to classical automata}
 Strictly inclusive classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata ~\citep{Holzer2009,Yao1978}. In 1978 ~\citet{Yao1978} showed that in order to separate the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$ it is sufficient to use the language
 \[
 	L_n = \left\{w_1\$w_2\$ \ldots \$w_{2n} | w_i \in \left\{a,b\right\}^* \textrm{ un } w_i = w_{2n+1−i} \textrm{ visiem } 1 \leq i \leq n \right\}.
@@ -287,11 +287,11 @@ $(3)$ Proven by ~\citet{Freivalds1982} a proof for a similar language can be fou
 %TODO nākamais lieki tērē vietu?
 It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. ~\citet{Freivalds1982} has prooved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
 
-\chapter{One-way multi-head automata}
+\section{One-way multi-head automata}
 %TODO
 
-\chapter{Two-way automata}
-\section{Definitions}
+\section{Two-way automata}
+\subsection{Definitions}
 Ultrametric multi-head automata are defined by generalizing ~\citep{KasparsBalodis2013} definition of ultrametric automata in a most natural way. The definition of multi-head automata due by ~\citep{Holzer2009} is used as well.
 
 \begin{definition}
