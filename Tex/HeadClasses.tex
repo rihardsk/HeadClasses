@@ -36,6 +36,9 @@
 %dalīšana kolonnās
 \usepackage{multicol}
 
+%papildus matemātika
+\usepackage{mathtools}
+
 
 \newcommand{\norm}[1]{\left\| #1 \right\|}
 
@@ -150,7 +153,7 @@ $p$-adic numbers in more detail are discussed in ~\citep{Madore}. The use of $p$
 \section{One-way multi-head automata}
 \subsection{Definitions}
 Ultrametric automata are defined as in ~\citep{KasparsBalodis2013}.
-\begin{definicija}
+\begin{definition}
 A finite $p$-ultrametric automata ($U_pFA$) is a sextuple %TODO 6-tuple?
 $\langle S, \Sigma, s_0, \delta, F, \Lambda \rangle$ where
 \begin{itemize}
@@ -353,3 +356,5 @@ Ultrametric multi-register automata are also used as an intermediate device for 
 A finite $p$-ultrametric $k$ register automaton (also machine) ($2u_pra(k)$) consists of a $p$-uptrametric logic block and $k$ registers that can hold natural numbers. The automaton begins with the input word in the first register and according to the specified amplitude distribution in some of its states. A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the logic block can have a predicate or an operation associated with it which is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
 \end{definition}
 \printbibliography
+
+\end{document}

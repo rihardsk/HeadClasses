@@ -32,3 +32,5 @@
 *.tdo
 Tex/abstract.pdf
 Tex/*.bcf
+Tex/HeadClasses.pdf
+Tex/*.run.xml
