@@ -31,3 +31,4 @@
 *.xdy
 *.tdo
 Tex/abstract.pdf
+Tex/*.bcf
