@@ -345,12 +345,11 @@ A $p$-ultrametric turing machine with $k$ work tapes $(U_pTM(k))$ is a 7-tuple $
 \end{definition}
 
 Similarly than with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of state of the logic block %TODO noteikti jānoskaidro, kā tulkojas vadības bloks
-and the contents of all $k$ tapes. The amplitude with which 
+and the contents of all $k$ tapes. The amplitude with which the machine is in one of its configurations in the $i$-th step is computed analogously than in the case with ultrametric multi-head automata. From now on when saying that a Turing machine accepts a word we mean that the machine stops in an accepting state after it is done processing the word as input. The criteria for acceptance are analogous to those of ultrametric multi-head automata.
+%(jāievēro tikai, ka tagad automāta konfigurācijā ietilpst arī no lentes saturs, un amplitūda tiek piekārtota tam kombinācijā ar vadības bloka stāvokli).
 
-Līdzīgi kā ultrametrisku vairākgalviņu automātu gadījumā mašīna ar noteiktu amplitūdu atrodas kāda no tās iespējamajām konfigurācijām, bet tagad konfigurācija iekļauj vadības bloka stāvokli un visu $k$ lenšu saturu. Amplitūda, ar kādu mašīna $i$-tajā solī atrodas kāda konfigurācijā tiek aprēķināta analogi tam, kā norādīts ultrametrisko vairākgalviņu automātu gadījumā. Darba robežās, sakot, ka Tjūringa mašīna akceptē vārdu, mēs sapratīsim, ka mašīna apstājas vadības bloka akceptējoša stāvoklī. Līdz ar to, vārda akceptēšanai var izvirzīt analoģiskus nosacījumus kā ultrametriskiem vairākgalviņu automātiem (jāievēro tikai, ka tagad automāta konfigurācijā ietilpst arī no lentes saturs, un amplitūda tiek piekārtota tam kombinācijā ar vadības bloka stāvokli).
-
-Ultrametriski vairāku reģistru automāti arī tiks izmantoti kā starpposms pierādījumos.
-\begin{definicija}
-Galīgs $p$-ultrametrisks $k$ reģistru automāts (turpmāk arī mašīna) ($2u_pra(k)$) sastāv no vadības bloka ar ultrametriskām pārejām, un $k$ reģistriem, kas satur naturālus skaitļus. Automāts sāk darbu ar ieejas vārdu pirmajā reģistrā, un ar amplitūdu, kas atbilst sākotnējajam amplitūdu sadalījumam, kāda no vadības bloka stāvokļiem. Katram no reģistriem var tikt pielietots predikāts $\stackrel{?}{=} 0$ un operācija $+1$ vai $-1$. Katrai vadības bloka pārejai var tikt norādīts predikāts vai operācija, kas izpildās veicot pāreju, kā arī amplitūda. Vārda akceptēšanas kritēriji ir analogi ultrametrisko automātu definīcijā izmantotajiem.
-\end{definicija}
+Ultrametric multi-register automata are also used as an intermediate device for proofs.
+\begin{definition}
+A finite $p$-ultrametric $k$ register automaton (also machine) ($2u_pra(k)$) consists of a $p$-uptrametric logic block and $k$ registers that can hold natural numbers. The automaton begins with the input word in the first register and according to the specified amplitude distribution in some of its states. A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the logic block can have a predicate or an operation associated with it which is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
+\end{definition}
 \printbibliography
