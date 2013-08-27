@@ -212,7 +212,7 @@ $\triangleright w \triangleleft$. More precisely --
 	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(1,\ldots,1\right)\right) \vdash^* \left(w,s,\left(p_1,\ldots,p_k\right)\right), s \in F,\right.\\
 	\left.\textrm{and } M \textrm{ stops } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
 \end{multline*}
-If for any start state $\delta$ gives $\leq 1$ end state %TODO tâ tulko izejas un izejas stâvokïus
+If for any state the transition function $\delta$ assigns at most $1$ successor state 
 then the automaton is said to be deterministic ($2dfa(k)$). If at any given moment the heads of an automaton move only right (or don't move) then the automaton is two-way. Nondeterministic and deterministic $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
 %TODO pabeigt par 2DFA(k). <-todo no bak darba
 
@@ -294,11 +294,11 @@ Therefore we can choose $0$ as a threshold for the acceptance condition -- we sa
 
 $(2)$ Proven by \citet{Freivalds1982,Freivalds1979}, a proof for a similar language can also be found in \citep{Yao1978}. The idea of the proof relies on the fact that, any two heads that have been used to compare a pair cannot be used to compare another pair. This implies that if the number of block pairs in a word $n$ is greater than the number of pairs of heads ${k\choose 2}$ then the language cannot be recognized with $k$ heads.
 
-$(3)$ Proven by \citet{Freivalds1982} a proof for a similar language can be found in \citep{Yao1978}.
+$(3)$ Proven by \citet{Freivalds1982} a proof for a similar language can be found in \citep{Yao1978}. \qed
 \end{proof}
 
-%TODO nâkamais lieki tçrç vietu?
-It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. \citet{Freivalds1982} has proved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
+%  nâkamais lieki tçrç vietu?
+% It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. \citet{Freivalds1982} has proved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
 
 % \section{One-way multi-head automata}
 % nebûs
@@ -435,7 +435,7 @@ As the only transition that is done with an amplitude other than $1$ is the one 
 \citet{Monien1980} has proven that for finite deterministic and nondeterministic automata the language class that can be recognized using $k$ heads is a proper subclass to the class of languages that can be recognized if $k+1$ heads are allowed. Using similar methods \citet{Macarie1995} has proven the same for finite probabilistic automata. We prove that the same holds for finite ultrametric automata.
 
 \begin{definition}
-By $\widehat{C}$ we denote the subset of a language class $C$ containing only the words in the form $1^{2^n}, n \in \mathbb{N}$, or more precisely -- $\widehat{C} = \left\{ h | h \in C \wedge \exists n \in \mathbb{N} : h = 1^{2^n} \right\}$\\
+By $\widehat{C}$ we denote the subset of a language class $C$ containing only the words in the form $1^{2^n}, n \in \mathbb{N}$, more precisely -- $\widehat{C} = \left\{ h | h \in C \wedge \exists n \in \mathbb{N} : h = 1^{2^n} \right\}$\\
 \end{definition}
 \begin{theorem} \label{atdalisana}
 For every natural number $k$ and prime $p$
@@ -443,11 +443,10 @@ For every natural number $k$ and prime $p$
 	\widehat{2U_pFA(k)} \subsetneqq \widehat{U_pTM}.
 \]
 \end{theorem}
-%TODO \widehat{kopa} nav ieviests
 \begin{proof}
 We will construct a special $p$-ultrametric Turing machine with 2 tapes and $log$-space space complexity called $T$. We will show that its recognized language cannot be recognized by a $p$-ultrametric automata with $k$ heads for any $k$.
 
-Similarly as in the beginning of this section %TODO labâk chapter?
+Similarly as in the beginning of this section
 we will construct $T$ so that it simulates a $2u_pfa(k)$ given in its input called $A$. Contrary than before $A$ "definition" does not directly include the input for $A$. We will run $A$ on the input string, i.e. on its "definition", instead.
 
 More precisely -- $T$ 1st tape contains $1^m, m \in \mathbb{N}$, $T$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; the word is rejected if not. Then $T$ designates a space on the work tape to be used for $k$ counters that will be used to represent $A$'s head positions. Since the counter values can be in $\left[0, \ldots, 1^{2^n} \right]$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
