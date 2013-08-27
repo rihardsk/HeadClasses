@@ -187,7 +187,7 @@ Whereas if $0$ is read in 1st group state $q_{i,j,1}$ where $i > n$ the amplitud
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth]{Img/1pfa.pdf}
-\caption{Automaton to recognize $0^n10^m10^h1 \cdots 10^h10^m10^n$.}
+\caption{Automaton for recognizing $0^n10^m10^h1 \cdots 10^h10^m10^n$.}
 \label{fig:1pfa}
 \end{figure}
 
@@ -386,15 +386,15 @@ For every natural number $k$ and prime $p$
 \]
 \end{theorem}
 \begin{proof}
-We will construct a special $p$-ultrametric Turing machine with 2 tapes and $log$-space space complexity called $T$. We will show that its recognized language cannot be recognized by a $p$-ultrametric automata with $k$ heads for any $k$.
+We will construct a special $p$-ultrametric Turing machine with 2 tapes and $log$-space space complexity called $\mathcal{T}$. We will show that its recognized language cannot be recognized by a $p$-ultrametric automata with $k$ heads for any $k$.
 
 Similarly as in the previous section
-we will construct $T$ so that it simulates a $2u_pfa(k)$ given in its input called $A$. Contrary than before $A$ "definition" does not directly include the input for $A$. We will run $A$ on the input string, i.e. on its "definition", instead.
+we will construct $\mathcal{T}$ so that it simulates a $2u_pfa(k)$ given in its input called $\mathcal{A}$. Contrary than before $\mathcal{A}$ "definition" does not directly include the input for $\mathcal{A}$. We will run $\mathcal{A}$ on the input string, i.e. on its "definition", instead.
 
-More precisely -- $T$ 1st tape contains $1^m, m \in \mathbb{N}$, $T$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; the word is rejected if not. Then $T$ designates a space on the work tape to be used for $k$ counters that will be used to represent $A$'s head positions. Since the counter values can be in $\left[0, \ldots, 1^{2^n} \right]$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
-All previous actions are done deterministicly making transitions with amplitude $1$. Next $T$ is run on the input string similarly as it is shown in the previous section (1st tapes head is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $T$ is with respective amplitudes in all of the possible configurations in which $A$ could have been after processing the word. Afterwards $T$ looks whether the contents of the work tape suggest that $A$ is in an accepting state and the word is rejected if $A$ would have accepted it and it is accepted if $A$ would have rejected it. Therefore $T$ gives the opposite result to that of $A$ with the same amplitudes.
+More precisely -- $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; the word is rejected if not. Then $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left[0, \ldots, 1^{2^n} \right]$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
+All previous actions are done deterministicly making transitions with amplitude $1$. Next $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section (1st tapes head is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $\mathcal{T}$ is with respective amplitudes in all of the possible configurations in which $\mathcal{A}$ could have been after processing the word. Afterwards $\mathcal{T}$ looks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state and the word is rejected if $\mathcal{A}$ would have accepted it and it is accepted if $\mathcal{A}$ would have rejected it. Therefore $\mathcal{T}$ gives the opposite result to that of $\mathcal{A}$ with the same amplitudes.
 
-Let us consider the language $L(T)$ recognized by $T$. We can see that for every $2u_pfa(k)$ denoted by $J$ there exists a word $w$ such that it is either in $L(T)$ but not in $L(J)$ or it is in $L(J)$ but not in $L(T)$, namely -- $J$'s "specification".
+Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$ there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$ or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$, namely -- $\mathcal{J}$'s "specification".
 \end{proof}
 
 Similarly as in \citep{Macarie1995} and \citep{Monien1980} in following proofs we will use the function
@@ -412,18 +412,18 @@ For every language $L \in \widehat{U_pTM}$ there exists a natural number $u$ suc
 \]
 \end{lemma}
 \begin{proof}
-We will show how a $u_ptm$ denoted by $T$ which recognizes $L$ can be transformed into a $u_ptm$ called $T'$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(k)$ which recognizes a "stretched" variant of $L$ where the stretching operation is done by $f_u$.
+We will show how a $u_ptm$ denoted by $\mathcal{T}$ which recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(k)$ which recognizes a "stretched" variant of $L$ where the stretching operation is done by $f_u$.
 
-We will construct $T'$ so that it simulates $T$. $T'$ will hold the following information on its work tape:
+We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T'}$ will hold the following information on its work tape:
 \begin{itemize}
 	\item the binary information of the input word,
-	\item $T$ head position on the 1st tape (we will call it the input tape),
-	\item $T$ 2nd tape contents (we will call it the work tape) (requires $O(log n)$ space),
-	\item $T$ head position on the work tape.
+	\item $\mathcal{T}$ head position on the 1st tape (we will call it the input tape),
+	\item $\mathcal{T}$ 2nd tape contents (we will call it the work tape) (requires $O(log n)$ space),
+	\item $\mathcal{T}$ head position on the work tape.
 \end{itemize}
-The simulation of $T$ on $T'$'s work tape is less complicated than in the case of ultrametric automata since $T'$ can use the original finite control of $T$ and the transitions are not required to be simulated on the tape. To simulate $T$ $T'$ uses only the work tape.
+The simulation of $\mathcal{T}$ on $\mathcal{T'}$'s work tape is less complicated than in the case of ultrametric automata since $\mathcal{T'}$ can use the original finite control of $\mathcal{T}$ and the transitions are not required to be simulated on the tape. To simulate $\mathcal{T}$ $\mathcal{T'}$ uses only the work tape.
 
-We can see that given $T'$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $T'$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations "add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
+We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations "add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
 
 \vspace{-8mm}
 \begin{figure}[h!]
