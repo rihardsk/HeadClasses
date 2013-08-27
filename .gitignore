@@ -34,3 +34,4 @@ Tex/abstract.pdf
 Tex/*.bcf
 Tex/HeadClasses.pdf
 Tex/*.run.xml
+Tex/*.tex.orig
