@@ -52,7 +52,7 @@
 
 \begin{document}
 
-\title{On the Hierarchy Classes of Finite Ultrametric automata}
+\title{On the Hierarchy Classes of Finite Ultrametric Automata}
 
 
 \author{
@@ -298,7 +298,7 @@ $(3)$ Proven by \citet{Freivalds1982} a proof for a similar language can be foun
 %TODO nākamais lieki tērē vietu?
 It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. \citet{Freivalds1982} has proved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
 
-\section{One-way multi-head automata}
+% \section{One-way multi-head automata}
 %TODO
 
 \section{Two-way automata}
@@ -331,15 +331,15 @@ s_i (y, (p_1, \ldots, p_k)) =
 	{s_{i-1}(x) \cdot \delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_1 }
 \].
 
-Similarly than before the acceptance condition is applied to the final amplitude $p$-norm sum of the accepting states. That is, if
+Similarly as before the acceptance condition is applied to the final amplitude $p$-norm sum of the accepting states. That is, if
 \[
 \sum_{\mathclap{\substack{x \in F \wedge\\
 		\exists (p_1, \ldots, p_k):
-		\textrm{ automāts beidz darbu stāvoklī } x
-		\textrm{ ar galviņām pozicijās } (p_1, \ldots, p_k) }}}
+		\textrm{ the automaton finishes in the state } x
+		\textrm{ with the heads in positions } (p_1, \ldots, p_k) }}}
 	{\left| s_{n+1}(x, (p_1, \ldots, p_k)) \right|_p} \diamond \lambda
 \]
-then we say that $w$ belongs to the language and it doesn't if contrary.
+then we say that $w$ belongs to the language, otherwise it does not.
 
 Ultrametric Turing machines are defined to be used as a device to help prove results regarding multi-head automata classes. The basis for the definition is a definition for Turing machine by \citet{Hopcroft1979}. We define a multi-tape Turing machine.
 \begin{definition}
@@ -363,6 +363,70 @@ Ultrametric multi-register automata are also used as an intermediate device for 
 \begin{definition}
 A finite $p$-ultrametric $k$ register automaton (also machine) ($2u_pra(k)$) consists of a $p$-uptrametric logic block and $k$ registers that can hold natural numbers. The automaton begins with the input word in the first register and according to the specified amplitude distribution in some of its states. A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the logic block can have a predicate or an operation associated with it which is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
 \end{definition}
+
+
+
+\subsection{Simulation of ultrametric automata by ultrametric Turing machines}
+
+In this subsection we will show how to simulate an ultrametric multi-head automaton by an ultrametric Turing machine.
+The techniques used here are similar to the techniques used by \citet{Macarie1995} for probabilistic automata.
+
+Without loss of generality we can assume that the simulated automaton has at most $2$ transitions from each state and input symbol.
+We will show how to construct a $p$-ultrametric $2$-tape Turing machine which receiving the description of a $k$-head $p$-ultrametric automaton as an input will accept exactly the same words as the automaton.
+We will only consider the simulation of automata working in unary alphabet therefore we will show how to encode the description of the automaton in unary alphabet, namely as a word in the form $1^{2^n}, n \in \mathbb{N}$.
+Furthermore we will require that the amplitudes of the simulated automaton are $log$-space $p$-constructible sets.
+
+
+\begin{definition}
+A set $S$ of $p$-adic numbers is $log$-space $p$-constructible if there exists a $p$-ultrametric Turing machine with logarithmic space complexity which receiving a description of a number $x \in S$ as an input reaches a marked state $q_u$ with amplitude $x$.
+\end{definition}
+%TODO aprakstam nebūtu jābūt ar kkādu ierobežotu garumu? citādi šķiet, ka nav jēgas no log-space sarežģītības
+
+% Teorēma par racionāliem skaitļiem nebūs
+%\begin{theorem}
+%The set of rational numbers is $log$-space $p$-constructible.
+%\end{theorem}
+%\begin{proof}
+%The description of a rational number $a$ is given as
+%\[
+%	\triangleright a_n a_{n-1} \cdots a_1 \cdot a_0 | a_{-1} a_{-2} \cdots a_{-m} \triangleleft,
+%\]
+%where $|$ is a delimiting symbol, $a_i \in \{0, 1\}$ and 
+%\[ %
+%	a = \sum\limits_{i=-m}^n a_i \cdot 2^i
+%\]
+%The machine 
+%\qed
+%\end{proof}
+
+A $2u_pfa(k)$ can be described with a binary sequence denoting in turn:
+\begin{itemize}
+	\item the number of states,
+	\item the number of heads,
+	\item the transitions between the states and their respective amplitudes
+\end{itemize}
+
+The simulation is performed as follows.
+The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $log$-space $p$-constructible set is simulated by a $U_pTM(k)$ $\mathcal{T}$.
+$\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
+$\mathcal{T}$ starts by reading the input word and deterministically making transitions with amplitude $1$ writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
+Additionally a space of size $O(k \cdot n)$ is reserved for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
+For the further simulation only the second tape will be used (for convenience we will call it the work tape).
+
+While processing the input word the automaton $\mathcal{A}$ can be in different configurations in parallel with different amplitudes.
+If $\mathcal{A}$ is in a configuration with an amplitude $a$, $\mathcal{T}$ will simulate it by being with the same amplitude $a$ in a configuration where the content of the work tape corresponds to the respective configuration of $\mathcal{A}$.
+
+To show that $\mathcal{T}$ can simulate $\mathcal{A}$ in such a way, we must show that every transition of $\mathcal{A}$ can be realized by $\mathcal{T}$.
+If $\mathcal{A}$ has a transition from $q_1$ to $q_2$ with an amplitude $a_1$ and from $q_1$ to $q_3$ with an amplitude $a_2$ then $\mathcal{T}$ being in a configuration corresponding to $q_1$ can make transitions to configurations corresponding to $q_2$ and $q_3$ with amplitudes $a_1$ and $a_2$ respectively.
+It is done by $\mathcal{T}$ branching and in both cases with an amplitude $1$ writing on a special place on the tape $d_1$ or $d_2$ where $d_1$ and $d_2$ are the descriptions of the transitions and the amplitudes $a_1$ and $a_2$ respectively.
+It is done deterministically with amplitude $1$.
+Then a subroutine is called which transitions to a marked state $q_u$ with an amplitude $a_1$ or $a_2$ (as all the transitions of $\mathcal{A}$ are $log$-space $p$-constructible, there exists such subroutine).
+After that $\mathcal{T}$ changes the work tape so that it corresponds to the respective transition (again this is done deterministically with amplitude $1$).
+As the only transition that is done with an amplitude other than $1$ is the one from the state $q_u$, after this procedure $\mathcal{T}$ is in a configuration corresponding to $q_2$ with amplitude $a_1$ and in a configuration $q_3$ with amplitude $a_2$.
+
+
+
+
 
 %\printbibliography
 \bibliography{bibliography}{}
