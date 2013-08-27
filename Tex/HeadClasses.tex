@@ -82,72 +82,7 @@ In this paper we address the question of the language hierarchy associated with 
 Several results can be found in the literature which consider deterministic, nondeterministic and probabilistic finite automata in both -- the two-way and one-way -- cases \citep{Holzer2009, Yao1978, Monien1980, Macarie1995}. The paper examines whether similar results regarding the separation in classes with respect to the head count can be achieved for ultrametric multi-head finite automata. Other results consider the relationships of the language classes recognized by ultrametric and classical automata.
 
 \section{$p$-adic numbers}
-\subsection{Introduction to $p$-adic numbers}
-A $p$-adic digit is a natural number in the range of $0$ to $p-1$ (inclusive) where by $p$ we denote an arbitrary prime number. A $p$-adic integer is a sequence
-$(a_i)_{i \in \mathbb{N}}$ where each $a_i$ is a $p$-adic digit. This is the same as $\cdots a_i \cdots a_2a_1a_0$.
-Which corresponds to a natural number given by
-\[
-\sum\limits_{i=0}^{+\infty}a_ip^i,
-\]
-where $p$ is our chosen prime number. This sequence is infinite to the left side. Furthermore - a natural number represented in $p$-adic numbers will have only a finite number of non-zero digits. For any given $n \in \mathbb{N}$ the non-zero part of its representation in $p$-adic numbers will exactly match $n$ representation in base $p$. Take the number $42$ as an example which is written as $123$ in base $5$. Its $5$-adic representation is $\cdots 0 \cdots 0132$.
-
-The situation is different for negative and rational $p$-adic numbers. Take the number $\frac{1}{2}$ and its $5$-adic representation as an example. $5$-adic $\frac{1}{2}$ is a number which added to itself gives $1$. From this we can devise that the $5$-adic representation of $1$ is  
-\[
-\begin{tabular}{rrrrrrrrr|}
-&$\cdots$ &2 &2 &2 &2 &2 &3\\
-+&$\cdots$ &2 &2 &2 &2 &2 &3\\
-\hline
-\hline
-&$\cdots$ &0 &0 &0 &0 &0 &1\\
-\hline
-\end{tabular}
-\]
-
-Similarly we devise subtraction and negative numbers. For example in $7$-adics
-\[
-\begin{tabular}{rrrrrrrrr|}
-&$\cdots$ &0 &0 &0 &1 &3 &2\\
--&$\cdots$ &0 &0 &0 &2 &3 &4\\
-\hline
-\hline
-&$\cdots$ &6 &6 &6 &3 &4 &3\\
-\hline
-\end{tabular}
-\]
-%Turklât var ievçrot, ka arî negatîviem skaitïiem informâciju satur tikai galîgs skaits ciparu pozîciju. Pozîcijâs, kas ir pietiekami tâlu pa kreisi atkârtojas cipars $p-1$.
-
-Interestingly almost all rational numbers can be expressed in $p$-adics. The exceptions for a given $p$ are the numbers of the form $\frac{a}{b}$  where $a$ is not divisible by $p$ but $b$ is divisible by $p$.
-
-Numbers that can't be expressed in $p$-adic natural numbers can however be expressed in $p$-adic rational numbers. Take the number $\frac{1}{5}$ as an example. It can't be expressed in $5$-adic natural numbers but it can be expressed as a $5$-adic rational number
-\[
-\cdots 0 \cdots 000,1.
-\]
-We can note that as with $p$-adic natural numbers $p$-adic rational numbers are expressed as a sequence which is infinite to the left side and finite to the right.
-
-All of the usual arithmetic operations can be carried out on $p$-adic numbers as well, namely -- addition, subtraction, multiplication and division. Addition, subtraction and multiplication can be carried out in $p$-adic integers
-but the results of subtraction can be general $p$-adic numbers.
-
-It is obvious that for every $q \in \mathbb{Q}$ there exists a prime number $p$ such that $q$ can be expressed as a $p$-adic number. The same does not hold for real numbers. For every $p$ there exists an irrational number such that it cannot be expressed as a $p$-adic number. However that does not imply that for some $p$ $p$-adic numbers are a subset of real numbers. For every $p$ there is a continuum of $p$-adic numbers that cannot be expressed as a real number \citep{Freivalds2012}.
-
-The field of $p$-adic numbers is denoted as $\mathbb{Q}_p$.
-
-\subsection{$p$-adic absolute values}
-A function $d: X \times X \rightarrow R_{\geq 0}$ where $X$ is a non-empty set is called a metric iff it satisfies the following conditions:
-\begin{enumerate}
-\item $d(x,y) = 0$ iff $x = y$,
-\item $d(x,y) = d(y,x)$,
-\item $d(x,y) \leq d(x,z) + d(z,y)$ for all $z \in X$.
-\end{enumerate}
-The metric function is used to find the distances among the elements of a set. The distance of a given element to zero $d(x,0)$ is called the elements norm or absolute value and is denoted by $||x||$.
-
-The norm satisfies the following properties
-\begin{enumerate}
-\item $||x||=0$ iff $x=0$,
-\item $||x*y|| = ||x||*||y||$,
-\item $||x+y|| \leq ||x||+||y||$ (triangle inequality).
-\end{enumerate}
-If the third property can be replaced with a stronger statement -- $||x+y|| \leq max(||x||,||y||)$ -- then the norm is said to be ultrametric. Otherwise it is called Archimedean \citep{Freivalds2012}.
-
+A detailed description of $p$-adic numbers can be found in the appendix, but for our purposes the following definition is sufficient
 \begin{definition}
 For every non-zero rational number $\alpha$ there exists a unique prime factorization - $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i$ are integers, only a finite number of which are non-zero.  The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha$ is 
 \[
@@ -158,7 +93,9 @@ p^{-\alpha_p}, &\textrm{if } \alpha \neq 0 \\
 \]
 \end{definition}
 
-$p$-adic numbers in more detail are discussed in \citep{Madore}. The use of $p$-adics in other sciences can be seen in \citep{Kozyrev2006,Dragovich2009}.
+The field of $p$-adic numbers is denoted as $\mathbb{Q}_p$.
+
+$p$-adic numbers in more detail are also discussed in \citep{Madore}. The use of $p$-adics in other sciences can be seen in \citep{Kozyrev2006,Dragovich2009}.
 %vecaa atsauce \citep{V.S.Vladimirov1995,Kozyrev2006,Dragovich2009}.
 
 \section{One-way multi-head automata}
@@ -588,6 +525,72 @@ Since $2U_pFA(k + 1)$ is a superset of $2U_pFA(k)$ and we proved that there exis
 \bibliographystyle{abbrvnat}
 
 %TODO Freivalda PhD thesis kirilicâ
+
+\section*{Appendix}
+\subsection{$p$-adic numbers}
+\subsubsection{Introduction to $p$-adic numbers}
+A $p$-adic digit is a natural number in the range of $0$ to $p-1$ (inclusive) where by $p$ we denote an arbitrary prime number. A $p$-adic integer is a sequence
+$(a_i)_{i \in \mathbb{N}}$ where each $a_i$ is a $p$-adic digit. This is the same as $\cdots a_i \cdots a_2a_1a_0$.
+Which corresponds to a natural number given by
+\[
+\sum\limits_{i=0}^{+\infty}a_ip^i,
+\]
+where $p$ is our chosen prime number. This sequence is infinite to the left side. Furthermore - a natural number represented in $p$-adic numbers will have only a finite number of non-zero digits. For any given $n \in \mathbb{N}$ the non-zero part of its representation in $p$-adic numbers will exactly match $n$ representation in base $p$. Take the number $42$ as an example which is written as $123$ in base $5$. Its $5$-adic representation is $\cdots 0 \cdots 0132$.
+
+The situation is different for negative and rational $p$-adic numbers. Take the number $\frac{1}{2}$ and its $5$-adic representation as an example. $5$-adic $\frac{1}{2}$ is a number which added to itself gives $1$. From this we can devise that the $5$-adic representation of $1$ is  
+\[
+\begin{tabular}{rrrrrrrrr|}
+&$\cdots$ &2 &2 &2 &2 &2 &3\\
++&$\cdots$ &2 &2 &2 &2 &2 &3\\
+\hline
+\hline
+&$\cdots$ &0 &0 &0 &0 &0 &1\\
+\hline
+\end{tabular}
+\]
+
+Similarly we devise subtraction and negative numbers. For example in $7$-adics
+\[
+\begin{tabular}{rrrrrrrrr|}
+&$\cdots$ &0 &0 &0 &1 &3 &2\\
+-&$\cdots$ &0 &0 &0 &2 &3 &4\\
+\hline
+\hline
+&$\cdots$ &6 &6 &6 &3 &4 &3\\
+\hline
+\end{tabular}
+\]
+%Turklât var ievçrot, ka arî negatîviem skaitïiem informâciju satur tikai galîgs skaits ciparu pozîciju. Pozîcijâs, kas ir pietiekami tâlu pa kreisi atkârtojas cipars $p-1$.
+
+Interestingly almost all rational numbers can be expressed in $p$-adics. The exceptions for a given $p$ are the numbers of the form $\frac{a}{b}$  where $a$ is not divisible by $p$ but $b$ is divisible by $p$.
+
+Numbers that can't be expressed in $p$-adic natural numbers can however be expressed in $p$-adic rational numbers. Take the number $\frac{1}{5}$ as an example. It can't be expressed in $5$-adic natural numbers but it can be expressed as a $5$-adic rational number
+\[
+\cdots 0 \cdots 000,1.
+\]
+We can note that as with $p$-adic natural numbers $p$-adic rational numbers are expressed as a sequence which is infinite to the left side and finite to the right.
+
+All of the usual arithmetic operations can be carried out on $p$-adic numbers as well, namely -- addition, subtraction, multiplication and division. Addition, subtraction and multiplication can be carried out in $p$-adic integers
+but the results of subtraction can be general $p$-adic numbers.
+
+It is obvious that for every $q \in \mathbb{Q}$ there exists a prime number $p$ such that $q$ can be expressed as a $p$-adic number. The same does not hold for real numbers. For every $p$ there exists an irrational number such that it cannot be expressed as a $p$-adic number. However that does not imply that for some $p$ $p$-adic numbers are a subset of real numbers. For every $p$ there is a continuum of $p$-adic numbers that cannot be expressed as a real number \citep{Freivalds2012}.
+
+\subsubsection{$p$-adic absolute values}
+A function $d: X \times X \rightarrow R_{\geq 0}$ where $X$ is a non-empty set is called a metric iff it satisfies the following conditions:
+\begin{enumerate}
+\item $d(x,y) = 0$ iff $x = y$,
+\item $d(x,y) = d(y,x)$,
+\item $d(x,y) \leq d(x,z) + d(z,y)$ for all $z \in X$.
+\end{enumerate}
+The metric function is used to find the distances among the elements of a set. The distance of a given element to zero $d(x,0)$ is called the elements norm or absolute value and is denoted by $||x||$.
+
+The norm satisfies the following properties
+\begin{enumerate}
+\item $||x||=0$ iff $x=0$,
+\item $||x*y|| = ||x||*||y||$,
+\item $||x+y|| \leq ||x||+||y||$ (triangle inequality).
+\end{enumerate}
+If the third property can be replaced with a stronger statement -- $||x+y|| \leq max(||x||,||y||)$ -- then the norm is said to be ultrametric. Otherwise it is called Archimedean \citep{Freivalds2012}.
 
 
 \end{document}
