@@ -81,8 +81,8 @@ Several results can be found in the literature which consider deterministic, non
 
 \section{$p$-adic numbers}
 \subsection{Introduction to $p$-adic numbers}
-A $p$-adic digit is a natural number in the range of $0$ to $p-1$ (inclusive) where by $p$ we denote an arbitrary prime number. A $p$-adic natural number is a sequence %TODO varūt vajadzēja p-adic integers
-$(a_i)_{i \in \mathbb{N}}$ where $a_i$ is a $p$-adic digit. This is the same as $\cdots a_i \cdots a_2a_1a_0$.
+A $p$-adic digit is a natural number in the range of $0$ to $p-1$ (inclusive) where by $p$ we denote an arbitrary prime number. A $p$-adic integer is a sequence
+$(a_i)_{i \in \mathbb{N}}$ where each $a_i$ is a $p$-adic digit. This is the same as $\cdots a_i \cdots a_2a_1a_0$.
 Which corresponds to a natural number given by
 \[
 \sum\limits_{i=0}^{+\infty}a_ip^i,
@@ -122,11 +122,12 @@ Numbers that can't be expressed in $p$-adic natural numbers can however be expre
 \]
 We can note that as with $p$-adic natural numbers $p$-adic rational numbers are expressed as a sequence which is infinite to the left side and finite to the right.
 
-All of the usual arithmetic operations can be carried out on $p$-adic numbers as well, namely -- addition, subtraction, multiplication and division. Addition, subtraction and multiplication can be carried out in $p$-adic natural numbers %TODO �eit jābūt integers
+All of the usual arithmetic operations can be carried out on $p$-adic numbers as well, namely -- addition, subtraction, multiplication and division. Addition, subtraction and multiplication can be carried out in $p$-adic integers
 but the results of subtraction can be general $p$-adic numbers.
 
-It is obvious that for every $q \in \mathbb{Q}$ there exists a prime number $p$ such that $q$ can be expressed as a $p$-adic number. The same does not hold for real numbers. For every $p$ there exists an irrational number such that it cannot be expressed as a $p$-adic number. However that does not imply that for some $p$ $p$-adic numbers are a subset of real numbers. There is a continuum of $p$-adic numbers %TODO for every p?
-that cannot be expressed as a real number \citep{Freivalds2012}.
+It is obvious that for every $q \in \mathbb{Q}$ there exists a prime number $p$ such that $q$ can be expressed as a $p$-adic number. The same does not hold for real numbers. For every $p$ there exists an irrational number such that it cannot be expressed as a $p$-adic number. However that does not imply that for some $p$ $p$-adic numbers are a subset of real numbers. For every $p$ there is a continuum of $p$-adic numbers that cannot be expressed as a real number \citep{Freivalds2012}.
+
+The field of $p$-adic numbers is denoted as $\mathbb{Q}_p$.
 
 \subsection{$p$-adic absolute values}
 A function $d: X \times X \rightarrow R_{\geq 0}$ where $X$ is a non-empty set is called a metric iff it satisfies the following conditions:
@@ -143,8 +144,7 @@ The norm satisfies the following properties
 \item $||x*y|| = ||x||*||y||$,
 \item $||x+y|| \leq ||x||+||y||$ (triangle inequality).
 \end{enumerate}
-If the third property can be replaced with its stronger variant -- the strong triangle inequality %TODO apskatīties vai tā tulko
-$||x+y|| \leq max(||x||,||y||)$ -- then the norm is said to be ultrametric. Otherwise it is called Archimedean \citep{Freivalds2012}.
+If the third property can be replaced with a stronger variant -- $||x+y|| \leq max(||x||,||y||)$ -- then the norm is said to be ultrametric. Otherwise it is called Archimedean \citep{Freivalds2012}.
 
 \begin{definition}
 For every non-zero rational number $\alpha$ there exists a unique prime factorization - $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i$ are integers, only a finite number of which are non-zero.  The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha$ is 
@@ -162,12 +162,12 @@ $p$-adic numbers in more detail are discussed in \citep{Madore}. The use of $p$-
 \subsection{Definitions}
 Ultrametric automata are defined as in \citep{KasparsBalodis2013}.
 \begin{definition}
-A finite $p$-ultrametric automata ($U_pFA$) is a sextuple %TODO 6-tuple?
+A finite $p$-ultrametric automata ($U_pFA$) is a sextuple
 $\langle S, \Sigma, s_0, \delta, F, \Lambda \rangle$ where
 \begin{itemize}
   \item $S$ is a finite set -- the set of states,
   \item $\Sigma$ is a finite set ($\$ \notin \Sigma$) -- input alphabet,
-  \item $s_0:S \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution, %TODO vai tie�am pareizi?
+  \item $s_0:S \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution,
   \item $\delta: \left( \Sigma \cup \left\{ \$ \right\} \right) \times S \times S \rightarrow \mathbb{Q}_p$ is the transition function,
   \item $F \subseteq S$ is the set of final states,
   \item $\Lambda = \left( \lambda, \diamond \right)$ is the acceptance condition where $\lambda \in \mathbb{R}$ is the acceptance threshold and $\diamond \in \left\{ \leq, \geq \right\}$.
@@ -201,7 +201,7 @@ gives the current head position. A transition from one configuration to the next
 $\left( w, s, \left( p_1, \ldots, p_k \right) \right) \vdash \left( w, s', \left( p_1+d_1, \ldots, p_k+d_k \right) \right)$
 is valid iff
 $\left(d_1, \ldots, d_k \right) \in \delta \left( \left( a_{p_1}, \ldots a_{p_k} \right) s, s' \right)$
-where $w = a_1a_2 \ldots a_n$ is the input word and $a_0=\triangleright$ and $a_{n+1}=\triangleleft$. $\vdash$ reflexive transitive %TODO slēgums angliski
+where $w = a_1a_2 \ldots a_n$ is the input word and $a_0=\triangleright$ and $a_{n+1}=\triangleleft$. $\vdash$ reflexive transitive closure
 is denoted by $\vdash^*$.
 
 The language $L(M)$ accepted by $M$ consists of those and only those words which are accepted by $M$. A $2nfa(k)$ accepts a word $w$ iff there exists a sequence of configurations that leads to automaton stopping in an accepting state if the input tape contains
@@ -299,14 +299,14 @@ $(3)$ Proven by \citet{Freivalds1982} a proof for a similar language can be foun
 It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. \citet{Freivalds1982} has proved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
 
 % \section{One-way multi-head automata}
-%TODO
+% nebūs
 
 \section{Two-way automata}
 \subsection{Definitions}
 Ultrametric multi-head automata are defined by generalizing \citep{KasparsBalodis2013} definition of ultrametric automata in a most natural way. The definition of multi-head automata due by \citet{Holzer2009} is used as well.
 
 \begin{definition}
-A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a 7-tuple $\langle S, \Sigma, k, s_0, \delta, F, \Lambda \rangle$ where
+A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple $\langle S, \Sigma, k, s_0, \delta, F, \Lambda \rangle$ where
 \begin{itemize}
 	\item $S$ a finite set of states,
 	\item $\Sigma$ a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- input alphabet,
@@ -314,7 +314,7 @@ A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a 7-tuple $
 	\item $s_0:S \rightarrow \mathbb{Q}_p$ the initial distribution of amplitudes,
 	\item $\delta: \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \times S \times S \rightarrow \mathbb{Q}_p \times \left\{-1,0,1\right\}^k$ the transition function where $\triangleright$ and $\triangleleft$ are the start and end markers,
 	\item $F \subseteq S$ is the set if accepting states,
-	\item $\Lambda = \left( \lambda, \diamond \right)$ the acceptance condition where $\lambda \in \mathbb{R}$ is the acceptance threshold $\diamond \in \left\{ \leq, \geq \right\}$.
+	\item $\Lambda = \left( \lambda, \diamond \right)$ the acceptance condition where $\lambda \in \mathbb{R}$ is the acceptance threshold and $\diamond \in \left\{ \leq, \geq \right\}$.
 \end{itemize}
 \end{definition}
 
@@ -343,13 +343,13 @@ then we say that $w$ belongs to the language, otherwise it does not.
 
 Ultrametric Turing machines are defined to be used as a device to help prove results regarding multi-head automata classes. The basis for the definition is a definition for Turing machine by \citet{Hopcroft1979}. We define a multi-tape Turing machine.
 \begin{definition}
-A $p$-ultrametric turing machine with $k$ work tapes $(U_pTM(k))$ is a 7-tuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
+A $p$-ultrametric turing machine with $k$ work tapes $(U_pTM(k))$ is a septuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
 \begin{itemize}
 	\item $Q$ is a nonemty set of states,
 	\item $\Sigma$ is a nonempty set -- the working alphabet,
 	\item $b \in \Sigma$ the "empty" symbol,
 	\item $\Sigma\subseteq\Sigma\setminus\{b\}$ the input alphabet,
-	\item $q_0 \in Q_p$ is the initial amplitude distribution,
+	\item $q_0 : Q \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution,
 	\item $F \subseteq Q$ is the accepting state set,
 	\item $\delta: Q \setminus F \times \Sigma^k \rightarrow Q \times \left(\Sigma \times \{L,N,R\} \times \mathbb{Q}_p \right)^k$ is a partly defined transition function where $L$ denotes moving the head to the left, $R$ -- to the right and $N$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
 \end{itemize}
