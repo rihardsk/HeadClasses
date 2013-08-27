@@ -550,7 +550,23 @@ Note that this simulation again is done analogously as for deterministic automat
 
 The result about the superiority of $k+1$ head over $k$ heads follows from the previous lemmas and Theorem \ref{atdalisana}.
 
+\begin{theorem}
+For all $k \geq 2 \in \mathbb{N}$
+\[
+	\widehat{U_pFA(k)} \subsetneqq \widehat{U_pFA(k + 1)}.
+\]
+\end{theorem}
+\begin{proof}
+We prove from the contrary by showing that if there exists such $h \geq 2$ that $\widehat{U_pFA(h)} = \widehat{U_pFA(h + 1)}$ it implies $\widehat{U_pFA(h \cdot (h + 1))} = \widehat{U_pTM}$ which contradicts \ref{atdalisana}.
 
+Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{U_pFA(3)}$. Consequently $f_m(L) \in \widehat{U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$ then $f_{m-1}(L) \in \widehat{U_pFA(h + 1)} = \widehat{U_pFA(h)}$. Take $m = m - 1$ and repeat while we get $f_m(L) \in \widehat{U_pFA(h)}$ and $m = h + 1$. Then lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{U_pFA(h)}$ then $L \in \widehat{U_pFA(h \cdot m)} = \widehat{U_pFA(h \cdot (h + 1))}$. Which contradicts \ref{atdalisana}.
+\end{proof}
+\begin{corollary}
+Since $U_pFA(k + 1)$ is superset of $U_pFA(k)$ and we proved that there exists a language that can be recognized eith $k+1$ heads and not by $k$ then the head hierarchy result holds for languages in multi-letter alphabets as well:
+\[
+	U_pFA(k) \subsetneqq U_pFA(k + 1).
+\]
+\end{corollary}
 
 
 %\printbibliography
