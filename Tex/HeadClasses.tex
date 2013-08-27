@@ -332,8 +332,9 @@ s_i (y, (p_1, \ldots, p_k)) =
 		\delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_2 =
 		(p_1, \ldots, p_k)}}}
 	{s_{i-1}(x) \cdot \delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_1 }
-\].
+\]
 
+\vspace{-2mm}
 Similarly as before the acceptance condition is applied to the final amplitude $p$-norm sum of the accepting states. That is, if
 \[
 \sum_{\mathclap{\substack{x \in F \wedge\\
@@ -365,7 +366,7 @@ Similarly as with ultrametric multi-head automata the machine with a given ampli
 
 Ultrametric multi-register automata are also used as an intermediate device for proofs.
 \begin{definition}
-A finite $p$-ultrametric $k$ register automaton (also machine) ($2u_pra(k)$) consists of a $p$-ultrametric finite control and $k$ registers that can hold natural numbers. The automaton begins with the input word in the first register and according to the specified amplitude distribution in some of its states. A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the logic block can have a predicate or an operation associated with it which is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
+A finite $p$-ultrametric $k$ register automaton (also machine) ($2u_pra(k)$) consists of a $p$-ultrametric finite control and $k$ registers that can hold natural numbers. The automaton begins with the input word in the first register and according to the specified amplitude distribution in some of its states. A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the finite control can have a predicate or an operation associated with it which is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
 \end{definition}
 
 
@@ -378,11 +379,11 @@ The techniques used here are similar to the techniques used by \citet{Macarie199
 Without loss of generality we can assume that the simulated automaton has at most $2$ transitions from each state and input symbol.
 We will show how to construct a $p$-ultrametric $2$-tape Turing machine which receiving the description of a $k$-head $p$-ultrametric automaton as an input will accept exactly the same words as the automaton.
 We will only consider the simulation of automata working in unary alphabet therefore we will show how to encode the description of the automaton in unary alphabet, namely as a word in the form $1^{2^n}, n \in \mathbb{N}$.
-Furthermore we will require that the amplitudes of the simulated automaton are $log$-space $p$-constructible sets.
+Furthermore we will require that the amplitudes of the simulated automaton are $p$-constructible sets.
 
 
 \begin{definition}
-A set $S$ of $p$-adic numbers is $log$-space $p$-constructible if there exists a $p$-ultrametric Turing machine with logarithmic space complexity which receiving a description of a number $x \in S$ as an input reaches a marked state $q_u$ with amplitude $x$.
+A set $S$ of $p$-adic numbers is $p$-constructible if there exists a $p$-ultrametric Turing machine which receiving a description of a number $x \in S$ as an input reaches a marked state $q_u$ with amplitude $x$.
 \end{definition}
 %TODO aprakstam nebûtu jâbût ar kkâdu ierobeþotu garumu? citâdi ?íiet, ka nav jçgas no log-space sareþìîtîbas
 
@@ -404,14 +405,17 @@ A set $S$ of $p$-adic numbers is $log$-space $p$-constructible if there exists a
 %\end{proof}
 
 A $2u_pfa(k)$ can be described with a binary sequence denoting in turn:
-\begin{itemize}
-	\item the number of states,
-	\item the number of heads,
-	\item the transitions between the states and their respective amplitudes
-\end{itemize}
+%\begin{itemize}
+	%\item
+	 the number of states,
+	%\item
+	 the number of heads,
+	%\item
+	 the transitions between the states and their respective amplitudes.
+%\end{itemize}
 
 The simulation is performed as follows.
-The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $log$-space $p$-constructible set is simulated by a $U_pTM(k)$ $\mathcal{T}$.
+The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $U_pTM(k)$ $\mathcal{T}$.
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 $\mathcal{T}$ starts by reading the input word and deterministically making transitions with amplitude $1$ writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
 Additionally a space of size $O(k \cdot n)$ is reserved for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
@@ -424,7 +428,7 @@ To show that $\mathcal{T}$ can simulate $\mathcal{A}$ in such a way, we must sho
 If $\mathcal{A}$ has a transition from $q_1$ to $q_2$ with an amplitude $a_1$ and from $q_1$ to $q_3$ with an amplitude $a_2$ then $\mathcal{T}$ being in a configuration corresponding to $q_1$ can make transitions to configurations corresponding to $q_2$ and $q_3$ with amplitudes $a_1$ and $a_2$ respectively.
 It is done by $\mathcal{T}$ branching and in both cases with an amplitude $1$ writing on a special place on the tape $d_1$ or $d_2$ where $d_1$ and $d_2$ are the descriptions of the transitions and the amplitudes $a_1$ and $a_2$ respectively.
 It is done deterministically with amplitude $1$.
-Then a subroutine is called which transitions to a marked state $q_u$ with an amplitude $a_1$ or $a_2$ (as all the transitions of $\mathcal{A}$ are $log$-space $p$-constructible, there exists such subroutine).
+Then a subroutine is called which transitions to a marked state $q_u$ with an amplitude $a_1$ or $a_2$ (as all the transitions of $\mathcal{A}$ are $p$-constructible, there exists such subroutine).
 After that $\mathcal{T}$ changes the work tape so that it corresponds to the respective transition (again this is done deterministically with amplitude $1$).
 As the only transition that is done with an amplitude other than $1$ is the one from the state $q_u$, after this procedure $\mathcal{T}$ is in a configuration corresponding to $q_2$ with amplitude $a_1$ and in a configuration $q_3$ with amplitude $a_2$.
 
@@ -480,17 +484,20 @@ We will construct $T'$ so that it simulates $T$. $T'$ will hold the following in
 	\item $T$ 2nd tape contents (we will call it the work tape) (requires $O(log n)$ space),
 	\item $T$ head position on the work tape.
 \end{itemize}
-The simulation of $T$ on $T'$'s work tape is less complicated than in the case of ultrametric automata since $T'$ can use the original logic block of $T$ and the transitions are not required to be simulated on the tape. To simulate $T$ $T'$ uses only the work tape.
+The simulation of $T$ on $T'$'s work tape is less complicated than in the case of ultrametric automata since $T'$ can use the original finite control of $T$ and the transitions are not required to be simulated on the tape. To simulate $T$ $T'$ uses only the work tape.
 
-We can see that given $T'$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $T'$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations "add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in \ref{fig:skaititaji}.
+We can see that given $T'$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $T'$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations "add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
 
+\vspace{-8mm}
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.8\textwidth]{Img/skaititaji.pdf}
+\vspace{-5mm}
 \caption{Simulating the contents of a Turing machine with registers.}
 \label{fig:skaititaji}
 \end{figure}
 
+\vspace{-7mm}
 Since a positions of a multi-head automaton directly corresponds to a number in a register and the simulated Turing machine is with $log$-space space complexity then a $3$ register machine can be replaced with a $p$-ultrametric $3$ head automaton. But since its heads cannot cross word boundaries and therefore cannot simulate arbitrarily large numbers the input words must be long enough. This is achieved by using choosing a large enough $u$.
 \end{proof}
 
@@ -566,7 +573,7 @@ For all $k \geq 2 \in \mathbb{N}$
 \begin{proof}
 We prove from the contrary by showing that if there exists such $h \geq 2$ that $\widehat{2U_pFA(h)} = \widehat{2U_pFA(h + 1)}$ it implies $\widehat{2U_pFA(h \cdot (h + 1))} = \widehat{U_pTM}$ which contradicts \ref{atdalisana}.
 
-Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2U_pFA(3)}$. Consequently $f_m(L) \in \widehat{2U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$ then $f_{m-1}(L) \in \widehat{2U_pFA(h + 1)} = \widehat{2U_pFA(h)}$. Take $m = m - 1$ and repeat while we get $f_m(L) \in \widehat{2U_pFA(h)}$ and $m = h + 1$. Then Lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{2U_pFA(h)}$ then $L \in \widehat{2U_pFA(h \cdot m)} = \widehat{2U_pFA(h \cdot (h + 1))}$. Which contradicts Theorem \ref{atdalisana}.
+Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2U_pFA(3)}$. Consequently $f_m(L) \in \widehat{2U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$ then $f_{m-1}(L) \in \widehat{2U_pFA(h + 1)} = \widehat{2U_pFA(h)}$. Take $m = m - 1$ and repeat while we get $f_m(L) \in \widehat{2U_pFA(h)}$ and $m = h + 1$. Then Lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{2U_pFA(h)}$ then $L \in \widehat{2U_pFA(h \cdot m)} = \widehat{2U_pFA(h \cdot (h + 1))}$. Which contradicts Theorem \ref{atdalisana}. \qed
 \end{proof}
 \begin{corollary}
 Since $2U_pFA(k + 1)$ is a superset of $2U_pFA(k)$ and we proved that there exists a language that can be recognized with $k+1$ heads and not by $k$ then the head hierarchy result holds for languages in multi-letter alphabets as well:
