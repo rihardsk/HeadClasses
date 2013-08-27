@@ -61,6 +61,7 @@ Rihards Kri\v slauks, Kaspars Balodis}
 }
 
 \maketitle
+%TODO Freivalda zvaigznisteksts
 
 \begin{abstract}
 The work explores the language classes that arise with respect to the head count of a finite automaton. The results for deterministic non-deterministic and probabilistic automata are explored and similar results are proved for two-way ultrametric automata, which are viewed as a generalization of ultrametric finite automata that have just recently been introduced by \citet{Freivalds2012}. For the one-way setting it is shown that ultrametric one-head finite automata are more powerful than deterministic and non-deterministic automata for certain languages. Definitions for ultrametric Turing machines and ultrametric multi-register machines are introduced as a tool for proving the results.
@@ -454,6 +455,36 @@ Similarly as in \citep{Macarie1995} and \citep{Monien1980} in following proofs w
 \[
 	f_k : \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \rightarrow \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \textrm{, where } f_k( 1^{2^n}) = 1^{2^{k \cdot n}}
 \]
+
+\begin{lemma} \label{skaititaji}
+For every language $L \in \widehat{U_pTM}$ there exists a natural number $u$ such that
+\[
+	f_u(L) \in \widehat{U_pFA(3)}.
+\]
+\end{lemma}
+\begin{proof}
+We will show how a $u_ptm$ denoted by $T$ which recognizes $L$ can be transformed into a $u_ptm$ called $T'$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $u_pfa(k)$ which recognizes a "stretched" variant of $L$ where the stretching operation is done by $f_u$.
+
+We will construct $T'$ so that it simulates $T$. $T'$ will hold the following information on its work tape:
+\begin{itemize}
+	\item the binary information of the input word,
+	\item $T$ head position on the 1st tape (we will call it the input tape),
+	\item $T$ 2nd tape contents (we will call it the work tape) (requires $O(log n)$ space),
+	\item $T$ head position on the work tape.
+\end{itemize}
+The simulation of $T$ on $T'$'s work tape is less complicated than in the case of ultrametric automata since $T'$ can use the original logic block of $T$ and the transitions are not required to be simulated on the tape. To simulate $T$ $T'$ uses only the work tape.
+
+We can see that given $T'$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $T'$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations "add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in \ref{fig:skaititaji}.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{Img/skaititaji.pdf}
+\caption{Simulating the contents of a Turing machine with registers.}
+\label{fig:skaititaji}
+\end{figure}
+
+Since a positions of a multi-head automaton directly corresponds to a number in a register and the simulated Turing machine is with $log$-space space complexity then a $3$ register machine can be replaced with a $p$-ultrametric $3$ head automaton. But since its heads cannot cross word boundaries and therefore cannot simulate arbitrarily large numbers the input words must be long enough. This is achieved by using choosing a large enough $u$.
+\end{proof}
 
 %\printbibliography
 \bibliography{bibliography}{}
