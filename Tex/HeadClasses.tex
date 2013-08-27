@@ -41,10 +41,10 @@
 \usepackage{graphicx}
 \usepackage{float}
 
-%dalÄ«Åana kolonnÄs
+%dalî?ana kolonnâs
 \usepackage{multicol}
 
-%papildus matemÄtika
+%papildus matemâtika
 \usepackage{mathtools}
 
 
@@ -74,10 +74,10 @@ Ultrametric machines and Turing machines were first introduced by \citet{Freival
 
 Ultrametric machines are similar to probabilistic machines, the difference being that it is not necessary for amplitudes (which are the equivalent of probabilities in probabilistic automata) to be in the range between 0 and 1. Instead arbitrary rational numbers can be used. We should note that in \citep{Turakainen1969} a similar generalization of probabillistic automata was introduced, where "probabilities" can be arbitrarily large numbers, and the acceptance criterion is whether the probability to be in an accepting state is greater than a given threshold, furthermore it was shown that this generalization is in fact equivalent to probabilistic automata. However, unlike in these pseudo-probabilistic machines, the definition of ultrametric machines uses the concept of a $p$-adic norm.
 
-It can be said that the definition introduced by Freivalds is natural since it uncovers the only remaining notation %TODO pÄrfrÄzÄ“t
+It can be said that the definition introduced by Freivalds is natural since it uncovers the only remaining notation %TODO pârfrâzçt
 of a random variable not yet fully explored \citep{Freivalds2012}. In addition useful properties have been proven for the definition of ultrametric machines -- \citet{KasparsBalodis2013} proved that the language class recognized by regulated $p$-adic machines coincides with the class of regular languages.
 
-In this paper most of the attention is given to the question of the language hierarchy associated with the head count of ultrametric multi-head automata. %TODO pÄrfrÄzÄ“t
+In this paper most of the attention is given to the question of the language hierarchy associated with the head count of ultrametric multi-head automata. %TODO pârfrâzçt
 Several results can be found in the literature which consider deterministic, nondeterministic and probabilistic finite automata in both -- the two-way and one-way -- cases \citep{Holzer2009, Yao1978, Monien1980, Macarie1995}. The paper examines whether similar results regarding the seperation in classes with respect to the head count can be achieved for ultrametric multi-head finite automata. Other results consider the relationships of the language classes recognized by ultrametric and classical automata.
 
 \section{$p$-adic numbers}
@@ -113,7 +113,7 @@ Similarly we devise subtraction and negative numbers. For example in $7$-adics
 \hline
 \end{tabular}
 \]
-%TurklÄt var ievÄ“rot, ka arÄ« negatÄ«viem skaitÄ¼iem informÄciju satur tikai galÄ«gs skaits ciparu pozÄ«ciju. PozÄ«cijÄs, kas ir pietiekami tÄlu pa kreisi atkÄrtojas cipars $p-1$.
+%Turklât var ievçrot, ka arî negatîviem skaitïiem informâciju satur tikai galîgs skaits ciparu pozîciju. Pozîcijâs, kas ir pietiekami tâlu pa kreisi atkârtojas cipars $p-1$.
 
 Interestingly almost all rational numbers can be expressed in $p$-adics. The exceptions for a given $p$ are the numbers of the form $\frac{a}{b}$  where $a$ is not divisible by $p$ but $b$ is divisible by $p$.
 
@@ -183,7 +183,7 @@ After the $n$-th symbol, in the same way the end marker $\$$ is processed obtain
 If the sum of the $p$-norms of final amplitudes over final states is at least (or at most) the threshold, i.e., if $\sum_{x \in F}{\left| s_{n+1}(x) \right|_p} \diamond \lambda$, then the word $w$ is said to be accepted, otherwise -- rejected.
 \end{definition}
 
-%TODO Åo nevajag citÄ nodaÄ¼Ä?
+%TODO ?o nevajag citâ nodaïâ?
 A two-way $k$-head (where $k\geq 1$) finite autamaton consists of an input tape containing the input word on which the heads of the autamaton can move freely in both directions not crossing the endmarkers. The tape is read-only. More formally:
 \begin{definition}[\citep{Holzer2009}]
 A non-deterministic $k$-head finite automaton ($2nfa(k)$) is a sextuple $\langle S, \Sigma, k, s_0, \delta, F \rangle$, where
@@ -209,9 +209,9 @@ The language $L(M)$ accepted by $M$ consists of those and only those words which
 $\triangleright w \triangleleft$. More precisely -- 
 \begin{multline*}
 	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(1,\ldots,1\right)\right) \vdash^* \left(w,s,\left(p_1,\ldots,p_k\right)\right), s \in F,\right.\\
-	\left.\textrm{un } M \textrm{ apstÄjas } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
+	\left.\textrm{un } M \textrm{ apstâjas } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
 \end{multline*}
-If for any start state $\delta$ gives $\leq 1$ end state %TODO tÄ tulko izejas un izejas stÄvokÄ¼us
+If for any start state $\delta$ gives $\leq 1$ end state %TODO tâ tulko izejas un izejas stâvokïus
 then the automaton is said to be deterministic ($2dfa(k)$). If at any given moment the heads of an automaton move only right (or don't move) then the automaton is two-way. Nondeterministic and deterministic $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
 %TODO pabeigt par 2DFA(k). <-todo no bak darba
 
@@ -219,7 +219,7 @@ then the automaton is said to be deterministic ($2dfa(k)$). If at any given mome
 \subsection{Relation to classical automata}
 Strictly inclusive classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata \citep{Holzer2009,Yao1978}. In 1978 \citet{Yao1978} showed that in order to separate the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$ it is sufficient to use the language
 \[
-	L_n = \left\{w_1\$w_2\$ \ldots \$w_{2n} | w_i \in \left\{a,b\right\}^* \textrm{ un } w_i = w_{2n+1âˆ’i} \textrm{ visiem } 1 \leq i \leq n \right\}.
+	L_n = \left\{w_1\$w_2\$ \ldots \$w_{2n} | w_i \in \left\{a,b\right\}^* \textrm{ un } w_i = w_{2n+1?i} \textrm{ visiem } 1 \leq i \leq n \right\}.
 \]
 We will consider a similar language -- $L_k$.
 \begin{theorem}
@@ -288,7 +288,7 @@ It follows that a word belongs to the language $L_k$ iff the following system ho
 
 We see that the coefficients of the system form a Vandermonde matrix therefore its determinant is non-zero and since the given system is homogeneous only the trivial solution exists.
 
-However if the word does not belong to $L_k$ then some no more than $4$ lines can hold true but even then there will be atleast one line which is not equal to $0$. %(citÄdi bÅ«tu nenulles risinÄjums, un sistÄ“mai bÅ«tu netriviÄls atrisinÄjums)
+However if the word does not belong to $L_k$ then some no more than $4$ lines can hold true but even then there will be atleast one line which is not equal to $0$. %(citâdi bûtu nenulles risinâjums, un sistçmai bûtu netriviâls atrisinâjums)
 Therefore we can choose $0$ as a threshold for the acceptance condition -- we say that a word belongs to $L_k$ iff the accepting state end amplitude norm sum is $\leq 0$ and it does not belong to the language if contrary.
 
 $(2)$ Proven by \citet{Freivalds1982,Freivalds1979}, a proof for a similar language can also be found in \citep{Yao1978}. The idea of the proof relies on the fact that, any two heads that have been used to compare a pair cannot be used to compare another pair. This implies that if the number of block pairs in a word $n$ is greater than the number of pairs of heads ${k\choose 2}$ then the language cannot be recognized with $k$ heads.
@@ -296,11 +296,11 @@ $(2)$ Proven by \citet{Freivalds1982,Freivalds1979}, a proof for a similar langu
 $(3)$ Proven by \citet{Freivalds1982} a proof for a similar language can be found in \citep{Yao1978}.
 \end{proof}
 
-%TODO nÄkamais lieki tÄ“rÄ“ vietu?
+%TODO nâkamais lieki tçrç vietu?
 It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. \citet{Freivalds1982} has proved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
 
 % \section{One-way multi-head automata}
-% nebÅ«s
+% nebûs
 
 \section{Two-way automata}
 \subsection{Definitions}
@@ -356,9 +356,9 @@ A $p$-ultrametric turing machine with $k$ work tapes $(U_pTM(k))$ is a septuple 
 \end{itemize}
 \end{definition}
 
-Similarly as with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of state of the logic block %TODO noteikti jÄnoskaidro, kÄ tulkojas vadÄ«bas bloks
+Similarly as with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of state of the logic block %TODO noteikti jânoskaidro, kâ tulkojas vadîbas bloks
 and the contents of all $k$ tapes. The amplitude with which the machine is in one of its configurations in the $i$-th step is computed analogously than in the case with ultrametric multi-head automata. From now on when saying that a Turing machine accepts a word we mean that the machine stops in an accepting state after it is done processing the word as input. The criteria for acceptance are analogous to those of ultrametric multi-head automata.
-%(jÄievÄ“ro tikai, ka tagad automÄta konfigurÄcijÄ ietilpst arÄ« no lentes saturs, un amplitÅ«da tiek piekÄrtota tam kombinÄcijÄ ar vadÄ«bas bloka stÄvokli).
+%(jâievçro tikai, ka tagad automâta konfigurâcijâ ietilpst arî no lentes saturs, un amplitûda tiek piekârtota tam kombinâcijâ ar vadîbas bloka stâvokli).
 
 Ultrametric multi-register automata are also used as an intermediate device for proofs.
 \begin{definition}
@@ -381,9 +381,9 @@ Furthermore we will require that the amplitudes of the simulated automaton are $
 \begin{definition}
 A set $S$ of $p$-adic numbers is $log$-space $p$-constructible if there exists a $p$-ultrametric Turing machine with logarithmic space complexity which receiving a description of a number $x \in S$ as an input reaches a marked state $q_u$ with amplitude $x$.
 \end{definition}
-%TODO aprakstam nebÅ«tu jÄbÅ«t ar kkÄdu ierobeÅ¾otu garumu? citÄdi ÅÄ·iet, ka nav jÄ“gas no log-space sareÅ¾Ä£Ä«tÄ«bas
+%TODO aprakstam nebûtu jâbût ar kkâdu ierobeşotu garumu? citâdi ?íiet, ka nav jçgas no log-space sareşìîtîbas
 
-% TeorÄ“ma par racionÄliem skaitÄ¼iem nebÅ«s
+% Teorçma par racionâliem skaitïiem nebûs
 %\begin{theorem}
 %The set of rational numbers is $log$-space $p$-constructible.
 %\end{theorem}
@@ -442,7 +442,7 @@ For every natural number $k$ and prime $p$
 \begin{proof}
 We will construct a special $p$-ultrametric Turing machine with 2 tapes and $log$-space space complexity called $T$. We will show that its recognized language cannot be recognized by a $p$-ultrametric automata with $k$ heads for any $k$.
 
-Similarly as in the beginning of this section %TODO labÄk chapter?
+Similarly as in the beginning of this section %TODO labâk chapter?
 we will construct $T$ so that it simulates a $u_pfa(k)$ given in its input called $A$. Contrary than before $A$ "definition" does not directly include the input for $A$. We will run $A$ on the input string, i.e. on its "definition", instead.
 
 More precisely -- $T$ 1st tape contains $1^m, m \in \mathbb{N}$, $T$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $u_pfa(k)$; the word is rejected if not. Then $T$ designates a space on the work tape to be used for $k$ counters that will be used to represent $A$'s head positions. Since the counter values can be in $\left[0, \ldots, 1^{2^n} \right]$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
@@ -455,6 +455,9 @@ Similarly as in \citep{Macarie1995} and \citep{Monien1980} in following proofs w
 \[
 	f_k : \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \rightarrow \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \textrm{, where } f_k( 1^{2^n}) = 1^{2^{k \cdot n}}
 \]
+
+
+
 
 \begin{lemma} \label{skaititaji}
 For every language $L \in \widehat{U_pTM}$ there exists a natural number $u$ such that
@@ -486,11 +489,75 @@ We can see that given $T'$ a corresponding $p$-ultrametric $3$ register machine 
 Since a positions of a multi-head automaton directly corresponds to a number in a register and the simulated Turing machine is with $log$-space space complexity then a $3$ register machine can be replaced with a $p$-ultrametric $3$ head automaton. But since its heads cannot cross word boundaries and therefore cannot simulate arbitrarily large numbers the input words must be long enough. This is achieved by using choosing a large enough $u$.
 \end{proof}
 
+
+
+
+
+
+
+
+
+
+\begin{lemma} \label{reizinajums}
+For all languages $L \in \widehat{U_pTM}$ and all $u, v \geq 1, u, v \in \mathbb{N}$:
+\[
+	f_u(L) \in \widehat{U_pFA(v)} \Rightarrow L \in \widehat{U_pFA(u \cdot v)}.
+\]
+\end{lemma}
+\begin{proof}
+Let the $u_pfa(v)$ in the premise be $\mathcal{A}$ and the $u_pfa(u \cdot v)$ in the conclusion -- $\mathcal{A'}$.
+
+Consider the operation of $\mathcal{A}$ on a word $f_u(l), l = 1^{2^n} \in L, n \in \mathbb{N}$.
+The position of each of $v$ heads of $\mathcal{A}$ on the input word can be described with an integer $h_i \in \left[0, 2^{u \cdot n} -1 \right]$.
+$h_i$ can be written in base $2^n$ with $u$ digits.
+As the position of each head of $\mathcal{A'}$ can be described with a digit in base $2^n$, each head of $\mathcal{A}$ can be simulated with $u$ heads of $\mathcal{A'}$.
+As each movement of a head of $\mathcal{A}$ corresponds to movement of heads of $\mathcal{A'}$, the respective transitions can be done with equal amplitudes and the accepting amplitudes of the words remain the same.
+
+Note that this simulation is done analogously as for deterministic automata in \citep{Monien1980} and for probabilistic automata in \citep{Macarie1995}.
+\qed
+\end{proof}
+
+\begin{lemma} \label{plus1}
+For every language $L \in \widehat{U_pTM}$ and every $u > v > 1, u, v \in \mathbb{N}$:
+\[
+	f_{u+1}(L) \in \widehat{U_pFA(v)} \Rightarrow f_u(L) \in \widehat{U_FA(v + 1)}.
+\]
+\end{lemma}
+\begin{proof}
+Let the $u_pfa(v)$ in the premise be $\mathcal{A}$ and the $u_pfa(v + 1)$ in the conclusion -- $\mathcal{A'}$.
+
+Consider the operation of $\mathcal{A}$ on a word $f_{u+1}(l), l = 1^{2^n} \in L, n \in \mathbb{N}$.
+
+The position of each of $v$ heads of $\mathcal{A}$ on the input word can be described with an integer $h_i \in \left[0, 2^{(u + 1) \cdot n} + 1 \right]$.
+
+We will simulate the position $h_i$ in the automaton $\mathcal{A'}$ with a head $g_i$ and an additional number $x_i \in \left[ 0, 2^n \right]$ so that $h_i = g_i + x_i \cdot 2^{u \cdot n}$.
+It is evident that numbers in the necessary interval can be denoted this way
+\begin{align*}
+	2^{u \cdot n} + (2^n - 1) \cdot 2^{u \cdot n} & =\\
+	2^{u \cdot n} \cdot (1 + (2^n - 1)) & =\\
+	2^{u \cdot n + n} & =\\
+	2^{(u + 1) \cdot n}.\\
+\end{align*}
+All $v$ numbers $x_i$ are coded with the $(v+1)$-th head of $\mathcal{A'}$ similarly as in \citep{Monien1980}. %TODO siikaak aprakstiit
+It can be done if on the tape of $\mathcal{A'}$ is enough space, specifically if $(2^n)^v < 2^{u \cdot n}$, which holds as $v < u$.
+
+Again as each movement of a head of $\mathcal{A}$ corresponds to movement of heads of $\mathcal{A'}$, the respective transitions can be done with equal amplitudes and the accepting amplitudes of the words remain the same.
+
+Note that this simulation again is done analogously as for deterministic automata in \citep{Monien1980} and for probabilistic automata in \citep{Macarie1995}.
+%TODO atkaartojas teksts no ieprieksheejaas lemmas, varbuut paarrakstiit
+\qed
+\end{proof}
+
+The result about the superiority of $k+1$ head over $k$ heads follows from the previous lemmas and Theorem \ref{atdalisana}.
+
+
+
+
 %\printbibliography
 \bibliography{bibliography}{}
 \bibliographystyle{abbrvnat}
 
-%TODO Freivalda PhD thesis kirilicÄ
+%TODO Freivalda PhD thesis kirilicâ
 
 
 \end{document}
