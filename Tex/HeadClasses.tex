@@ -70,7 +70,7 @@ The work explores the language classes that arise with respect to the head count
 
 
 \section{Introduction} 
-Ultrametric machines and Turing machines were first introduced by \citet{Freivalds2012}. This has been followed by several papers where various aspects of them are studied in depth. \citet{ KasparsBalodis2013} have studied the descriptional complexity of ultrametric automata. They show that ultrametric automata can achieve an exponential advantage in terms of the number of states required when compared to equivalent deterministic automata. \citet{Krislauks2013} have studied the reversal complexity of ultrametric Turing machines.
+Ultrametric finite automata and Turing machines were first introduced by \citet{Freivalds2012}. This has been followed by several papers where various aspects of them are studied in depth. \citet{ KasparsBalodis2013} have studied the descriptional complexity of ultrametric automata. They show that ultrametric automata can achieve an exponential advantage in terms of the number of states required when compared to equivalent deterministic automata. \citet{Krislauks2013} have studied the reversal complexity of ultrametric Turing machines.
 
 Ultrametric machines are similar to probabilistic machines, the difference being that it is not necessary for amplitudes (which are the equivalent of probabilities in probabilistic automata) to be in the range between 0 and 1. Instead $p$-adic numbers are used. We should note that in \citep{Turakainen1969} a similar generalization of probabilistic automata was introduced, where "probabilities" can be arbitrarily large numbers, and the acceptance criterion is whether the probability to be in an accepting state is greater than a given threshold, furthermore it was shown that this generalization is in fact equivalent to probabilistic automata. However, unlike in these pseudo-probabilistic machines, the definition of ultrametric machines uses the concept of a $p$-adic norm.
 
@@ -118,7 +118,7 @@ Similarly we devise subtraction and negative numbers. For example in $7$-adics
 
 Interestingly almost all rational numbers can be expressed in $p$-adics. The exceptions for a given $p$ are the numbers of the form $\frac{a}{b}$  where $a$ is not divisible by $p$ but $b$ is divisible by $p$.
 
-Numbers that can't be expressed in $p$-adic natural numbers can however be expressed in $p$-adic rational numbers. Take the number $\frac{1}{5}$ as an example. It can't be expressed in $5$-dic natural numbers but it can be expressed as a $5$-adic rational number
+Numbers that can't be expressed in $p$-adic natural numbers can however be expressed in $p$-adic rational numbers. Take the number $\frac{1}{5}$ as an example. It can't be expressed in $5$-adic natural numbers but it can be expressed as a $5$-adic rational number
 \[
 \cdots 0 \cdots 000,1.
 \]
@@ -214,7 +214,7 @@ $\triangleright w \triangleleft$. More precisely --
 	\left.\textrm{and } M \textrm{ stops } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
 \end{multline*}
 If for any state the transition function $\delta$ assigns at most $1$ successor state 
-then the automaton is said to be deterministic ($2dfa(k)$). If at any given moment the heads of an automaton move only right (or don't move) then the automaton is two-way. Nondeterministic and deterministic $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
+then the automaton is said to be deterministic ($2dfa(k)$). If at any given moment the heads of an automaton move only right (or don't move) then the automaton is one-way. Nondeterministic and deterministic $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
 %TODO pabeigt par 2DFA(k). <-todo no bak darba
 
 
@@ -316,7 +316,7 @@ A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple 
 	\item $k\geq 1$ the number of heads, 
 	\item $s_0:S \rightarrow \mathbb{Q}_p$ the initial distribution of amplitudes,
 	\item $\delta: \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \times S \times S \rightarrow \mathbb{Q}_p \times \left\{-1,0,1\right\}^k$ the transition function where $\triangleright$ and $\triangleleft$ are the start and end markers,
-	\item $F \subseteq S$ is the set if accepting states,
+	\item $F \subseteq S$ is the set of accepting states,
 	\item $\Lambda = \left( \lambda, \diamond \right)$ the acceptance condition where $\lambda \in \mathbb{R}$ is the acceptance threshold and $\diamond \in \left\{ \leq, \geq \right\}$.
 \end{itemize}
 \end{definition}
@@ -356,7 +356,7 @@ A $p$-ultrametric Turing machine with $k$ work tapes $(U_pTM(k))$ is a septuple 
 	\item $\Sigma\subseteq\Sigma\setminus\{b\}$ the input alphabet,
 	\item $q_0 : Q \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution,
 	\item $F \subseteq Q$ is the accepting state set,
-	\item $\delta: Q \setminus F \times \Sigma^k \rightarrow Q \times \left(\Sigma \times \{L,N,R\} \times \mathbb{Q}_p \right)^k$ is a partly defined transition function where $L$ denotes moving the head to the left, $R$ -- to the right and $N$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
+	\item $\delta: Q \setminus F \times \Sigma^k \rightarrow Q \times \left(\Sigma \times \{L,N,R\} \times \mathbb{Q}_p \right)^k$ is a partially defined transition function where $L$ denotes moving the head to the left, $R$ -- to the right and $N$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
 \end{itemize}
 \end{definition}
 
@@ -365,7 +365,7 @@ Similarly as with ultrametric multi-head automata the machine with a given ampli
 
 Ultrametric multi-register automata are also used as an intermediate device for proofs.
 \begin{definition}
-A finite $p$-ultrametric $k$ register automaton (also machine) ($2u_pra(k)$) consists of a $p$-uptrametric logic block and $k$ registers that can hold natural numbers. The automaton begins with the input word in the first register and according to the specified amplitude distribution in some of its states. A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the logic block can have a predicate or an operation associated with it which is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
+A finite $p$-ultrametric $k$ register automaton (also machine) ($2u_pra(k)$) consists of a $p$-ultrametric finite control and $k$ registers that can hold natural numbers. The automaton begins with the input word in the first register and according to the specified amplitude distribution in some of its states. A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the logic block can have a predicate or an operation associated with it which is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
 \end{definition}
 
 
@@ -536,13 +536,15 @@ Consider the operation of $\mathcal{A}$ on a word $f_{u+1}(l), l = 1^{2^n} \in L
 The position of each of $v$ heads of $\mathcal{A}$ on the input word can be described with an integer $h_i \in \left[0, 2^{(u + 1) \cdot n} + 1 \right]$.
 
 We will simulate the position $h_i$ in the automaton $\mathcal{A'}$ with a head $g_i$ and an additional number $x_i \in \left[ 0, 2^n \right]$ so that $h_i = g_i + x_i \cdot 2^{u \cdot n}$.
-It is evident that numbers in the necessary interval can be denoted this way
-\begin{align*}
-	2^{u \cdot n} + (2^n - 1) \cdot 2^{u \cdot n} & =\\
-	2^{u \cdot n} \cdot (1 + (2^n - 1)) & =\\
-	2^{u \cdot n + n} & =\\
-	2^{(u + 1) \cdot n}.\\
-\end{align*}
+It is evident that numbers in the necessary interval can be denoted this way:
+%\begin{align*}
+\[
+	2^{u \cdot n} + (2^n - 1) \cdot 2^{u \cdot n} =
+	2^{u \cdot n} \cdot (1 + (2^n - 1)) =
+	2^{u \cdot n + n} =
+	2^{(u + 1) \cdot n}.
+\]
+%\end{align*}
 All $v$ numbers $x_i$ are coded with the $(v+1)$-th head of $\mathcal{A'}$ similarly as in \citep{Monien1980}. %TODO siikaak aprakstiit
 It can be done if on the tape of $\mathcal{A'}$ is enough space, specifically if $(2^n)^v < 2^{u \cdot n}$, which holds as $v < u$.
 
@@ -564,10 +566,10 @@ For all $k \geq 2 \in \mathbb{N}$
 \begin{proof}
 We prove from the contrary by showing that if there exists such $h \geq 2$ that $\widehat{2U_pFA(h)} = \widehat{2U_pFA(h + 1)}$ it implies $\widehat{2U_pFA(h \cdot (h + 1))} = \widehat{U_pTM}$ which contradicts \ref{atdalisana}.
 
-Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2U_pFA(3)}$. Consequently $f_m(L) \in \widehat{2U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$ then $f_{m-1}(L) \in \widehat{2U_pFA(h + 1)} = \widehat{2U_pFA(h)}$. Take $m = m - 1$ and repeat while we get $f_m(L) \in \widehat{2U_pFA(h)}$ and $m = h + 1$. Then lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{2U_pFA(h)}$ then $L \in \widehat{2U_pFA(h \cdot m)} = \widehat{2U_pFA(h \cdot (h + 1))}$. Which contradicts \ref{atdalisana}.
+Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2U_pFA(3)}$. Consequently $f_m(L) \in \widehat{2U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$ then $f_{m-1}(L) \in \widehat{2U_pFA(h + 1)} = \widehat{2U_pFA(h)}$. Take $m = m - 1$ and repeat while we get $f_m(L) \in \widehat{2U_pFA(h)}$ and $m = h + 1$. Then Lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{2U_pFA(h)}$ then $L \in \widehat{2U_pFA(h \cdot m)} = \widehat{2U_pFA(h \cdot (h + 1))}$. Which contradicts Theorem \ref{atdalisana}.
 \end{proof}
 \begin{corollary}
-Since $2U_pFA(k + 1)$ is superset of $2U_pFA(k)$ and we proved that there exists a language that can be recognized eith $k+1$ heads and not by $k$ then the head hierarchy result holds for languages in multi-letter alphabets as well:
+Since $2U_pFA(k + 1)$ is a superset of $2U_pFA(k)$ and we proved that there exists a language that can be recognized with $k+1$ heads and not by $k$ then the head hierarchy result holds for languages in multi-letter alphabets as well:
 \[
 	2U_pFA(k) \subsetneqq 2U_pFA(k + 1).
 \]
