@@ -290,7 +290,7 @@ It follows that a word belongs to the language $L_k$ iff the following system ho
 
 We see that the coefficients of the system form a Vandermonde matrix therefore its determinant is non-zero and since the given system is homogeneous only the trivial solution exists.
 
-However if the word does not belong to $L_k$ then some no more than $4$ lines can hold true but even then there will be atleast one line which is not equal to $0$. %(citâdi bûtu nenulles risinâjums, un sistçmai bûtu netriviâls atrisinâjums)
+However if the word does not belong to $L_k$ then some no more than $4$ lines can hold true but even then there will be at least one line which is not equal to $0$. %(citâdi bûtu nenulles risinâjums, un sistçmai bûtu netriviâls atrisinâjums)
 Therefore we can choose $0$ as a threshold for the acceptance condition -- we say that a word belongs to $L_k$ iff the accepting state end amplitude norm sum is $\leq 0$ and it does not belong to the language if contrary.
 
 $(2)$ Proven by \citet{Freivalds1979}, a proof for a similar language can also be found in \citep{Yao1978}. The idea of the proof relies on the fact that, any two heads that have been used to compare a pair cannot be used to compare another pair. This implies that if the number of block pairs in a word $n$ is greater than the number of pairs of heads ${k\choose 2}$ then the language cannot be recognized with $k$ heads.
@@ -349,7 +349,7 @@ The class of languages recognized by $2u_pfa(k)$ is denoted $2U_pFA(k)$.
 
 Ultrametric Turing machines are defined to be used as a device to help prove results regarding multi-head automata classes. The basis for the definition is a definition for Turing machine by \citet{Hopcroft1979}. We define a multi-tape Turing machine.
 \begin{definition}
-A $p$-ultrametric Turing machine with $k$ work tapes $(U_pTM(k))$ is a septuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
+A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_ptm$) is a septuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
 \begin{itemize}
 	\item $Q$ is a nonempty set of states,
 	\item $\Sigma$ is a nonempty set -- the working alphabet,
@@ -360,6 +360,8 @@ A $p$-ultrametric Turing machine with $k$ work tapes $(U_pTM(k))$ is a septuple 
 	\item $\delta: Q \setminus F \times \Sigma^k \rightarrow Q \times \left(\Sigma \times \{L,N,R\} \times \mathbb{Q}_p \right)^k$ is a partially defined transition function where $L$ denotes moving the head to the left, $R$ -- to the right and $N$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
 \end{itemize}
 \end{definition}
+
+The class of languages recognized by a $u_ptm$ is denoted $U_pTM$.
 
 Similarly as with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of state of the finite control and the contents of all $k$ tapes. The amplitude with which the machine is in one of its configurations in the $i$-th step is computed analogously than in the case with ultrametric multi-head automata. From now on when saying that a Turing machine accepts a word we mean that the machine stops in an accepting state after it is done processing the word as input. The criteria for acceptance are analogous to those of ultrametric multi-head automata.
 %(jâievçro tikai, ka tagad automâta konfigurâcijâ ietilpst arî no lentes saturs, un amplitûda tiek piekârtota tam kombinâcijâ ar vadîbas bloka stâvokli).
@@ -415,7 +417,7 @@ A $2u_pfa(k)$ can be described with a binary sequence denoting in turn:
 %\end{itemize}
 
 The simulation is performed as follows.
-The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $U_pTM(k)$ $\mathcal{T}$.
+The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $u_ptm(k)$ $\mathcal{T}$.
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 $\mathcal{T}$ starts by reading the input word and deterministically making transitions with amplitude $1$ writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
 Additionally a space of size $O(k \cdot n)$ is reserved for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
@@ -455,9 +457,9 @@ Similarly as in the previous section
 we will construct $\mathcal{T}$ so that it simulates a $2u_pfa(k)$ given in its input called $\mathcal{A}$. Contrary than before $\mathcal{A}$ "definition" does not directly include the input for $\mathcal{A}$. We will run $\mathcal{A}$ on the input string, i.e. on its "definition", instead.
 
 More precisely -- $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; the word is rejected if not. Then $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left[0, \ldots, 1^{2^n} \right]$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
-All previous actions are done deterministicly making transitions with amplitude $1$. Next $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section (1st tapes head is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $\mathcal{T}$ is with respective amplitudes in all of the possible configurations in which $\mathcal{A}$ could have been after processing the word. Afterwards $\mathcal{T}$ looks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state and the word is rejected if $\mathcal{A}$ would have accepted it and it is accepted if $\mathcal{A}$ would have rejected it. Therefore $\mathcal{T}$ gives the opposite result to that of $\mathcal{A}$ with the same amplitudes.
+All previous actions are done deterministically making transitions with amplitude $1$. Next $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section (1st tapes head is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $\mathcal{T}$ is with respective amplitudes in all of the possible configurations in which $\mathcal{A}$ could have been after processing the word. Afterwards $\mathcal{T}$ looks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state and the word is rejected if $\mathcal{A}$ would have accepted it and it is accepted if $\mathcal{A}$ would have rejected it. Therefore $\mathcal{T}$ gives the opposite result to that of $\mathcal{A}$ with the same amplitudes.
 
-Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$ there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$ or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$, namely -- $\mathcal{J}$'s "specification".
+Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$ there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$ or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$, namely -- $\mathcal{J}$'s ``specification".
 \end{proof}
 
 Similarly as in \citep{Macarie1995} and \citep{Monien1980} in following proofs we will use the function
@@ -475,7 +477,7 @@ For every language $L \in \widehat{U_pTM}$ there exists a natural number $u$ suc
 \]
 \end{lemma}
 \begin{proof}
-We will show how a $u_ptm$ denoted by $\mathcal{T}$ which recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(k)$ which recognizes a "stretched" variant of $L$ where the stretching operation is done by $f_u$.
+We will show how a $u_ptm$ denoted by $\mathcal{T}$ which recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(k)$ which recognizes a ``stretched" variant of $L$ where the stretching operation is done by $f_u$.
 
 We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T'}$ will hold the following information on its work tape:
 \begin{itemize}
@@ -486,7 +488,7 @@ We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T
 \end{itemize}
 The simulation of $\mathcal{T}$ on $\mathcal{T'}$'s work tape is less complicated than in the case of ultrametric automata since $\mathcal{T'}$ can use the original finite control of $\mathcal{T}$ and the transitions are not required to be simulated on the tape. To simulate $\mathcal{T}$ $\mathcal{T'}$ uses only the work tape.
 
-We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations "add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
+We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations ``add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
 
 \vspace{-8mm}
 \begin{figure}[h!]
@@ -587,7 +589,7 @@ Since $2U_pFA(k + 1)$ is a superset of $2U_pFA(k)$ and we proved that there exis
 \bibliography{bibliography}{}
 \bibliographystyle{abbrvnat}
 
-%TODO Freivalda PhD thesis kirilicâ
+
 
 
 \end{document}
