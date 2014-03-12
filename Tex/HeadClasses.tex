@@ -91,7 +91,7 @@ Which corresponds to a natural number given by
 \]
 where $p$ is our chosen prime number. This sequence is infinite to the left side. Furthermore - a natural number represented in $p$-adic numbers will have only a finite number of non-zero digits. For any given $n \in \mathbb{N}$ the non-zero part of its representation in $p$-adic numbers will exactly match $n$ representation in base $p$. Take the number $42$ as an example which is written as $132$ in base $5$. Its $5$-adic representation is $\cdots 0 \cdots 0132$.
 
-The situation is different for negative and rational $p$-adic numbers. Take the number $\frac{1}{2}$ and its $5$-adic representation as an example. $5$-adic $\frac{1}{2}$ is a number which added to itself gives $1$. From this we can devise that the $5$-adic representation of $1$ is  
+The situation is different for negative and rational $p$-adic numbers. Take the number $\frac{1}{2}$ and its $5$-adic representation as an example. $5$-adic $\frac{1}{2}$ is a number which added to itself gives $1$. From this we can devise that the $5$-adic representation of $\frac{1}{2}$ is  
 \[
 \begin{tabular}{rrrrrrrrr|}
 &$\cdots$ &2 &2 &2 &2 &2 &3\\
@@ -140,21 +140,21 @@ A function $d: X \times X \rightarrow R_{\geq 0}$ where $X$ is a non-empty set i
 \end{enumerate}
 
 If the set $X$ is equipped with the addition and multiplication operations (and forms a vector space) then a notion of norm can be introduced.
-The metric function is used to find the distances among the elements of a set. The distance of a given element to zero $d(x,0)$ is called the elements norm or absolute value and is denoted by $||x||$.
+The metric function is used to find the distances among the elements of a set. The distance of a given element to zero $d(x,0)$ is called the elements norm or absolute value and is denoted by $\|x\|$.
 
 The norm of an element satisfies the following properties:
 \begin{enumerate}
-\item $||x||=0$ if and only if $x=0$,
-\item $||x*y|| = ||x||*||y||$,
-\item $||x+y|| \leq ||x||+||y||$ (the triangle inequality).
+\item $\|x\|=0$ if and only if $x=0$,
+\item $\|x*y\| = \|x\|*\|y\|$,
+\item $\|x+y\| \leq \|x\|+\|y\|$ (the triangle inequality).
 \end{enumerate}
-If the third property can be replaced by its stronger variant - the strong triangle inequality $||x+y|| \leq max(||x||,||y||)$, the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Freivalds2012}
+If the third property can be replaced by its stronger variant - the strong triangle inequality $\|x+y\| \leq max(\|x\|,\|y\|)$, the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Freivalds2012}
 
 For every non-zero rational number $\alpha$ there exists a unique prime factorization - $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i$ are integers, only a finite number of which are non-zero.
 \begin{definition}
  The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha$ is 
 \[
-||\alpha||_p = \begin{cases}
+\|\alpha\|_p = \begin{cases}
 p^{-\alpha_p}, &\textrm{if } \alpha \neq 0 \\
 0, &\textrm{if } \alpha = 0.
 \end{cases}
@@ -185,7 +185,7 @@ Then it proceeds by processing input word's $w = w_1 \ldots w_n$ symbols one by 
 The amplitude distribution after processing the $i$-th symbol is denoted as $s_i$, with
 $s_i(y) = \sum_{x \in S}{s_{i-1}(x) \cdot \delta \left( w_i, x, y \right) }$ for every $y \in S$.
 After the $n$-th symbol, in the same way the end marker $\$$ is processed obtaining the final amplitude distribution $s_{n+1}$.
-If the sum of the $p$-norms of final amplitudes over final states is at least (or at most) the threshold, i.e., if $\sum_{x \in F}{\left| s_{n+1}(x) \right|_p} \diamond \lambda$, then the word $w$ is said to be accepted, otherwise -- rejected.
+If the sum of the $p$-norms of final amplitudes over final states is at least (or at most) the threshold, i.e., if $\sum_{x \in F}{\left\| s_{n+1}(x) \right\|_p} \diamond \lambda$, then the word $w$ is said to be accepted, otherwise -- rejected.
 \end{definition}
 
 %TODO ?o nevajag citâ nodaïâ?
@@ -213,33 +213,31 @@ is denoted by $\vdash^*$.
 The language $L(M)$ accepted by $M$ consists of those and only those words which are accepted by $M$. A $2nfa(k)$ accepts a word $w$ iff there exists a sequence of configurations that leads to automaton stopping in an accepting state if the input tape contains
 $\triangleright w \triangleleft$. More precisely -- 
 \begin{multline*}
-	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(1,\ldots,1\right)\right) \vdash^* \left(w,s,\left(p_1,\ldots,p_k\right)\right), s \in F,\right.\\
+	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(0,\ldots,0\right)\right) \vdash^* \left(w,s,\left(p_1,\ldots,p_k\right)\right), s \in F,\right.\\
 	\left.\textrm{and } M \textrm{ stops } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
 \end{multline*}
-If for any state the transition function $\delta$ assigns at most $1$ successor state 
+If for any state and $k$-tuple of symbols the transition function $\delta$ assigns at most $1$ successor state 
 then the automaton is said to be deterministic ($2dfa(k)$). If at any given moment the heads of an automaton move only right (or don't move) then the automaton is one-way. Nondeterministic and deterministic one-way $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
 %TODO pabeigt par 2DFA(k). <-todo no bak darba
 
 
 \subsection{Relation to classical automata}
-Strictly inclusive classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata \citep{Holzer2009,Yao1978}. In 1978 \citet{Yao1978} showed that in order to separate the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$ it is sufficient to use the language
+Strict hierarchies of classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata \citep{Holzer2009,Yao1978}. In 1978 \citet{Yao1978} showed that in order to separate the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$ it is sufficient to use the language
 \[
-	L_n = \left\{w_1\$w_2\$ \ldots \$w_{2n} | w_i \in \left\{a,b\right\}^* \textrm{ un } w_i = w_{2n+1?i} \textrm{ visiem } 1 \leq i \leq n \right\}.
+	L_n = \left\{w_1\$w_2\$ \ldots \$w_{2n} \middle| w_i \in \left\{a,b\right\}^* \textrm{ and } w_i = w_{2n+1-i} \textrm{ for all } 1 \leq i \leq n \right\}.
 \]
 We will consider a similar language -- $L_k$.
 \begin{theorem}
 For every $k \geq 1 \in \mathbb{N}$ there exists a language $L_k$ such that:
 \begin{enumerate}[label={(\arabic*)}]
 	\item for every prime $p$ there exists a $1u_pfa(1)$ that recognizes $L_k$,
-	\item $L_k$ cannot be recognized by any $1dfa(k)$,
 	\item $L_k$ cannot be recognized by any $1nfa(k)$.
 \end{enumerate}
 \end{theorem}
 \begin{proof} The sought language is
 \[
-L_k = \left\{ w_1 1 w_2 1 \ldots 1 w_{2n} |
-		w_i \in \left\{ 0 \right\}^m \wedge
-		m \geq 1 \in \mathbb{N} \wedge
+L_k = \left\{ w_1 1 w_2 1 \ldots 1 w_{2n} \middle|
+		w_i \in \left\{ 0^m | m \geq 1 \right\} \wedge
 		w_i = w_{2n-i+1} \wedge
 		n={k\choose 2}+1 \right\}.
 \]
@@ -297,8 +295,7 @@ However if the word does not belong to $L_k$ then some no more than $4$ lines ca
 Therefore we can choose $0$ as a threshold for the acceptance condition -- we say that a word belongs to $L_k$ iff the accepting state end amplitude norm sum is $\leq 0$ and it does not belong to the language if contrary.
 
 $(2)$ Proven by \citet{Freivalds1979}, a proof for a similar language can also be found in \citep{Yao1978}. The idea of the proof relies on the fact that, any two heads that have been used to compare a pair cannot be used to compare another pair. This implies that if the number of block pairs in a word $n$ is greater than the number of pairs of heads ${k\choose 2}$ then the language cannot be recognized with $k$ heads.
-
-$(3)$ Proven by \citet{Freivalds1979},a proof for a similar language can be found in \citep{Yao1978}. \qed
+\qed
 \end{proof}
 
 %  nâkamais lieki tçrç vietu?
@@ -324,17 +321,16 @@ A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple 
 \end{itemize}
 \end{definition}
 
-$2u_pfa(k)$ works in a similar way as $2u_pfa$ with the exception that the automaton now has $k$ heads which can move freely similarly as in a $2nfa(k)$. In difference from a $2u_pfa$ now amplitudes are given for a pair consisting of the positions of the heads and a state. The amplitude of the state $y \in S$ with heads in positions
+$2u_pfa(k)$ works in a similar way as $1u_pfa$ with the exception that the automaton now has $k$ heads which can move freely similarly as in a $2nfa(k)$. In difference from a $1u_pfa$ now amplitudes are given for a pair consisting of the positions of the heads and a state. The amplitude of the state $y \in S$ with heads in positions
 $\left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $
 after the $i$-th operation is given by
 \[
 s_i (y, (p_1, \ldots, p_k)) =
 \sum_{\mathclap{\substack{ x \in S \wedge \\
-		\exists (p'_1, \ldots, p'_k):
 		(p'_1, \ldots, p'_k) +
 		\delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_2 =
 		(p_1, \ldots, p_k)}}}
-	{s_{i-1}(x) \cdot \delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_1 }
+	{s_{i-1}(x, (p'_1, \ldots, p'_k)) \cdot \delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_1 }
 \]
 
 \vspace{-2mm}
@@ -344,7 +340,7 @@ Similarly as before the acceptance condition is applied to the final amplitude $
 		\exists (p_1, \ldots, p_k):
 		\textrm{ the automaton finishes in the state } x
 		\textrm{ with the heads in positions } (p_1, \ldots, p_k) }}}
-	{\left| s_{n+1}(x, (p_1, \ldots, p_k)) \right|_p} \diamond \lambda
+	{\left\| s_{n+1}(x, (p_1, \ldots, p_k)) \right\|_p} \diamond \lambda
 \]
 then we say that $w$ belongs to the language, otherwise it does not.
 
@@ -491,7 +487,7 @@ We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T
 \end{itemize}
 The simulation of $\mathcal{T}$ on $\mathcal{T'}$'s work tape is less complicated than in the case of ultrametric automata since $\mathcal{T'}$ can use the original finite control of $\mathcal{T}$ and the transitions are not required to be simulated on the tape. To simulate $\mathcal{T}$ $\mathcal{T'}$ uses only the work tape.
 
-We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as helping register. To do this we use operations ``add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
+We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2^n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as auxiliary register. To do this we use operations ``add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
 
 \vspace{-8mm}
 \begin{figure}[h!]
