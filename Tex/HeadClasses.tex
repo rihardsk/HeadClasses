@@ -168,7 +168,7 @@ $p$-adic numbers in more detail are discussed in \citep{Madore}. The use of $p$-
 \subsection{Definitions}
 Ultrametric automata are defined as in \citep{KasparsBalodis2013}.
 \begin{definition}
-A finite one-way $p$-ultrametric automata ($1u_pfa$) is a sextuple
+A finite one-way $p$-ultrametric automata ($1u_pfa$ or $1u_pfa(1)$) is a sextuple
 $\langle S, \Sigma, s_0, \delta, F, \Lambda \rangle$ where
 \begin{itemize}
   \item $S$ is a finite set -- the set of states,
@@ -224,7 +224,7 @@ then the automaton is said to be deterministic ($2dfa(k)$). If at any given mome
 \subsection{Relation to classical automata}
 Strict hierarchies of classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata \citep{Holzer2009,Yao1978}. In 1978 \citet{Yao1978} showed that in order to separate the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$ it is sufficient to use the language
 \[
-	L_n = \left\{w_1\$w_2\$ \ldots \$w_{2n} \middle| w_i \in \left\{a,b\right\}^* \textrm{ and } w_i = w_{2n+1-i} \textrm{ for all } 1 \leq i \leq n \right\}.
+	L'_k = \left\{w_1\$w_2\$ \ldots \$w_{2k} \middle| w_i \in \left\{a,b\right\}^* \wedge w_i = w_{2n+1-i} \textrm{ for all } 1 \leq i \leq n \right\}.
 \]
 We will consider a similar language -- $L_k$.
 \begin{theorem}
@@ -234,12 +234,12 @@ For every $k \geq 1 \in \mathbb{N}$ there exists a language $L_k$ such that:
 	\item $L_k$ cannot be recognized by any $1nfa(k)$.
 \end{enumerate}
 \end{theorem}
-\begin{proof} The sought language is
+\begin{proof} Let $n={k\choose 2}+1$. The sought language is
 \[
 L_k = \left\{ w_1 1 w_2 1 \ldots 1 w_{2n} \middle|
 		w_i \in \left\{ 0^m | m \geq 1 \right\} \wedge
-		w_i = w_{2n-i+1} \wedge
-		n={k\choose 2}+1 \right\}.
+		w_i = w_{2n-i+1} 
+		 \right\}.
 \]
 Now we prove that $L_k$ satisfies the points of our theorem.
 
@@ -362,7 +362,7 @@ A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_pt
 
 The class of languages recognized by a $u_ptm$ is denoted $U_pTM$.
 
-Similarly as with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of state of the finite control and the contents of all $k$ tapes. The amplitude with which the machine is in one of its configurations in the $i$-th step is computed analogously than in the case with ultrametric multi-head automata. From now on when saying that a Turing machine accepts a word we mean that the machine stops in an accepting state after it is done processing the word as input. The criteria for acceptance are analogous to those of ultrametric multi-head automata.
+Similarly as with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of the state of the finite control, the position of the $k$ heads and the contents of all $k$ tapes. The amplitude with which the machine is in one of its configurations in the $i$-th step is computed analogously than in the case with ultrametric multi-head automata. From now on when saying that a Turing machine accepts a word we mean that the machine stops in an accepting state after it is done processing the word as input. The criteria for acceptance are analogous to those of ultrametric multi-head automata.
 %(jâievçro tikai, ka tagad automâta konfigurâcijâ ietilpst arî no lentes saturs, un amplitûda tiek piekârtota tam kombinâcijâ ar vadîbas bloka stâvokli).
 
 Ultrametric multi-register automata are also used as an intermediate device for proofs.
@@ -441,7 +441,9 @@ As the only transition that is done with an amplitude other than $1$ is the one 
 \citet{Monien1980} has proven that for finite deterministic and nondeterministic automata the language class that can be recognized using $k$ heads is a proper subclass to the class of languages that can be recognized if $k+1$ heads are allowed. Using similar methods \citet{Macarie1995} has proven the same for finite probabilistic automata. We prove that the same holds for finite ultrametric automata.
 
 \begin{definition}
-By $\widehat{C}$ we denote the subset of a language class $C$ containing only the words in the form $1^{2^n}, n \in \mathbb{N}$, more precisely -- $\widehat{C} = \left\{ h | h \in C \wedge \exists n \in \mathbb{N} : h = 1^{2^n} \right\}$\\
+By $\widehat{C}$ we denote the subset of a language class $C$ containing only the words in the form $1^{2^n}, n \in \mathbb{N}$, more precisely --
+$\widehat{C} = \left\{ L \in C | \forall x \in L \; \exists n \in \mathbb{N} : x = 1^{2^n} \right\}$
+% $\widehat{C} = \left\{ h | h \in C \wedge \exists n \in \mathbb{N} : h = 1^{2^n} \right\}$\\
 \end{definition}
 \begin{theorem} \label{atdalisana}
 For every natural number $k$ and prime $p$
@@ -487,7 +489,7 @@ We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T
 \end{itemize}
 The simulation of $\mathcal{T}$ on $\mathcal{T'}$'s work tape is less complicated than in the case of ultrametric automata since $\mathcal{T'}$ can use the original finite control of $\mathcal{T}$ and the transitions are not required to be simulated on the tape. To simulate $\mathcal{T}$ $\mathcal{T'}$ uses only the work tape.
 
-We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2^n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as auxiliary register. To do this we use operations ``add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Figure \ref{fig:skaititaji}.
+We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2^n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as auxiliary register. To do this we use operations ``add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Fig. \ref{fig:skaititaji}.
 
 \vspace{-8mm}
 \begin{figure}[h!]
