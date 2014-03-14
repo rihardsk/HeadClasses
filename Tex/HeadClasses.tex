@@ -168,7 +168,7 @@ $p$-adic numbers in more detail are discussed in \citep{Madore}. The use of $p$-
 \subsection{Definitions}
 Ultrametric automata are defined as in \citep{KasparsBalodis2013}.
 \begin{definition}
-A finite one-way $p$-ultrametric automata ($1u_pfa$ or $1u_pfa(1)$) is a sextuple
+A finite one-way $p$-ultrametric one-head automata ($1u_pfa$ or $1u_pfa(1)$) is a sextuple
 $\langle S, \Sigma, s_0, \delta, F, \Lambda \rangle$ where
 \begin{itemize}
   \item $S$ is a finite set -- the set of states,
@@ -193,31 +193,34 @@ A two-way $k$-head (where $k\geq 1$) finite automaton consists of an input tape 
 \begin{definition}[\citep{Holzer2009}]
 A two-way non-deterministic $k$-head finite automaton ($2nfa(k)$) is a sextuple $\langle S, \Sigma, k, s_0, \delta, F \rangle$, where
 \begin{itemize}
-	\item $S$ a finite set -- the set of states,
-	\item $\Sigma$ is a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- the input alphabet,
+	\item $S$ is a finite set -- the set of states,
+	\item $\Sigma$ is a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- the input alphabet ($\triangleright$ and $\triangleleft$ are the left and right endmarkers, respectively),
 	\item $k\geq 1$ is the number of heads, 
 	\item $s_0\in S$ is the starting state,
-	\item $\delta: \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \times S \times S \rightarrow \left\{-1,0,1\right\}^k$ is a transition function where $\triangleright$ and $\triangleleft$ are the start and end markers,
+	\item $\delta: S \times \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \rightarrow 2^{ S \times \left\{-1,0,1\right\}^k }$ is the partial transition function. Whenever $\left( s', (d_1, \dots, d_k) \right) \in \delta \left( s, (a_1, \dots, a_k) \right)$ is defined, then $d_i \in \{0, 1\}$ if $a_i=\triangleright$, and $d_i \in \{-1, 0\}$ if $a_i=\triangleleft$, for $1 \leq i \leq k$,
 	\item $F \subseteq S$ is the set of accepting states.
 \end{itemize}
 \end{definition}
-At the beginning of work a $2nfa(k)$ has all of its heads placed on the start marker. The automaton ends its work when the transition function $\delta$ is not defined for the current configuration. A configuration of a $2nfa(k)$ in some time moment $t\geq 0$ is a 3-tuple $c_t=\left(w,s,p\right)$ where $w$ is the input word, $s\in S$ is the current state and
+At the beginning of work a $2nfa(k)$ has all of its heads placed on the left endmarker. A configuration of a $2nfa(k)$ in some time moment $t\geq 0$ is a 3-tuple $c_t=\left(w,s,p\right)$ where $w$ is the input word, $s\in S$ is the current state and
 $p = \left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $
-gives the current head positions. A transition from one configuration to the next is denoted by $\vdash$. A transition
+gives the current head positions.
+The initial configuration for input $w$ is set to $\left(w,s_0,\left(0,\ldots,0\right)\right)$.
+The automaton ends its work when the transition function $\delta$ is not defined for the current configuration. A transition from one configuration to the next is denoted by $\vdash$. A transition
 $\left( w, s, \left( p_1, \ldots, p_k \right) \right) \vdash \left( w, s', \left( p_1+d_1, \ldots, p_k+d_k \right) \right)$
 is valid iff
-$\left(d_1, \ldots, d_k \right) \in \delta \left( \left( a_{p_1}, \ldots a_{p_k} \right) s, s' \right)$
-where $w = a_1a_2 \ldots a_n$ is the input word and $a_0=\triangleright$ and $a_{n+1}=\triangleleft$. $\vdash$ reflexive transitive closure
+$\left( s', \left(d_1, \ldots, d_k \right) \right) \in \delta \left( s, \left( a_{p_1}, \ldots a_{p_k} \right) \right)$
+where $w = a_1a_2 \ldots a_n$ is the input word and $a_0=\triangleright$ and $a_{n+1}=\triangleleft$. The reflexive transitive closure of $\vdash$
 is denoted by $\vdash^*$.
 
-The language $L(M)$ accepted by $M$ consists of those and only those words which are accepted by $M$. A $2nfa(k)$ accepts a word $w$ iff there exists a sequence of configurations that leads to automaton stopping in an accepting state if the input tape contains
-$\triangleright w \triangleleft$. More precisely -- 
+A $2nfa(k)$ accepts a word $w$ iff there exists a sequence of configurations that leads to automaton stopping in an accepting state if the input tape contains
+$\triangleright w \triangleleft$. The language $L(M)$ accepted by $M$ consists of those and only those words which are accepted by $M$.  More precisely -- 
 \begin{multline*}
-	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(0,\ldots,0\right)\right) \vdash^* \left(w,s,\left(p_1,\ldots,p_k\right)\right), s \in F,\right.\\
-	\left.\textrm{and } M \textrm{ stops } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
+	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(0,\dots,0\right)\right) \vdash^* \left(w,s,\left(p_1,\dots,p_k\right)\right), s \in F,\right.\\
+	\left.\textrm{and } M \textrm{ halts in } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
 \end{multline*}
-If for any state and $k$-tuple of symbols the transition function $\delta$ assigns at most $1$ successor state 
-then the automaton is said to be deterministic ($2dfa(k)$). If at any given moment the heads of an automaton move only right (or don't move) then the automaton is one-way. Nondeterministic and deterministic one-way $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
+If for any state and $k$-tuple of symbols the transition function $\delta$ is either undefined or singleton
+then the automaton is said to be deterministic ($2dfa(k)$).
+If the heads of the automaton never move left then the automaton is one-way. Nondeterministic and deterministic one-way $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$ respectively.
 %TODO pabeigt par 2DFA(k). <-todo no bak darba
 
 
@@ -311,38 +314,43 @@ Ultrametric multi-head automata are defined by generalizing \citep{KasparsBalodi
 \begin{definition}
 A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple $\langle S, \Sigma, k, s_0, \delta, F, \Lambda \rangle$ where
 \begin{itemize}
-	\item $S$ a finite set of states,
-	\item $\Sigma$ a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- input alphabet,
-	\item $k\geq 1$ the number of heads, 
-	\item $s_0:S \rightarrow \mathbb{Q}_p$ the initial distribution of amplitudes,
-	\item $\delta: \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \times S \times S \rightarrow \mathbb{Q}_p \times \left\{-1,0,1\right\}^k$ the transition function where $\triangleright$ and $\triangleleft$ are the start and end markers,
+	\item $S$ is a finite set of states,
+	\item $\Sigma$ is a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- input alphabet ($\triangleright$ and $\triangleleft$ are the left and right endmarkers, respectively),
+	\item $k\geq 1$ is the number of heads, 
+	\item $s_0:S \rightarrow \mathbb{Q}_p$ is the initial distribution of amplitudes,
+	\item $\delta: S \times \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \times S \times \left\{-1,0,1\right\}^k \rightarrow \mathbb{Q}_p$ is the partial transition function.  Whenever $\delta \left( s, (a_1, \dots, a_k), s', \left( d_1, \dots, d_k \right) \right)$ is defined and not equal to $0$, then $d_i \in \{0, 1\}$ if $a_i=\triangleright$, and $d_i \in \{-1, 0\}$ if $a_i=\triangleleft$, for $1 \leq i \leq k$,
 	\item $F \subseteq S$ is the set of accepting states,
-	\item $\Lambda = \left( \lambda, \diamond \right)$ the acceptance condition where $\lambda \in \mathbb{R}$ is the acceptance threshold and $\diamond \in \left\{ \leq, \geq \right\}$.
+	\item $\Lambda = \left( \lambda, \diamond \right)$ is the acceptance condition where $\lambda \in \mathbb{R}$ is the acceptance threshold and $\diamond \in \left\{ \leq, \geq \right\}$.
 \end{itemize}
 \end{definition}
 
 $2u_pfa(k)$ works in a similar way as $1u_pfa$ with the exception that the automaton now has $k$ heads which can move freely similarly as in a $2nfa(k)$. In difference from a $1u_pfa$ now amplitudes are given for a pair consisting of the positions of the heads and a state. The amplitude of the state $y \in S$ with heads in positions
-$\left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $
+$\left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $ on the word $w = a_1 \dots a_n$
 after the $i$-th operation is given by
 \[
 s_i (y, (p_1, \ldots, p_k)) =
-\sum_{\mathclap{\substack{ x \in S \wedge \\
-		(p'_1, \ldots, p'_k) +
-		\delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_2 =
-		(p_1, \ldots, p_k)}}}
-	{s_{i-1}(x, (p'_1, \ldots, p'_k)) \cdot \delta ((w_{p'_1}, \ldots, w_{p'_k}), x, y)_1 }
+\sum_{\mathclap{\substack{ x \in S, 
+		p'_1, \ldots, p'_k \in \left\{ 0, 1, \dots, n+1 \right\}: \\
+		\delta \left( y, \left(a_{p_1}, \dots, a_{p_k}\right), x, \left(p_1 - p'_1, \dots, p_k - p'_k \right) \right) \text{ is defined}
+		}}}
+	{
+	s_{i-1}\left(x, \left(p'_1, \ldots, p'_k\right)\right)
+	\cdot
+	\delta \left( y, \left(a_{p_1}, \dots, a_{p_k}\right), x, \left(p_1 - p'_1, \dots, p_k - p'_k \right) \right) }
 \]
 
 \vspace{-2mm}
 Similarly as before the acceptance condition is applied to the final amplitude $p$-norm sum of the accepting states. That is, if
 \[
-\sum_{\mathclap{\substack{x \in F \wedge\\
-		\exists (p_1, \ldots, p_k):
-		\textrm{ the automaton finishes in the state } x
+\sum_{\mathclap{\substack{x \in F, 
+		(p_1, \ldots, p_k) \in \left\{ 0, 1, \dots, n+1 \right\}, 
+		i \in \mathbb{N} : \\
+		\textrm{ the automaton halts in the } i \textrm{-th step in the state } x \\
 		\textrm{ with the heads in positions } (p_1, \ldots, p_k) }}}
-	{\left\| s_{n+1}(x, (p_1, \ldots, p_k)) \right\|_p} \diamond \lambda
+	{\left\| s_{i}(x, (p_1, \ldots, p_k)) \right\|_p} \diamond \lambda
 \]
 then we say that $w$ belongs to the language, otherwise it does not.
+We require the automaton to be built in such a way that this (possibly infinite) sum converges for every $w \in \Sigma$.
 
 The class of languages recognized by $2u_pfa(k)$ is denoted $2U_pFA(k)$.
 
