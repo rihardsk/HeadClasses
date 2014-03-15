@@ -57,14 +57,14 @@
 
 \author{
 Rihards Kri\v slauks, Kaspars Balodis}
-\institute{University of Latvia Faculty of computing,\\ Rai\c na bulv\= aris 19, Riga, LV-1459, Latvia
+\institute{University of Latvia Faculty of Computing,\\ Rai\c na bulv\= aris 19, Riga, LV-1459, Latvia
 }
 
 \maketitle
 %TODO Freivalda zvaigznisteksts
 
 \begin{abstract}
-The work explores the language classes that arise with respect to the head count of a finite automaton. The results for deterministic non-deterministic and probabilistic automata are explored and similar results are proved for two-way ultrametric automata, which are viewed as a generalization of ultrametric finite automata that have just recently been introduced by \citet{Freivalds2012}. For the one-way setting it is shown that ultrametric one-head finite automata are more powerful than deterministic and non-deterministic automata for certain languages. Definitions for ultrametric Turing machines and ultrametric multi-register machines are introduced as a tool for proving the results.
+The work explores the language classes that arise with respect to the head count of a finite automaton. The results for deterministic non-deterministic and probabilistic automata are explored and similar results are proved for two-way ultrametric automata, which are viewed as a generalization of ultrametric finite automata that have just recently been introduced by Freivalds. For the one-way setting it is shown that ultrametric one-head finite automata are more powerful than non-deterministic $k$-head automata for certain languages. Definitions for ultrametric Turing machines and ultrametric multi-register machines are introduced as a tool for proving the results.
 \end{abstract}
 
 
@@ -139,6 +139,8 @@ A function $d: X \times X \rightarrow R_{\geq 0}$ where $X$ is a non-empty set i
 \item $d(x,y) \leq d(x,z) + d(z,y)$ for all $z \in X$.
 \end{enumerate}
 
+If the third property can be replaced by its stronger variant - the strong triangle inequality $d(x,y) \leq max\left\{d(x,z), d(z,y)\right\}$, the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Freivalds2012}
+
 If the set $X$ is equipped with the addition and multiplication operations (and forms a vector space) then a notion of norm can be introduced.
 The metric function is used to find the distances among the elements of a set. The distance of a given element to zero $d(x,0)$ is called the elements norm or absolute value and is denoted by $\|x\|$.
 
@@ -148,7 +150,7 @@ The norm of an element satisfies the following properties:
 \item $\|x*y\| = \|x\|*\|y\|$,
 \item $\|x+y\| \leq \|x\|+\|y\|$ (the triangle inequality).
 \end{enumerate}
-If the third property can be replaced by its stronger variant - the strong triangle inequality $\|x+y\| \leq max(\|x\|,\|y\|)$, the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Freivalds2012}
+
 
 For every non-zero rational number $\alpha$ there exists a unique prime factorization - $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i$ are integers, only a finite number of which are non-zero.
 \begin{definition}
@@ -309,7 +311,7 @@ $(2)$ Proven by \citet{Freivalds1979}, a proof for a similar language can also b
 
 \section{Two-way automata}
 \subsection{Definitions}
-Ultrametric multi-head automata are defined by generalizing \citep{KasparsBalodis2013} definition of ultrametric automata in a natural way. The definition of multi-head automata due by \citet{Holzer2009} is used as well.
+Ultrametric multi-head automata are defined by generalizing \citep{KasparsBalodis2013} definition of ultrametric automata in a natural way. The definition of multi-head automata due to \citet{Holzer2009} is used as well.
 
 \begin{definition}
 A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple $\langle S, \Sigma, k, s_0, \delta, F, \Lambda \rangle$ where
@@ -331,12 +333,12 @@ after the $i$-th operation is given by
 s_i (y, (p_1, \ldots, p_k)) =
 \sum_{\mathclap{\substack{ x \in S, 
 		p'_1, \ldots, p'_k \in \left\{ 0, 1, \dots, n+1 \right\}: \\
-		\delta \left( y, \left(a_{p_1}, \dots, a_{p_k}\right), x, \left(p_1 - p'_1, \dots, p_k - p'_k \right) \right) \text{ is defined}
+		\delta \left( x, \left(a_{p'_1}, \dots, a_{p'_k}\right), y, \left(p_1 - p'_1, \dots, p_k - p'_k \right) \right) \text{ is defined}
 		}}}
 	{
 	s_{i-1}\left(x, \left(p'_1, \ldots, p'_k\right)\right)
 	\cdot
-	\delta \left( y, \left(a_{p_1}, \dots, a_{p_k}\right), x, \left(p_1 - p'_1, \dots, p_k - p'_k \right) \right) }
+	\delta \left( x, \left(a_{p'_1}, \dots, a_{p'_k}\right), y, \left(p_1 - p'_1, \dots, p_k - p'_k \right) \right) }
 \]
 
 \vspace{-2mm}
@@ -359,18 +361,18 @@ Ultrametric Turing machines are defined to be used as a device to help prove res
 A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_ptm$) is a septuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
 \begin{itemize}
 	\item $Q$ is a nonempty set of states,
-	\item $\Sigma$ is a nonempty set -- the working alphabet,
-	\item $b \in \Sigma$ the "empty" symbol,
-	\item $\Sigma\subseteq\Sigma\setminus\{b\}$ the input alphabet,
+	\item $\Sigma$ is a nonempty set -- the input alphabet,
+	\item $b \notin \Sigma$  is the "empty" symbol,
+	\item $\Gamma \supseteq \Sigma\cup\{b\}$ is the working alphabet,
 	\item $q_0 : Q \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution,
 	\item $F \subseteq Q$ is the accepting state set,
-	\item $\delta: Q \setminus F \times \Sigma^k \rightarrow Q \times \left(\Sigma \times \{L,N,R\} \times \mathbb{Q}_p \right)^k$ is a partially defined transition function where $L$ denotes moving the head to the left, $R$ -- to the right and $N$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
+	\item $\delta: Q \times \Gamma^k \times Q \times \left( \Gamma \times \{-1,0,1\} \right)^k \rightarrow \mathbb{Q}_p $ is a partially defined transition function where $-1$ denotes moving the head to the left, $1$ -- to the right and $0$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
 \end{itemize}
 \end{definition}
 
 The class of languages recognized by a $u_ptm$ is denoted $U_pTM$.
 
-Similarly as with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of the state of the finite control, the position of the $k$ heads and the contents of all $k$ tapes. The amplitude with which the machine is in one of its configurations in the $i$-th step is computed analogously than in the case with ultrametric multi-head automata. From now on when saying that a Turing machine accepts a word we mean that the machine stops in an accepting state after it is done processing the word as input. The criteria for acceptance are analogous to those of ultrametric multi-head automata.
+Similarly as with ultrametric multi-head automata the machine with a given amplitude is in one of its possible configurations. However now the configuration consists of the state of the finite control, the position of the $k$ heads and the contents of all $k$ tapes. The amplitude with which the machine is in one of its configurations in the $i$-th step is computed analogously as in the case with ultrametric multi-head automata. From now on when saying that a Turing machine accepts a word we mean that the machine stops in an accepting state after it is done processing the word as input. The criteria for acceptance are analogous to those of ultrametric multi-head automata.
 %(jâievçro tikai, ka tagad automâta konfigurâcijâ ietilpst arî no lentes saturs, un amplitûda tiek piekârtota tam kombinâcijâ ar vadîbas bloka stâvokli).
 
 Ultrametric multi-register automata are also used as an intermediate device for proofs.
@@ -426,7 +428,7 @@ A $2u_pfa(k)$ can be described with a binary sequence denoting in turn:
 The simulation is performed as follows.
 The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $u_ptm(k)$ $\mathcal{T}$.
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
-$\mathcal{T}$ starts by reading the input word and deterministically making transitions with amplitude $1$ writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
+$\mathcal{T}$ starts by reading the input word and deterministically (making transitions with amplitude $1$) writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
 Additionally a space of size $O(k \cdot n)$ is reserved for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
 For the further simulation only the second tape will be used (for convenience we will call it the work tape).
 
@@ -463,20 +465,20 @@ For every natural number $k$ and prime $p$
 We will construct a special $p$-ultrametric Turing machine with 2 tapes and $log$-space space complexity called $\mathcal{T}$. We will show that its recognized language cannot be recognized by a $p$-ultrametric automata with $k$ heads for any $k$.
 
 Similarly as in the previous section
-we will construct $\mathcal{T}$ so that it simulates a $2u_pfa(k)$ given in its input called $\mathcal{A}$. Contrary than before $\mathcal{A}$ "definition" does not directly include the input for $\mathcal{A}$. We will run $\mathcal{A}$ on the input string, i.e. on its "definition", instead.
+we will construct $\mathcal{T}$ so that it simulates a $2u_pfa(k)$ given in its input called $\mathcal{A}$. Contrary to previous the description of $\mathcal{A}$ does not directly include the input for $\mathcal{A}$. We will run $\mathcal{A}$ on the input string, i.e. on its "definition", instead.
 
-More precisely -- $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; the word is rejected if not. Then $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left[0, \ldots, 1^{2^n} \right]$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
-All previous actions are done deterministically making transitions with amplitude $1$. Next $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section (1st tapes head is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $\mathcal{T}$ is with respective amplitudes in all of the possible configurations in which $\mathcal{A}$ could have been after processing the word. Afterwards $\mathcal{T}$ looks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state and the word is rejected if $\mathcal{A}$ would have accepted it and it is accepted if $\mathcal{A}$ would have rejected it. Therefore $\mathcal{T}$ gives the opposite result to that of $\mathcal{A}$ with the same amplitudes.
+More precisely -- $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up to $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; the word is rejected if not. Then $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left\{0, \ldots, 2^n+1 \right\}$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
+All previous actions are done deterministically making transitions with amplitude $1$. Next $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section (the head of the first tape is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $\mathcal{T}$ is with respective amplitudes in all of the possible configurations in which $\mathcal{A}$ could have been after processing the word. Afterwards $\mathcal{T}$ looks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state and the word is rejected if $\mathcal{A}$ would have accepted it and it is accepted if $\mathcal{A}$ would have rejected it. Therefore $\mathcal{T}$ gives the opposite result to that of $\mathcal{A}$ with the same amplitudes.
 
-Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$ there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$ or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$, namely -- $\mathcal{J}$'s ``specification".
+Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$ there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$ or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$, namely -- $\mathcal{J}$'s specification. \qed
 \end{proof}
 
-Similarly as in \citep{Macarie1995} and \citep{Monien1980} in following proofs we will use the function
+Similarly as in \citep{Macarie1995} and \citep{Monien1980} in the following proofs we will use the function
 \[
 	f_k : \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \rightarrow \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \textrm{, where } f_k( 1^{2^n}) = 1^{2^{k \cdot n}}
 \]
 
-
+When $f_k$ is applied to a language we mean the following function: $f_k(L) = \left\{ f_k(x) \middle| x\in L \right\}$
 
 
 \begin{lemma} \label{skaititaji}
@@ -497,19 +499,16 @@ We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T
 \end{itemize}
 The simulation of $\mathcal{T}$ on $\mathcal{T'}$'s work tape is less complicated than in the case of ultrametric automata since $\mathcal{T'}$ can use the original finite control of $\mathcal{T}$ and the transitions are not required to be simulated on the tape. To simulate $\mathcal{T}$ $\mathcal{T'}$ uses only the work tape.
 
-We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2^n}$ then the register machine starts with $n$ binary representation in the first register and with $0$ in the rest. The contents of $\mathcal{T'}$ work tape can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as auxiliary register. To do this we use operations ``add $1$" and "divide by 2" which can be carried out by using the helping register. A schematic representation can be seen in Fig. \ref{fig:skaititaji}.
+We can see that given $\mathcal{T'}$ a corresponding $p$-ultrametric $3$ register machine can be built. If the input is of the form $1^{2^n}$ then the register machine starts with $n$ in the first register and with $0$ in the rest. The contents of the work tape of $\mathcal{T'}$ can be simulated by manipulating the registers of which the first two store sub-words $v$ and $h^{rev}$ and the third is used as an auxiliary register. To do this we use operations ``add $1$" and "divide by 2" which can be carried out by using the auxiliary register. A schematic representation can be seen in Fig. \ref{fig:skaititaji}.
 
-\vspace{-8mm}
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.8\textwidth]{Img/skaititaji.pdf}
-\vspace{-5mm}
 \caption{Simulating the contents of a Turing machine with registers.}
 \label{fig:skaititaji}
 \end{figure}
 
-\vspace{-7mm}
-Since a position of a multi-head automaton directly corresponds to a number in a register and the simulated Turing machine is with $log$-space space complexity then a $3$ register machine can be replaced with a $p$-ultrametric $3$ head automaton. But since its heads cannot cross word boundaries and therefore cannot simulate arbitrarily large numbers the input words must be long enough. This is achieved by choosing a large enough $u$.
+Since a position of a multi-head automaton directly corresponds to a number in a register and the simulated Turing machine is with $log$-space space complexity then a $3$ register machine can be replaced with a $p$-ultrametric $3$ head automaton. But since its heads cannot cross word boundaries and therefore cannot simulate arbitrarily large numbers the input words must be long enough. This is achieved by choosing a large enough $u$. \qed
 \end{proof}
 
 
