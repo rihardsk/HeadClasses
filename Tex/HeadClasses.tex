@@ -344,15 +344,15 @@ s_i (y, (p_1, \ldots, p_k)) =
 \vspace{-2mm}
 Similarly as before the acceptance condition is applied to the final amplitude $p$-norm sum of the accepting states. That is, if
 \[
-\sum_{\mathclap{\substack{x \in F, 
+\sum_{x \in F}{ \left\| \mkern150mu \sum_{\mathclap{\substack{ 
 		(p_1, \ldots, p_k) \in \left\{ 0, 1, \dots, n+1 \right\}, 
 		i \in \mathbb{N} : \\
 		\textrm{ the automaton halts in the } i \textrm{-th step in the state } x \\
 		\textrm{ with the heads in positions } (p_1, \ldots, p_k) }}}
-	{\left\| s_{i}(x, (p_1, \ldots, p_k)) \right\|_p} \diamond \lambda
+	{ s_{i}(x, (p_1, \ldots, p_k))} \mkern13mu \right\|_p } \diamond \lambda
 \]
 then we say that $w$ belongs to the language, otherwise it does not.
-We require the automaton to be built in such a way that this (possibly infinite) sum converges for every $w \in \Sigma$.
+We require the automaton to be built in such a way that this norm of the (possibly infinite) sum converges for every $w \in \Sigma$.
 
 The class of languages recognized by $2u_pfa(k)$ is denoted $2U_pFA(k)$.
 
