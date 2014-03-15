@@ -429,7 +429,7 @@ The simulation is performed as follows.
 The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $u_ptm(k)$ $\mathcal{T}$.
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 $\mathcal{T}$ starts by reading the input word and deterministically (making transitions with amplitude $1$) writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
-Additionally a space of size $O(k \cdot n)$ is reserved for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
+Additionally a space of size $O(k \cdot n)$ is reserved (assuming that the length of the input word on which the automaton must be simulated does not exceed $2^n$) for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
 For the further simulation only the second tape will be used (for convenience we will call it the work tape).
 
 While processing the input word the automaton $\mathcal{A}$ can be in different configurations in parallel with different amplitudes.
