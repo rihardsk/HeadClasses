@@ -50,13 +50,11 @@
 
 \newcommand{\norm}[1]{\left\| #1 \right\|}
 
+%iespie? tekstu ar? pie liel?m bild?m
 \renewcommand\floatpagefraction{.9}
 \renewcommand\topfraction{.9}
 \renewcommand\bottomfraction{.9}
-\renewcommand\textfraction{.1}   
-\setcounter{totalnumber}{50}
-\setcounter{topnumber}{50}
-\setcounter{bottomnumber}{50}
+\renewcommand\textfraction{.1}
 
 \begin{document}
 
@@ -191,13 +189,6 @@ $(1)$ We show that for an arbitrary language $L_k$ a $1u_pfa(1)$ can be built fo
 If $0$ is read from the input and the automaton is in one of the 1st group states $q_{i,j,1}$ where $i \leq n$ then the amplitude of the state stays the same and with amplitude $1$ the automaton goes to a 2nd group state $q_{i,j,2}$. By doing so the states accumulated amplitude is added to $q_{i,j,2}$. If $0$ is read in a 2nd group state $q_{i,j,2}$ the states amplitude stays the same. If $1$ is read in a 1st group state $q_{i,j,1}$ where $i < n$ then the automaton with amplitude $j + 1$ transitions to $q_{i + 1,j,1}$ thereby transiting there with amplitude $(j + 1) \cdot \left| q_{i + 1,j,1} \right|$ (by $|q_i|$ we denote the amplitude the state $q_i$).
 Whereas if $0$ is read in 1st group state $q_{i,j,1}$ where $i > n$ the amplitude of the state is kept unchanged and the transition to $q_{i,j,2}$ is made with amplitude $-1$. If $1$ is read in 1st group state $q_{i,j,1}$ where $i \geq n$ the transition to $q_{i + 1,j,1}$ is made with amplitude $-(j + 1)$. If $1$ is read in a 2nd group state a transition is made from $q_{i,j,1}$ to $q_{i + 1,j,1}$ with amplitude $1$. The exception is the last column of states -- $q_{2n,j,1}$ and $q_{2n,j,2}$ -- since they are responsible for reading in the last block of the word then the transition if $1$ is read is not defined. A schematic representation of the described automaton can be seen in Fig. \ref{fig:1pfa}.
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Img/1pfa.pdf}
-\caption{Automaton for recognizing $0^n10^m10^h1 \cdots 10^h10^m10^n$. Double circled states are final. Big arrows with labels in them show the amplitude distribution when the automaton starts. Small labelled arrows show transitions. A label $(a, b)$ means "if the automaton reads $a$ make a transition with amplitude $b$".}
-\label{fig:1pfa}
-\end{figure}
-
 In result if a word $0^{a_1}10^{a_2}10^{a_3}1\ldots 10^{a_{2n}}$ was read then each of the accepting states $q_{2n,j,2}$ has accumulated an amplitude equal to
 \[
 	a_1 + a_2 \cdot (j + 1) + a_3 \cdot (j + 1)^2 + \cdots + a_n \cdot (j + 1)^{n - 1} - a_{n+1} \cdot (j + 1)^{n - 1} - a_{n+2} \cdot (j + 1)^{n - 2} - \cdots - a_{2n},
@@ -240,6 +231,13 @@ Therefore we can choose $0$ as a threshold for the acceptance condition -- we sa
 $(2)$ Proven by \citet{Freivalds1979}, a proof for a similar language can also be found in \citep{Yao1978}. The idea of the proof relies on the fact that, any two heads that have been used to compare a pair cannot be used to compare another pair. This implies that if the number of block pairs in a word $n$ is greater than the number of pairs of heads ${k\choose 2}$ then the language cannot be recognized with $k$ heads.
 \qed
 \end{proof}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Img/1pfa.pdf}
+\caption{Automaton for recognizing $0^n10^m10^h1 \cdots 10^h10^m10^n$. Double circled states are final. Big arrows with labels in them show the amplitude distribution when the automaton starts. Small labelled arrows show transitions. A label $(a, b)$ means "if the automaton reads $a$ make a transition with amplitude $b$".}
+\label{fig:1pfa}
+\end{figure}
 
 %  nâkamais lieki tçrç vietu?
 % It should be noted that to recognize $L_k$ a constant number of heads is enough for a probabilistic automaton as well. \citet{Freivalds1982} has proved that for every $\epsilon > 0$ there exists a $1pfa$ that accepts every word in $L_k$ with probability $1$ and rejects others with probability $1 - \epsilon$.
