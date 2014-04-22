@@ -56,6 +56,11 @@
 \renewcommand\bottomfraction{.9}
 \renewcommand\textfraction{.1}
 
+%\usepackage{microtype}
+
+\usepackage[font={small,it}]{caption}
+
+
 \begin{document}
 
 \title{On the Hierarchy Classes of Finite Ultrametric Automata}
@@ -88,7 +93,7 @@ In this paper we address the question of the language hierarchy associated with 
 Several results can be found in the literature which consider deterministic, nondeterministic and probabilistic finite automata in both -- the two-way and one-way -- cases \citep{Holzer2009, Yao1978, Monien1980, Macarie1995}. The paper examines whether similar results regarding the separation in classes with respect to the head count can be achieved for ultrametric multi-head finite automata. Other results consider the relationships of the language classes recognized by ultrametric and classical automata.
 
 \section{$p$-adic numbers}
-For every non-zero rational number $\alpha$ there exists a unique prime factorization - $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i$ are integers, only a finite number of which are non-zero.
+For every non-zero rational number $\alpha$ there exists a unique prime factorization $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i \in \mathbb{N}$.
 \begin{definition}
  The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha$ is 
 \[
@@ -127,7 +132,7 @@ If the sum of the $p$-norms of final amplitudes over final states is at least (o
 \end{definition}
 
 %TODO ?o nevajag citâ nodaïâ?
-A two-way $k$-head (where $k\geq 1$) finite automaton consists of an input tape containing the input word on which the heads of the automaton can move freely in both directions not crossing the endmarkers. The tape is read-only. More formally:
+A two-way $k$-head finite automaton consists of an input tape containing the input word on which the heads of the automaton can move freely in both directions not crossing the endmarkers. The tape is read-only. More formally:
 \begin{definition}[\citep{Holzer2009}]
 A two-way non-deterministic $k$-head finite automaton ($2nfa(k)$) is a sextuple $\langle S, \Sigma, k, s_0, \delta, F \rangle$, where
 \begin{itemize}
@@ -197,7 +202,7 @@ which is equal to $0$ if the word belongs to the language; i.e. if
 \[
 	a_1 = a_{2n} \wedge a_2 = a_{2n-1} \wedge \ldots \wedge a_n = a_{n+1}.
 \]
-It follows that a word belongs to the language $L_k$ iff the following equations hold:
+It follows that a word is in $L_k$ iff the following equations hold:
 \begin{gather*}
 \allowdisplaybreaks
 	\begin{cases}
@@ -292,7 +297,7 @@ We require the automaton to be built in such a way that this norm of the (possib
 
 The class of languages recognized by $2u_pfa(k)$ is denoted $2U_pFA(k)$.
 
-Ultrametric Turing machines are defined to be used as a device to help prove results regarding multi-head automata classes. The basis for the definition is a definition for Turing machine by \citet{Hopcroft1979}. We define a multi-tape Turing machine.
+Ultrametric Turing machines are defined to be used as a device to help prove results regarding multi-head automata classes. We modify the definition for Turing machine by \citet{Hopcroft1979}.
 \begin{definition}
 A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_ptm$) is a septuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
 \begin{itemize}
@@ -302,7 +307,7 @@ A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_pt
 	\item $\Gamma \supseteq \Sigma\cup\{b\}$ is the working alphabet,
 	\item $q_0 : Q \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution,
 	\item $F \subseteq Q$ is the accepting state set,
-	\item $\delta: Q \times \Gamma^k \times Q \times \left( \Gamma \times \{-1,0,1\} \right)^k \rightarrow \mathbb{Q}_p $ is a partially defined transition function where $-1$ denotes moving the head to the left, $1$ -- to the right and $0$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude with which the transition is made.
+	\item $\delta: Q \times \Gamma^k \times Q \times \left( \Gamma \times \{-1,0,1\} \right)^k \rightarrow \mathbb{Q}_p $ is a partially defined transition function where $-1$ denotes moving the head to the left, $1$ -- to the right and $0$ -- not moving the head and $\mathbb{Q}_p$ is the amplitude of the transition.
 \end{itemize}
 \end{definition}
 
@@ -325,7 +330,7 @@ The techniques used here are similar to the techniques used by \citet{Macarie199
 
 Without loss of generality we can assume that the simulated automaton has at most $2$ transitions from each state and input symbol.
 We will show how to construct a $p$-ultrametric $2$-tape Turing machine which receiving the description of a $k$-head $p$-ultrametric automaton as an input will accept exactly the same words as the automaton.
-We will only consider the simulation of automata working in unary alphabet therefore we will show how to encode the description of the automaton in unary alphabet, namely as a word in the form $1^{2^n}, n \in \mathbb{N}$.
+We will only consider automata on unary languages and we will show how to encode the description of the automaton as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 Furthermore we will require that the amplitudes of the simulated automaton are $p$-constructible sets.
 
 
@@ -366,7 +371,7 @@ The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is s
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 $\mathcal{T}$ starts by reading the input word and deterministically (making transitions with amplitude $1$) writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
 Additionally a space of size $O(k \cdot n)$ is reserved (assuming that the length of the input word on which the automaton must be simulated does not exceed $2^n$) for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
-For the further simulation only the second tape will be used (for convenience we will call it the work tape).
+From now on only the second tape will be used (for convenience we will call it the work tape).
 
 While processing the input word the automaton $\mathcal{A}$ can be in different configurations in parallel with different amplitudes.
 If $\mathcal{A}$ is in a configuration with an amplitude $a$, $\mathcal{T}$ will simulate it by being with the same amplitude $a$ in a configuration where the content of the work tape corresponds to the respective configuration of $\mathcal{A}$.
@@ -404,7 +409,7 @@ Similarly as in the previous section
 we will construct $\mathcal{T}$ so that it simulates a $2u_pfa(k)$ given in its input called $\mathcal{A}$. Contrary to previous the description of $\mathcal{A}$ does not directly include the input for $\mathcal{A}$. We will run $\mathcal{A}$ on the input string, i.e. on its "definition", instead.
 
 More precisely -- $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether it's in the form $1^{2^n}, n \in \mathbb{N}$ (rejecting the word if not) and by taking up to $O(log(n))$ space writes $n$'s binary representation on the 2nd tape (we will call it the work tape). Then it checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; the word is rejected if not. Then $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left\{0, \ldots, 2^n+1 \right\}$ $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
-All previous actions are done deterministically making transitions with amplitude $1$. Next $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section (the head of the first tape is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $\mathcal{T}$ is with respective amplitudes in all of the possible configurations in which $\mathcal{A}$ could have been after processing the word. Afterwards $\mathcal{T}$ looks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state and the word is rejected if $\mathcal{A}$ would have accepted it and it is accepted if $\mathcal{A}$ would have rejected it. Therefore $\mathcal{T}$ gives the opposite result to that of $\mathcal{A}$ with the same amplitudes.
+All previous actions are done deterministically. Next $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section (the head of the first tape is not used anymore, it is checked whether or not the counters corresponding to head positions are inside word boundaries). Consequently $\mathcal{T}$ is with respective amplitudes in all of the possible configurations in which $\mathcal{A}$ could have been after processing the word. Afterwards $\mathcal{T}$ looks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state and the word is rejected if $\mathcal{A}$ would have accepted it and it is accepted if $\mathcal{A}$ would have rejected it. Therefore $\mathcal{T}$ gives the opposite result to that of $\mathcal{A}$ with the same amplitudes.
 
 Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$ there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$ or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$, namely -- $\mathcal{J}$'s specification. \qed
 \end{proof}
