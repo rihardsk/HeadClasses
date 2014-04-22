@@ -371,7 +371,7 @@ The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is s
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 $\mathcal{T}$ starts by reading the input word and deterministically (making transitions with amplitude $1$) writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
 Additionally a space of size $O(k \cdot n)$ is reserved (assuming that the length of the input word on which the automaton must be simulated does not exceed $2^n$) for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
-From now on only the second tape will be used (for convenience we will call it the work tape).
+From now on only the second tape will be used (we will call it the work tape).
 
 While processing the input word the automaton $\mathcal{A}$ can be in different configurations in parallel with different amplitudes.
 If $\mathcal{A}$ is in a configuration with an amplitude $a$, $\mathcal{T}$ will simulate it by being with the same amplitude $a$ in a configuration where the content of the work tape corresponds to the respective configuration of $\mathcal{A}$.
@@ -415,21 +415,21 @@ Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We ca
 \end{proof}
 
 Similarly as in \citep{Macarie1995} and \citep{Monien1980} in the following proofs we will use the function
-\[
+$
 	f_k : \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \rightarrow \left\{ 1^{2^n} | n \in \mathbb{N} \right\} \textrm{, where } f_k( 1^{2^n}) = 1^{2^{k \cdot n}}
-\]
+$
 
 When $f_k$ is applied to a language we mean the following function: $f_k(L) = \left\{ f_k(x) \middle| x\in L \right\}$
 
 
 \begin{lemma} \label{skaititaji}
-For every language $L \in \widehat{U_pTM}$ there exists a natural number $u$ such that
-\[
+For every language $L \in \widehat{U_pTM}$ there exists a natural number $u$ such that:
+$
 	f_u(L) \in \widehat{2U_pFA(3)}.
-\]
+$
 \end{lemma}
 \begin{proof}
-We will show how a $u_ptm$ denoted by $\mathcal{T}$ which recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(k)$ which recognizes a ``stretched" variant of $L$ where the stretching operation is done by $f_u$.
+We will show how a $u_ptm$ denoted by $\mathcal{T}$ which recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(k)$ which recognizes a ``stretched" variant of $L$ where stretching is done by $f_u$.
 
 We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T'}$ will hold the following information on its work tape:
 \begin{itemize}
@@ -463,15 +463,15 @@ Since a position of a multi-head automaton directly corresponds to a number in a
 
 \begin{lemma} \label{reizinajums}
 For all languages $L \in \widehat{U_pTM}$ and all $u, v \geq 1, u, v \in \mathbb{N}$:
-\[
+$
 	f_u(L) \in \widehat{2U_pFA(v)} \Rightarrow L \in \widehat{2U_pFA(u \cdot v)}.
-\]
+$
 \end{lemma}
 \begin{proof}
 Let the $2u_pfa(v)$ in the premise be $\mathcal{A}$ and the $2u_pfa(u \cdot v)$ in the conclusion -- $\mathcal{A'}$.
 
 Consider the operation of $\mathcal{A}$ on a word $f_u(l), l = 1^{2^n} \in L, n \in \mathbb{N}$.
-The position of each of $v$ heads of $\mathcal{A}$ on the input word can be described with an integer $h_i \in \left[0, 2^{u \cdot n} -1 \right]$.
+The position of each of $v$ heads of $\mathcal{A}$ can be described with an integer $h_i \in \left[0, 2^{u \cdot n} -1 \right]$.
 $h_i$ can be written in base $2^n$ with $u$ digits.
 As the position of each head of $\mathcal{A'}$ can be described with a digit in base $2^n$, each head of $\mathcal{A}$ can be simulated with $u$ heads of $\mathcal{A'}$.
 As each movement of a head of $\mathcal{A}$ corresponds to movement of heads of $\mathcal{A'}$, the respective transitions can be done with equal amplitudes and the accepting amplitudes of the words remain the same.
