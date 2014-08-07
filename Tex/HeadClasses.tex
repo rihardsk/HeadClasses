@@ -76,7 +76,7 @@ Rihards Kri\v slauks, Kaspars Balodis}
 %TODO Freivalda zvaigznisteksts
 
 \begin{abstract}
-The work explores the language classes that arise with respect to the head count of a finite automaton. The results for deterministic non-deterministic and probabilistic automata are explored and similar results are proved for two-way ultrametric automata, which are viewed as a generalization of ultrametric finite automata that have just recently been introduced by Freivalds. For the one-way setting it is shown that ultrametric one-head finite automata are more powerful than non-deterministic $k$-head automata for certain languages. Definitions for ultrametric Turing machines and ultrametric multi-register machines are introduced as a tool for proving the results.
+The paper explores the language classes that arise with respect to the head count of a finite automaton. The results for deterministic, non-deterministic and probabilistic automata are explored and similar results are proved for two-way ultrametric automata, which are viewed as a generalization of ultrametric finite automata that have just recently been introduced by Freivalds. For the one-way setting it is shown that ultrametric one-head finite automata are more powerful than non-deterministic $k$-head automata for certain languages. Definitions for ultrametric Turing machines and ultrametric multi-register machines are introduced as a tool for proving the results.
 \end{abstract}
 
 
@@ -98,7 +98,7 @@ Several results can be found in the literature which consider deterministic, non
 $p$-adic numbers are discussed in the Appendix and in more detail in \citep{Madore}. The use of $p$-adics in other sciences can be seen in \citep{Kozyrev2006,Dragovich2009}.
 Here we only restate the definition of the $p$-adic absolute value.
 
-For every non-zero rational number $\alpha$ there exists a unique prime factorization $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i \in \mathbb{N}$.
+For every non-zero rational number $\alpha$ there exists a unique prime factorization $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i \in \mathbb{Z}$.
 \begin{definition}
  The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha$ is 
 \[
@@ -172,10 +172,13 @@ If the heads of the automaton never move left then the automaton is one-way. Non
 
 
 \subsection{Relation to classical automata}
-Strict hierarchies of classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata \citep{Holzer2009,Yao1978}. In 1978 \citet{Yao1978} showed that in order to separate the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$ it is sufficient to use the language
+Strict hierarchies of classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata \citep{Holzer2009,Yao1978}.
+In 1978 \citet{Yao1978} used the language
 \[
-	L'_k = \left\{w_1\$w_2\$ \ldots \$w_{2k} \middle| w_i \in \left\{a,b\right\}^* \wedge w_i = w_{2n+1-i} \textrm{ for all } 1 \leq i \leq n \right\}.
+	L'_k = \left\{w_1\$w_2\$ \ldots \$w_{2k} \middle| w_i \in \left\{a,b\right\}^* \wedge w_i = w_{2k+1-i} \textrm{ for all } 1 \leq i \leq k \right\}
 \]
+to prove separation of the class of languages that can be recognized by a $1dfa(k)$ from that which can be recognized by a $1dfa(k+1)$.
+
 We will consider a similar language -- $L_k$.
 \begin{theorem}
 For every $k \geq 1 \in \mathbb{N}$ there exists a language $L_k$ such that:
@@ -193,7 +196,7 @@ L_k = \left\{ w_1 1 w_2 1 \ldots 1 w_{2n} \middle|
 \]
 Now we prove that $L_k$ satisfies the points of our theorem.
 
-$(1)$ We show that for an arbitrary language $L_k$ a $1u_pfa(1)$ can be built for every prime number $p$. The automaton starts in $n$ different starting states $q_{1,1,1},q_{1,2,1},\ldots,q_{1,n,1}$ with amplitude $1$. Each of these states starts a "branch" that is intended for accumulating amplitude in one of $n$ different accepting states $q_{2n,1,2},q_{2n,2,2},\ldots,q_{2n,n,2}$. Every branch contains two kinds of states -- states of the 1st group $q_{i,j,1}$ are responsible for generating amplitudes and states of the 2nd group $q_{i,j,2}$ are intended for amplitude accumulation, $i \in \left[1, 2n \right], j \in \left[1, n \right]$.
+$(1)$ We show that for an arbitrary language $L_k$ a $1u_pfa(1)$ can be built for every prime number $p$. The automaton starts in $n$ different starting states $q_{1,1,1},q_{1,2,1},\ldots,q_{1,n,1}$ with amplitude $1$. Each of these states starts a computation path that is intended for accumulating amplitude in one of $n$ different accepting states $q_{2n,1,2},q_{2n,2,2},\ldots,q_{2n,n,2}$. Every branch contains two kinds of states -- states of the 1st group $q_{i,j,1}$ are responsible for generating amplitudes and states of the 2nd group $q_{i,j,2}$ are intended for amplitude accumulation, $i \in \left[1, 2n \right], j \in \left[1, n \right]$.
 
 If $0$ is read from the input and the automaton is in one of the 1st group states $q_{i,j,1}$ where $i \leq n$ then the amplitude of the state stays the same and with amplitude $1$ the automaton goes to a 2nd group state $q_{i,j,2}$. By doing so the states accumulated amplitude is added to $q_{i,j,2}$. If $0$ is read in a 2nd group state $q_{i,j,2}$ the states amplitude stays the same. If $1$ is read in a 1st group state $q_{i,j,1}$ where $i < n$ then the automaton with amplitude $j + 1$ transitions to $q_{i + 1,j,1}$ thereby transiting there with amplitude $(j + 1) \cdot \left| q_{i + 1,j,1} \right|$ (by $|q_i|$ we denote the amplitude the state $q_i$).
 Whereas if $0$ is read in 1st group state $q_{i,j,1}$ where $i > n$ the amplitude of the state is kept unchanged and the transition to $q_{i,j,2}$ is made with amplitude $-1$. If $1$ is read in 1st group state $q_{i,j,1}$ where $i \geq n$ the transition to $q_{i + 1,j,1}$ is made with amplitude $-(j + 1)$. If $1$ is read in a 2nd group state a transition is made from $q_{i,j,1}$ to $q_{i + 1,j,1}$ with amplitude $1$. The exception is the last column of states -- $q_{2n,j,1}$ and $q_{2n,j,2}$ -- since they are responsible for reading in the last block of the word then the transition if $1$ is read is not defined. A schematic representation of the described automaton can be seen in Fig. \ref{fig:1pfa}.
@@ -371,7 +374,7 @@ A $2u_pfa(k)$ can be described with a binary sequence denoting in turn:
 %\end{itemize}
 
 The simulation is performed as follows.
-The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $u_ptm(k)$ $\mathcal{T}$.
+The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $u_ptm(2)$ $\mathcal{T}$.
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 $\mathcal{T}$ starts by reading the input word and deterministically (making transitions with amplitude $1$) writes $n$ in binary on the second tape where $n$ is the description of the automaton $\mathcal{A}$.
 Additionally a space of size $O(k \cdot n)$ is reserved (assuming that the length of the input word on which the automaton must be simulated does not exceed $2^n$) for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
@@ -433,7 +436,7 @@ $
 $
 \end{lemma}
 \begin{proof}
-We will show how a $u_ptm$ denoted by $\mathcal{T}$ which recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(k)$ which recognizes a ``stretched" variant of $L$ where stretching is done by $f_u$.
+We will show how a $u_ptm$ denoted by $\mathcal{T}$ which recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$ which can then be replaced by a $p$-ultrametric $3$ register machine from which it easily follows that there exists a $2u_pfa(3)$ which recognizes a ``stretched" variant of $L$ where stretching is done by $f_u$.
 
 We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T'}$ will hold the following information on its work tape:
 \begin{itemize}
@@ -528,7 +531,7 @@ For all $k \geq 2 \in \mathbb{N}$:
 \begin{proof}
 We prove from the contrary by showing that if there exists such $h \geq 2$ that $\widehat{2U_pFA(h)} = \widehat{2U_pFA(h + 1)}$ it implies $\widehat{2U_pFA(h \cdot (h + 1))} = \widehat{U_pTM}$ which contradicts \ref{atdalisana}.
 
-Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2U_pFA(3)}$. Consequently $f_m(L) \in \widehat{2U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$ then $f_{m-1}(L) \in \widehat{2U_pFA(h + 1)} = \widehat{2U_pFA(h)}$. Take $m = m - 1$ and repeat while we get $f_m(L) \in \widehat{2U_pFA(h)}$ and $m = h + 1$. Then Lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{2U_pFA(h)}$ then $L \in \widehat{2U_pFA(h \cdot m)} = \widehat{2U_pFA(h \cdot (h + 1))}$. Which contradicts Theorem \ref{atdalisana}. \qed
+Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2U_pFA(3)}$. Consequently $f_m(L) \in \widehat{2U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$ then $f_{m-1}(L) \in \widehat{2U_pFA(h + 1)} = \widehat{2U_pFA(h)}$. Take $m = m - 1$ and repeat while we get $f_m(L) \in \widehat{2U_pFA(h)}$ and $m = h + 1$. Lemma \ref{reizinajums} implies if $f_m(L) \in \widehat{2U_pFA(h)}$ then $L \in \widehat{2U_pFA(h \cdot m)} = \widehat{2U_pFA(h \cdot (h + 1))}$. Contradiction with Theorem \ref{atdalisana}. \qed
 \end{proof}
 \begin{corollary}
 Since $2U_pFA(k + 1)$ is a superset of $2U_pFA(k)$ and we proved that there exists a language that can be recognized with $k+1$ heads and not by $k$ then the head hierarchy result holds for languages in multi-letter alphabets as well:
