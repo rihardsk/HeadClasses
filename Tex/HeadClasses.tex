@@ -100,7 +100,7 @@ Here we only restate the definition of the $p$-adic absolute value.
 
 For every non-zero rational number $\alpha$ there exists a unique prime factorization $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i \in \mathbb{Z}$.
 \begin{definition}
- The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha$ is 
+ The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ is 
 \[
 \|\alpha\|_p = \begin{cases}
 p^{-\alpha_p}, &\textrm{if } \alpha \neq 0 \\
@@ -306,7 +306,7 @@ The class of languages recognized by $2u_pfa(k)$ is denoted $2U_pFA(k)$.
 
 Ultrametric Turing machines are defined to be used as a device to help prove results regarding multi-head automata classes. We modify the definition for Turing machine by \citet{Hopcroft1979}.
 \begin{definition}
-A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_ptm$) is a septuple $M= \langle Q, \Sigma, b, \Sigma, \delta, q_0, F \rangle$ where:
+A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_ptm$) is a septuple $M= \langle Q, \Sigma, b, \Gamma, \delta, q_0, F \rangle$ where:
 \begin{itemize}
 	\item $Q$ is a nonempty set of states,
 	\item $\Sigma$ is a nonempty set -- the input alphabet,
@@ -620,9 +620,9 @@ The norm of an element satisfies the following properties:
 
 \newtheorem{definition2}{Definition} %hotfix prieksh numbering
 
-For every non-zero rational number $\alpha$ there exists a unique prime factorization $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i \in \mathbb{N}$.
+For every non-zero rational number $\alpha$ there exists a unique prime factorization $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ where $\alpha_i \in \mathbb{Z}$.
 \begin{definition2}
- The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha$ is 
+ The $p$-adic absolute value (also called the \textbf{$p$-norm}) of a rational number $\alpha = \pm 2^{\alpha_2}3^{\alpha_3}5^{\alpha_5}7^{\alpha_7} \cdots$ is 
 \[
 \|\alpha\|_p = \begin{cases}
 p^{-\alpha_p}, &\textrm{if } \alpha \neq 0 \\
