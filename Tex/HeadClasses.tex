@@ -85,7 +85,7 @@ Ultrametric finite automata and ultrametric Turing machines were first introduce
 Ultrametric machines are similar to probabilistic machines, with the difference  that for ultrametric machines it is not necessary for amplitudes (which are the equivalent of probabilities in probabilistic automata) to be within the range of 0 and 1. Instead, general $p$-adic numbers are used. We should note that in \citep{Turakainen1969}, a similar generalization of probabilistic automata was introduced, where "probabilities" can be arbitrarily large numbers, and the acceptance criterion is whether the probability to be in an accepting state is greater than a given threshold. Furthermore, it was shown that this generalization is in fact equivalent to  probabilistic automata. However, unlike the concepts used for these pseudo-probabilistic machines, the definition of ultrametric machines uses the concept of a $p$-adic norm.
 
 It can be argued that the definition introduced by Freivalds is natural, because in 1916, Alexander Ostrowski proved that any non-trivial absolute value on the rational numbers $Q$ is equivalent to either the usual real absolute value or a $p$-adic absolute value.
-This result demonstrates that using $p$-adic numbers is not merely one of many possibilities to generalize the definition of deterministic algorithms, but rather the only remaining possibility not yet explored \citep{Freivalds2012 }.
+This result demonstrates that using $p$-adic numbers is not merely one of many possibilities to generalize the definition of deterministic algorithms, but rather the only remaining possibility not yet explored \citep{Freivalds2012}.
 Additionally, useful properties have been proven for the definition of ultrametric machines -- \citet{KasparsBalodis2013} proved that the language class recognized by regulated $p$-adic machines coincides with the class of regular languages.
 
 In this paper, we address the question of the language hierarchy associated with the number of heads of ultrametric multi-head automata .
@@ -257,7 +257,7 @@ $(2)$ Proven by \citet{Freivalds1979}, a proof for a similar language can also b
 
 \section{Two-way automata}
 \subsection{Definitions}
-Ultrametric multi-head automata are defined by generalizing the definition of  \citep{KasparsBalodis2013} of ultrametric automata in a natural way. The definition of multi-head automata due to \citet{Holzer2009} is used as well.
+Ultrametric multi-head automata are defined by generalizing the definition of ultrametric one-head one-way automata in a natural way. The definition of multi-head automata due to \citet{Holzer2009} is used as well.
 
 \begin{definition}
 A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple $\langle S, \Sigma, k, s_0, \delta, Q_A, Q_R \rangle$ where
@@ -422,7 +422,7 @@ we will construct $\mathcal{T}$ so that it simulates a $2u_pfa(k)$ given in its 
 
 More precisely,   $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether the word is in the form $1^{2^n}, n \in \mathbb{N}$ (if not, the word is rejected), and by taking up to $O(log(n))$ space, writes $n$'s binary representation on the 2nd tape (we will refer to it as the work tape ). It  then checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; if not, the word is rejected. Then, $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left\{0, \ldots, 2^n+1 \right \}$, $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
 All previous actions are performed deterministically. Next, $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section. (The head of the first tape is not used anymore; instead, a check is performed to determine whether or not the counters corresponding to head positions are inside word boundaries.)
-Consequently, $\mathcal{T}$ is with respective amplitudes in all of the possible configurations of $\mathcal{A}$ after processing the word. Afterwards, $\mathcal{T}$ checks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state, and the halts in a rejecting state if $\mathcal{A}$ would have accepted the word; $\mathcal{T}$ halts in an accepting state if $\mathcal{A}$ would have rejected the word. Therefore, $\mathcal{T}$ yields the opposite result to that of $\mathcal{A}$ with the same amplitudes.
+Consequently, $\mathcal{T}$ is with respective amplitudes in all of the possible configurations of $\mathcal{A}$ after processing the word. Afterwards, $\mathcal{T}$ checks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state, and halts in a rejecting state if $\mathcal{A}$ would have accepted the word; $\mathcal{T}$ halts in an accepting state if $\mathcal{A}$ would have rejected the word. Therefore, $\mathcal{T}$ yields the opposite result to that of $\mathcal{A}$ with the same amplitudes.
 
 Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$, there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$, or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$; namely,   $\mathcal{J}$'s specification. \qed
 \end{proof}
@@ -596,7 +596,7 @@ Interestingly, almost all rational numbers can be expressed as $p$-adic integers
 
 Numbers that cannot be expressed as $p$-adic natural numbers can, however, be expressed as $p$-adic rational numbers. Let us consider  the number $\frac{1}{5}$ as an example. It cannot be expressed in $5$-adic natural numbers, but it can be expressed as a $5$-adic rational number
 \[
-\cdots 0 \cdots 000,1.
+\cdots 0 \cdots 000,\!1.
 \]
 We can note that, as with $p$-adic natural numbers, $p$-adic rational numbers are expressed as a sequence that is infinite to  the left side and finite to  the right.
 
