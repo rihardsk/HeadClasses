@@ -453,14 +453,8 @@ We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T
 \end{itemize}
 The simulation of $\mathcal{T}$ on $\mathcal{T'}$'s work tape is less complicated than in the case of ultrametric automata, since $\mathcal{T'}$ can use the original finite control of $\mathcal{T}$, and the transitions are not required to be simulated on the tape. To simulate $\mathcal{T}$, $\mathcal{T'}$ uses only the work tape.
 
-We can see that given $\mathcal{T'}$, a corresponding $p$-ultrametric $3$ register machine can be constructed. If the input is of the form $1^{2^n}$, then the register machine starts with $n$ in the first register and with $0$ in the remaining registers. The contents of the work tape of $\mathcal{T'}$ can be simulated by manipulating the registers of the first two stored sub-words, $v$ and $h^{rev}$, and by using  the third as an auxiliary register. To do this, we use operations ``add $1$"  and ``divide by 2", which can be carried out by using the auxiliary register. A schematic representation is provided in Fig. \ref{fig:skaititaji}.
+We can see that given $\mathcal{T'}$, a corresponding $p$-ultrametric $3$ register machine can be constructed. If the input is of the form $1^{2^n}$, then the register machine starts with $n$ in the first register and with $0$ in the remaining registers. The contents of the work tape of $\mathcal{T'}$ can be simulated by manipulating the registers of the first two stored sub-words, $v$ and $h^{rev}$, and by using  the third as an auxiliary register. To do this, we use operations ``add $1$''"  and ``divide by 2", which can be carried out by using the auxiliary register.
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.8\textwidth]{Img/skaititaji.pdf}
-\caption{A tape of a Turing machine represented with registers.}
-\label{fig:skaititaji}
-\end{figure}
 
 Since a position of a multi-head automaton directly corresponds to a number in a register, and the simulated Turing machine has $log$-space space complexity, a $3$ register machine can be replaced with a $p$-ultrametric $3$ head automaton. However, since its heads cannot cross word boundaries and therefore cannot simulate arbitrarily large numbers, the input words must be sufficiently long. This is achieved by selecting a large enough $u$. \qed
 \end{proof}
