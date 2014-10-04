@@ -133,7 +133,7 @@ After the $n$-th symbol,the end marker $\$$ is similarly processed, obtaining th
 If the sum of the $p$-norms of final amplitudes over accepting states is greater than the sum of final amplitudes over rejecting states, i.e. if $\sum_{x \in Q_A}{\left\| s_{n+1}(x) \right\|_p} > \sum_{x \in Q_R}{\left\| s_{n+1}(x) \right\|_p}$, then the word $w$ is said to be accepted, otherwise---rejected.
 \end{definition}
 
-A two-way $k$-head finite automaton consists of an input tape containing the input word on which the heads of the automaton can move freely in both directions, not crossing the endmarkers. The tape is read-only. More formally:
+A two-way $k$-head finite automaton consists of an input tape containing the input word on which the heads of the automaton can move freely in both directions, not crossing the endmarkers. The tape is read-only. We use the standard definition for the two-way $k$-head non-deterministic finite automaton:
 \begin{definition}[\citep{Holzer2009}]
 A two-way non-deterministic $k$-head finite automaton ($2\mathit{nfa}(k)$) is a sextuple $\langle S, \Sigma, k, s_0, \delta, F \rangle$, where
 \begin{itemize}
@@ -145,23 +145,27 @@ A two-way non-deterministic $k$-head finite automaton ($2\mathit{nfa}(k)$) is a 
 	\item $F \subseteq S$ is the set of accepting states.
 \end{itemize}
 \end{definition}
-At the beginning of work, a $2\mathit{nfa}(k)$ has all of its heads placed on the left endmarker. A configuration of a $2\mathit{nfa}(k)$ in some moment in time $t\geq 0$ is a 3-tuple $c_t=\left(w,s,p\right)$ where $w$ is the input word, $s\in S$ is the current state and
-$p = \left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $
-gives the current head positions.
-The initial configuration for input $w$ is set to $\left(w,s_0,\left(0,\ldots,0\right)\right)$.
-The automaton ends its work when the transition function $\delta$ is not defined for the current configuration. A transition from one configuration to the next is denoted by $\vdash$. A transition
-$\left( w, s, \left( p_1, \ldots, p_k \right) \right) \vdash \left( w, s', \left( p_1+d_1, \ldots, p_k+d_k \right) \right)$
-is valid iff
-$\left( s', \left(d_1, \ldots, d_k \right) \right) \in \delta \left( s, \left( a_{p_1}, \ldots a_{p_k} \right) \right)$
-where $w = a_1a_2 \ldots a_n$ is the input word and $a_0=\triangleright$ and $a_{n+1}=\triangleleft$. The reflexive transitive closure of $\vdash$
-is denoted by $\vdash^*$.
 
-A $2\mathit{nfa}(k)$ accepts a word $w$ iff there exists a sequence of configurations that results in automaton stopping in an accepting state if the input tape contains
-$\triangleright w \triangleleft$. The language $L(M)$ accepted by $M$ consists of those and only those words that are accepted by $M$.  More precisely,   
-\begin{multline*}
-	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(0,\dots,0\right)\right) \vdash^* \left(w,s,\left(p_1,\dots,p_k\right)\right), s \in F,\right.\\
-	\left.\textrm{and } M \textrm{ halts in } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
-\end{multline*}
+
+%At the beginning of work, a $2\mathit{nfa}(k)$ has all of its heads placed on the left endmarker. A configuration of a $2\mathit{nfa}(k)$ in some moment in time $t\geq 0$ is a 3-tuple $c_t=\left(w,s,p\right)$ where $w$ is the input word, $s\in S$ is the current state and
+%$p = \left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $
+%gives the current head positions.
+%The initial configuration for input $w$ is set to $\left(w,s_0,\left(0,\ldots,0\right)\right)$.
+%The automaton ends its work when the transition function $\delta$ is not defined for the current configuration. A transition from one configuration to the next is denoted by $\vdash$. A transition
+%$\left( w, s, \left( p_1, \ldots, p_k \right) \right) \vdash \left( w, s', \left( p_1+d_1, \ldots, p_k+d_k \right) \right)$
+%is valid iff
+%$\left( s', \left(d_1, \ldots, d_k \right) \right) \in \delta \left( s, \left( a_{p_1}, \ldots a_{p_k} \right) \right)$
+%where $w = a_1a_2 \ldots a_n$ is the input word and $a_0=\triangleright$ and $a_{n+1}=\triangleleft$. The reflexive transitive closure of $\vdash$
+%is denoted by $\vdash^*$.
+%
+%A $2\mathit{nfa}(k)$ accepts a word $w$ iff there exists a sequence of configurations that results in automaton stopping in an accepting state if the input tape contains
+%$\triangleright w \triangleleft$. The language $L(M)$ accepted by $M$ consists of those and only those words that are accepted by $M$.  More precisely,   
+%\begin{multline*}
+%	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(0,\dots,0\right)\right) \vdash^* \left(w,s,\left(p_1,\dots,p_k\right)\right), s \in F,\right.\\
+%	\left.\textrm{and } M \textrm{ halts in } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
+%\end{multline*}
+
+
 If for any state and $k$-tuple of symbols the transition function $\delta$ is either undefined or singleton, 
 then the automaton is said to be deterministic ($2\mathit{dfa}(k)$).
 If the heads of the automaton never move left, then the automaton is defined to be one-way. Nondeterministic and deterministic one-way $k$-head automata are denoted by $1\mathit{nfa}(k)$ and $1\mathit{dfa}(k)$, respectively.
@@ -210,7 +214,7 @@ It follows that a word is in $L_k$ iff the following equations hold:
 	\begin{cases}
 		a_1 + a_2 \cdot 2 + a_3 \cdot 2^2 + \cdots + a_n \cdot 2^{n - 1} - a_{n+1} \cdot 2^{n - 1} - a_{n+2} \cdot 2^{n - 2} - \cdots - a_{2n} = 0 \\
 		a_1 + a_2 \cdot 3 + a_3 \cdot 3^2 + \cdots + a_n \cdot 3^{n - 1} - a_{n+1} \cdot 3^{n - 1} - a_{n+2} \cdot 3^{n - 2} - \cdots - a_{2n} = 0\\
-		a_1 + a_2 \cdot 4 + a_3 \cdot 4^2 + \cdots + a_n \cdot 4^{n - 1} - a_{n+1} \cdot 4^{n - 1} - a_{n+2} \cdot 4^{n - 2} - \cdots - a_{2n} = 0\\
+		% a_1 + a_2 \cdot 4 + a_3 \cdot 4^2 + \cdots + a_n \cdot 4^{n - 1} - a_{n+1} \cdot 4^{n - 1} - a_{n+2} \cdot 4^{n - 2} - \cdots - a_{2n} = 0\\
 		\cdots \\
 		\begin{split}
 		a_1 + a_2 \cdot (n + 1) + a_3 \cdot (n + 1)^2 + \cdots + a_n \cdot (n + 1)^{n - 1} - a_{n+1} \cdot (n + 1)^{n - 1} \\
@@ -221,7 +225,7 @@ It follows that a word is in $L_k$ iff the following equations hold:
 	\begin{cases}
 		(a_1 - a_{2n}) + 2 \cdot (a_2 - a_{2n-1}) + 2^2 \cdot (a_3 - a_{2n-2}) + \cdots + 2^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
 		(a_1 - a_{2n}) + 3 \cdot (a_2 - a_{2n-1}) + 3^2 \cdot (a_3 - a_{2n-2}) + \cdots + 3^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
-		(a_1 - a_{2n}) + 4 \cdot (a_2 - a_{2n-1}) + 4^2 \cdot (a_3 - a_{2n-2}) + \cdots + 4^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
+		% (a_1 - a_{2n}) + 4 \cdot (a_2 - a_{2n-1}) + 4^2 \cdot (a_3 - a_{2n-2}) + \cdots + 4^{n - 1} \cdot (a_n - a_{n+1}) = 0\\
 		\cdots \\
 		\begin{split}
 		(a_1 - a_{2n}) + (n + 1) \cdot (a_2 - a_{2n-1}) + (n + 1)^2 \cdot (a_3 - a_{2n-2}) + \cdots \\
@@ -244,7 +248,7 @@ $(2)$ Proven by \citet{Freivalds1979}, a proof for a similar language can also b
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{Img/1pfa.pdf}
+\includegraphics[width=310pt]{Img/1pfa.pdf}
 \caption{Automaton for recognizing $0^n10^m10^h1 \cdots 10^h10^m10^n$. Double-circled states are rejecting. Large arrows with labels in them show the amplitude distribution when the automaton starts. Small labelled arrows show transitions. A label $(a, b)$ indicates that if the automaton reads $a$, transition with amplitude $b$ should be made.}
 \label{fig:1pfa}
 \end{figure}
@@ -338,7 +342,7 @@ Similarly, as with ultrametric multi-head automata, the  machine with a given am
 
 Ultrametric multi-register automata are also used as an intermediate device for proofs.
 \begin{definition}
-A finite $p$-ultrametric $k$ register automaton (also referred to as a machine ) ($2u_pra(k)$) consists of a $p$-ultrametric finite control and $k$ registers that can hold natural numbers. The automaton begins with the input number in the first register with the specified starting amplitude distribution in some of its states . A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the finite control can have a predicate or an operation associated with it that is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
+A finite $p$-ultrametric $k$ register automaton (also referred to as a machine) ($2u_pra(k)$) consists of a $p$-ultrametric finite control and $k$ registers that can hold natural numbers. The automaton begins with the input number in the first register with the specified starting amplitude distribution in some of its states . A predicate $\stackrel{?}{=} 0$ and the operations $+1$ or $-1$ can be applied to a register. Each of the transitions of the finite control can have a predicate or an operation associated with it that is triggered when the transition is made. Acceptance criteria are analogous to those of ultrametric automata.
 \end{definition}
 
 
