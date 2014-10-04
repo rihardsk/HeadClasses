@@ -86,10 +86,10 @@ Ultrametric machines are similar to probabilistic machines, with the difference 
 
 It can be argued that the definition introduced by Freivalds is natural, because in 1916, Alexander Ostrowski proved that any non-trivial absolute value on the rational numbers $Q$ is equivalent to either the usual real absolute value or a $p$-adic absolute value.
 This result demonstrates that using $p$-adic numbers is not merely one of many possibilities to generalize the definition of deterministic algorithms, but rather the only remaining possibility not yet explored \citep{Freivalds2012}.
-Additionally, useful properties have been proven for the definition of ultrametric machines -- \citet{KasparsBalodis2013} proved that the language class recognized by regulated $p$-adic machines coincides with the class of regular languages.
+Additionally, useful properties have been proven for the definition of ultrametric machines---\citet{KasparsBalodis2013} proved that the language class recognized by regulated $p$-adic machines coincides with the class of regular languages.
 
-In this paper, we address the question of the language hierarchy associated with the number of heads of ultrametric multi-head automata .
-Several results can be found in the literature that  consider deterministic, nondeterministic, and probabilistic finite automata in both -- two-way and one-way -- cases \citep{Holzer2009, Yao1978, Monien1980, Macarie1995}. This paper examines whether similar results regarding the separation in classes with respect to the head count can be achieved for ultrametric multi-head finite automata. Other results consider the relationships of the language classes recognized by ultrametric and classical automata.
+In this paper, we address the question of the language hierarchy associated with the number of heads of ultrametric multi-head automata.
+Several results can be found in the literature that  consider deterministic, nondeterministic, and probabilistic finite automata in both---two-way and one-way---cases \citep{Holzer2009, Yao1978, Monien1980, Macarie1995}. This paper examines whether similar results regarding the separation in classes with respect to the head count can be achieved for ultrametric multi-head finite automata. Other results consider the relationships of the language classes recognized by ultrametric and classical automata.
 
 \section{$p$-adic numbers}
 
@@ -114,11 +114,11 @@ p^{-\alpha_p}, &\textrm{if } \alpha \neq 0 \\
 %Ultrametric automata are defined as in \citep{KasparsBalodis2013}.
 We extend the definition of ultrametric automata given in \citep{KasparsBalodis2013} by adding rejecting states.
 \begin{definition}
-A finite one-way $p$-ultrametric one-head automaton  ($1u_pfa$ or $1u_pfa(1)$) is a sextuple
+A finite one-way $p$-ultrametric one-head automaton  ($1\mathit{u_pfa}$ or $1\mathit{u_pfa}(1)$) is a sextuple
 $\langle S, \Sigma, s_0, \delta, Q_A, Q_R \rangle$ where
 \begin{itemize}
-  \item $S$ is a finite set -- the set of states,
-  \item $\Sigma$ is a finite set ($\$ \notin \Sigma$) -- input alphabet,
+  \item $S$ is a finite set---the set of states,
+  \item $\Sigma$ is a finite set ($\$ \notin \Sigma$)---input alphabet,
   \item $s_0:S \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution,
   \item $\delta: \left( \Sigma \cup \left\{ \$ \right\} \right) \times S \times S \rightarrow \mathbb{Q}_p$ is the transition function,
   \item $Q_A, Q_R \subseteq S$ are the sets of accepting and rejecting states, respectively.
@@ -130,22 +130,22 @@ It subsequently proceeds by processing the input word's $w = w_1 \ldots w_n$ sym
 The amplitude distribution after processing the $i$-th symbol is denoted as $s_i$, with
 $s_i(y) = \sum_{x \in S}{s_{i-1}(x) \cdot \delta \left( w_i, x, y \right) }$ for every $y \in S$.
 After the $n$-th symbol,the end marker $\$$ is similarly processed, obtaining the final amplitude distribution $s_{n+1}$.
-If the sum of the $p$-norms of final amplitudes over accepting states is greater than the sum of final amplitudes over rejecting states, i.e. if $\sum_{x \in Q_A}{\left\| s_{n+1}(x) \right\|_p} > \sum_{x \in Q_R}{\left\| s_{n+1}(x) \right\|_p}$, then the word $w$ is said to be accepted, otherwise -- rejected.
+If the sum of the $p$-norms of final amplitudes over accepting states is greater than the sum of final amplitudes over rejecting states, i.e. if $\sum_{x \in Q_A}{\left\| s_{n+1}(x) \right\|_p} > \sum_{x \in Q_R}{\left\| s_{n+1}(x) \right\|_p}$, then the word $w$ is said to be accepted, otherwise---rejected.
 \end{definition}
 
 A two-way $k$-head finite automaton consists of an input tape containing the input word on which the heads of the automaton can move freely in both directions, not crossing the endmarkers. The tape is read-only. More formally:
 \begin{definition}[\citep{Holzer2009}]
-A two-way non-deterministic $k$-head finite automaton ($2nfa(k)$) is a sextuple $\langle S, \Sigma, k, s_0, \delta, F \rangle$, where
+A two-way non-deterministic $k$-head finite automaton ($2\mathit{nfa}(k)$) is a sextuple $\langle S, \Sigma, k, s_0, \delta, F \rangle$, where
 \begin{itemize}
-	\item $S$ is a finite set -- the set of states,
-	\item $\Sigma$ is a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- the input alphabet ($\triangleright$ and $\triangleleft$ are the left and right endmarkers, respectively),
+	\item $S$ is a finite set---the set of states,
+	\item $\Sigma$ is a finite set ($ \triangleright,\triangleleft \notin \Sigma$)---the input alphabet ($\triangleright$ and $\triangleleft$ are the left and right endmarkers, respectively),
 	\item $k\geq 1$ is the number of heads, 
 	\item $s_0\in S$ is the starting state,
 	\item $\delta: S \times \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \rightarrow 2^{ S \times \left\{-1,0,1\right\}^k }$ is the partial transition function. Whenever $\left( s', (d_1, \dots, d_k) \right) \in \delta \left( s, (a_1, \dots, a_k) \right)$ is defined, then $d_i \in \{0, 1\}$ if $a_i=\triangleright$, and $d_i \in \{-1, 0\}$ if $a_i=\triangleleft$, for $1 \leq i \leq k$,
 	\item $F \subseteq S$ is the set of accepting states.
 \end{itemize}
 \end{definition}
-At the beginning of work, a $2nfa(k)$ has all of its heads placed on the left endmarker. A configuration of a $2nfa(k)$ in some moment in time $t\geq 0$ is a 3-tuple $c_t=\left(w,s,p\right)$ where $w$ is the input word, $s\in S$ is the current state and
+At the beginning of work, a $2\mathit{nfa}(k)$ has all of its heads placed on the left endmarker. A configuration of a $2\mathit{nfa}(k)$ in some moment in time $t\geq 0$ is a 3-tuple $c_t=\left(w,s,p\right)$ where $w$ is the input word, $s\in S$ is the current state and
 $p = \left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $
 gives the current head positions.
 The initial configuration for input $w$ is set to $\left(w,s_0,\left(0,\ldots,0\right)\right)$.
@@ -156,15 +156,15 @@ $\left( s', \left(d_1, \ldots, d_k \right) \right) \in \delta \left( s, \left( a
 where $w = a_1a_2 \ldots a_n$ is the input word and $a_0=\triangleright$ and $a_{n+1}=\triangleleft$. The reflexive transitive closure of $\vdash$
 is denoted by $\vdash^*$.
 
-A $2nfa(k)$ accepts a word $w$ iff there exists a sequence of configurations that results in automaton stopping in an accepting state if the input tape contains
+A $2\mathit{nfa}(k)$ accepts a word $w$ iff there exists a sequence of configurations that results in automaton stopping in an accepting state if the input tape contains
 $\triangleright w \triangleleft$. The language $L(M)$ accepted by $M$ consists of those and only those words that are accepted by $M$.  More precisely,   
 \begin{multline*}
 	L(M)=\left\{ w \in \Sigma^* | \left(w,s_0,\left(0,\dots,0\right)\right) \vdash^* \left(w,s,\left(p_1,\dots,p_k\right)\right), s \in F,\right.\\
 	\left.\textrm{and } M \textrm{ halts in } \left(w,s,\left(p_1,\ldots,p_k\right)\right)\right\}.
 \end{multline*}
 If for any state and $k$-tuple of symbols the transition function $\delta$ is either undefined or singleton, 
-then the automaton is said to be deterministic ($2dfa(k)$).
-If the heads of the automaton never move left, then the automaton is defined to be one-way. Nondeterministic and deterministic one-way $k$-head automata are denoted by $1nfa(k)$ and $1dfa(k)$, respectively.
+then the automaton is said to be deterministic ($2\mathit{dfa}(k)$).
+If the heads of the automaton never move left, then the automaton is defined to be one-way. Nondeterministic and deterministic one-way $k$-head automata are denoted by $1\mathit{nfa}(k)$ and $1\mathit{dfa}(k)$, respectively.
 
 \subsection{Relation to classical automata}
 Strict hierarchies of classes have been shown for both one-way multi-head deterministic and nondeterministic automata with regard to the head count of the automata \citep{Holzer2009,Yao1978}.
@@ -172,14 +172,14 @@ In 1978, \citet{Yao1978} used the language
 \[
 	L'_k = \left\{w_1\$w_2\$ \ldots \$w_{2k} \middle| w_i \in \left\{a,b\right\}^* \wedge w_i = w_{2k+1-i} \textrm{ for all } 1 \leq i \leq k \right\}
 \]
-to prove the separation of the class of languages that can be recognized by a $1dfa(k)$ from the class that can be recognized by a $1dfa(k+1)$.
+to prove the separation of the class of languages that can be recognized by a $1\mathit{dfa}(k)$ from the class that can be recognized by a $1\mathit{dfa}(k+1)$.
 
 We will consider a similar language,   $L_k$.
 \begin{theorem}
 For every $k \geq 1 \in \mathbb{N}$, there exists a language $L_k$ such that:
 \begin{enumerate}[label={(\arabic*)}]
-	\item for every prime $p$ there exists a $1u_pfa(1)$ that recognizes $L_k$,
-	\item $L_k$ cannot be recognized by any $1nfa(k)$.
+	\item for every prime $p$ there exists a $1\mathit{u_pfa}(1)$ that recognizes $L_k$,
+	\item $L_k$ cannot be recognized by any $1\mathit{nfa}(k)$.
 \end{enumerate}
 \end{theorem}
 \begin{proof} Let $n={k\choose 2}+1$. The sought language is
@@ -191,7 +191,7 @@ L_k = \left\{ w_1 1 w_2 1 \ldots 1 w_{2n} \middle|
 \]
 We will now prove that $L_k$ satisfies the points of our theorem.
 
-$(1)$ We show that for an arbitrary language $L_k$, a $1u_pfa(1)$ can be built for every prime number $p$. The automaton starts in $n$ different starting states $q_{1,1,1},q_{1,2,1},\ldots,q_{1,n,1}$ with amplitude $1$. Each of these states begins a computational path that is intended to accumulate amplitude in one of $n$ different rejecting states $q_{2n,1,2},q_{2n,2,2},\ldots,q_{2n,n,2}$. Every branch contains two kinds of states -- states of the 1st group $q_{i,j,1}$ are responsible for generating amplitudes,  and states of the 2nd group $q_{i,j,2}$ are intended for amplitude accumulation, $i \in \left[1, 2n \right], j \in \left[1, n \right]$.
+$(1)$ We show that for an arbitrary language $L_k$, a $1\mathit{u_pfa}(1)$ can be built for every prime number $p$. The automaton starts in $n$ different starting states $q_{1,1,1},q_{1,2,1},\ldots,q_{1,n,1}$ with amplitude $1$. Each of these states begins a computational path that is intended to accumulate amplitude in one of $n$ different rejecting states $q_{2n,1,2},q_{2n,2,2},\ldots,q_{2n,n,2}$. Every branch contains two kinds of states---states of the 1st group $q_{i,j,1}$ are responsible for generating amplitudes,  and states of the 2nd group $q_{i,j,2}$ are intended for amplitude accumulation, $i \in \left[1, 2n \right], j \in \left[1, n \right]$.
 
 If $0$ is read from the input and the automaton is in one of the 1st group states $q_{i,j,1}$, where $i \leq n$, then the amplitude of the state remains the same and with amplitude $1$ the automaton goes to a 2nd group state, $q_{i,j,2}$. By doing so, the state's accumulated amplitude is added to $q_{i,j,2}$. If $0$ is read in a 2nd  group state $q_{i,j,2}$, the state's amplitude remains the same. If $1$ is read in a 1st group state $q_{i,j,1}$, where $i < n$, then the automaton with amplitude $j + 1$ transitions to $q_{i + 1,j,1}$, thereby transitioning there with amplitude $(j + 1) \cdot \left| q_{i + 1,j,1} \right|$ (by $|q_i|$, we denote the amplitude of the state $q_i$).
 In contrast, if $0$ is read in the 1st group state $q_{i,j,1}$, where $i > n$, the amplitude of the state remains unchanged and the transition to $q_{i,j,2}$ is made with amplitude $-1$. If $1$ is read in the 1st group state $q_{i,j,1}$, where $i \geq n$, the transition to $q_{i + 1,j,1}$ is made with amplitude $-(j + 1)$. If $1$ is read in a 2nd group state, a transition is made from $q_{i,j,1}$ to $q_{i + 1,j,1}$, with amplitude $1$. The exception is the last column of states,   $q_{2n,j,1}$ and $q_{2n,j,2}$, which are responsible for reading in the last block of the word. In this case, the transition if $1$ is read is not defined. A schematic representation of the described automaton is presented  in Fig. \ref{fig:1pfa}.
@@ -260,10 +260,10 @@ $(2)$ Proven by \citet{Freivalds1979}, a proof for a similar language can also b
 Ultrametric multi-head automata are defined by generalizing the definition of ultrametric one-head one-way automata in a natural way. The definition of multi-head automata due to \citet{Holzer2009} is used as well.
 
 \begin{definition}
-A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple $\langle S, \Sigma, k, s_0, \delta, Q_A, Q_R \rangle$ where
+A finite $k$-head two-way $p$-ultrametric automaton ($2\mathit{u_pfa}(k)$) is a septuple $\langle S, \Sigma, k, s_0, \delta, Q_A, Q_R \rangle$ where
 \begin{itemize}
 	\item $S$ is a finite set of states,
-	\item $\Sigma$ is a finite set ($ \triangleright,\triangleleft \notin \Sigma$) -- the input alphabet ($\triangleright$ and $\triangleleft$ are the left and right endmarkers, respectively),
+	\item $\Sigma$ is a finite set ($ \triangleright,\triangleleft \notin \Sigma$)---the input alphabet ($\triangleright$ and $\triangleleft$ are the left and right endmarkers, respectively),
 	\item $k\geq 1$ is the number of heads, 
 	\item $s_0:S \rightarrow \mathbb{Q}_p$ is the initial distribution of amplitudes,
 	\item $\delta: S \times \left( \Sigma \cup \left\{ \triangleright, \triangleleft \right\} \right)^k \times S \times \left\{-1,0,1\right\}^k \rightarrow \mathbb{Q}_p$ is the partial transition function.  Whenever $\delta \left( s, (a_1, \dots, a_k), s', \left( d_1, \dots, d_k \right) \right)$ is defined and not equal to $0$, then $d_i \in \{0, 1\}$ if $a_i=\triangleright$, and $d_i \in \{-1, 0\}$ if $a_i=\triangleleft$, for $1 \leq i \leq k$,
@@ -271,7 +271,7 @@ A finite $k$-head two-way $p$-ultrametric automaton ($2u_pfa(k)$) is a septuple 
 \end{itemize}
 \end{definition}
 
-$2u_pfa(k)$ works in a similar way as $1u_pfa$, with the exception that the automaton now has $k$ heads that can move freely, as in  a $2nfa(k)$. In contrast to  $1u_pfa$, amplitudes are now given for a pair consisting of the positions of the heads and a state. The amplitude of the state $y \in S$ with heads in positions
+$2\mathit{u_pfa}(k)$ works in a similar way as $1\mathit{u_pfa}$, with the exception that the automaton now has $k$ heads that can move freely, as in  a $2\mathit{nfa}(k)$. In contrast to  $1\mathit{u_pfa}$, amplitudes are now given for a pair consisting of the positions of the heads and a state. The amplitude of the state $y \in S$ with heads in positions
 $\left( p_1, \ldots, p_k \right) \in \left\{ 0, \ldots, |w| +1 \right\}^k $ on the word $w = a_1 \dots a_n$
 after the $i$-th operation is given by
 \[
@@ -315,14 +315,14 @@ Similarly as before, the acceptance of a word is determined by comparing the fin
 where $(p_1, \dots, p_k) \in F_i(x)$ iff the automaton with some amplitude halts in the $i$-th step in the state $x$ with the heads in positions $p_1, \dots, p_k$.
 We require the automaton to be built in such a way that these norms of the (possibly infinite) sums converge for every $w \in \Sigma^*$.
 
-The class of languages recognized by $2u_pfa(k)$ is denoted $2U_pFA(k)$.
+The class of languages recognized by $2\mathit{u_pfa}(k)$ is denoted $2\mathit{U_pFA}(k)$.
 
 Ultrametric Turing machines are defined to be used as a device to assist in proving results regarding multi-head automata classes. We modify the definition for Turing machine by \citet{Hopcroft1979}.
 \begin{definition}
 A $p$-ultrametric Turing machine with $k$ work tapes ($u_ptm(k)$ or simply $u_ptm$) is an octuple $M= \langle Q, \Sigma, b, \Gamma, q_0, \delta, Q_A, Q_R \rangle$ where:
 \begin{itemize}
 	\item $Q$ is a nonempty set of states,
-	\item $\Sigma$ is a nonempty set -- the input alphabet,
+	\item $\Sigma$ is a nonempty set---the input alphabet,
 	\item $b \notin \Sigma$  is the ``empty'' symbol,
 	\item $\Gamma \supseteq \Sigma\cup\{b\}$ is the working alphabet,
 	\item $q_0 : Q \rightarrow \mathbb{Q}_p$ is the initial amplitude distribution,
@@ -376,10 +376,10 @@ A set $S$ of $p$-adic numbers is $p$-constructible if there exists a $p$-ultrame
 %\qed
 %\end{proof}
 
-A $2u_pfa(k)$ can be described with a binary sequence denoting, in turn: the number of states, the number of heads, the transitions between the states, and their respective amplitudes.
+A $2\mathit{u_pfa}(k)$ can be described with a binary sequence denoting, in turn: the number of states, the number of heads, the transitions between the states, and their respective amplitudes.
 
 The simulation is performed as follows:
-The $2u_pfa(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $u_ptm(2)$ $\mathcal{T}$.
+The $2\mathit{u_pfa}(k)$ $\mathcal{A}$ with transitions from a $p$-constructible set is simulated by a $u_ptm(2)$ $\mathcal{T}$.
 $\mathcal{T}$ receives the description of $\mathcal{A}$ in unary alphabet as a word in the form $1^{2^n}, n \in \mathbb{N}$.
 $\mathcal{T}$ starts by reading the input word and deterministically (making transitions with amplitude $1$) writes $n$ in binary on the second tape, where $n$ is the description of the automaton $\mathcal{A}$.
 Additionally, a space of size $O(k \cdot n)$ is reserved (assuming that the length of the input word on which the automaton must be simulated does not exceed $2^n$) for $k$ counters denoting the positions of the heads of the automaton $\mathcal{A}$.
@@ -411,20 +411,20 @@ $\widehat{C} = \left\{ L \in C | \forall x \in L \; \exists n \in \mathbb{N} : x
 \begin{theorem} \label{atdalisana}
 For every natural number $k$ and prime $p$:
 \[
-	\widehat{2U_pFA(k)} \subsetneqq \widehat{U_pTM}.
+	\widehat{2\mathit{U_pFA}(k)} \subsetneqq \widehat{U_pTM}.
 \]
 \end{theorem}
 \begin{proof}
 We will construct a special $p$-ultrametric Turing machine with 2 tapes and $log$-space space complexity called $\mathcal{T}$. We will show that its recognized language cannot be recognized by a $p$-ultrametric automata with $k$ heads for any $k$.
 
 Similarly as in the previous section,
-we will construct $\mathcal{T}$ so that it simulates a $2u_pfa(k)$ given in its input called $\mathcal{A}$. Contrary to the previous description, the description of $\mathcal{A}$ does not directly include the input for $\mathcal{A}$. We will run $\mathcal{A}$ on the input string, i.e. on its "definition", instead.
+we will construct $\mathcal{T}$ so that it simulates a $2\mathit{u_pfa}(k)$ given in its input called $\mathcal{A}$. Contrary to the previous description, the description of $\mathcal{A}$ does not directly include the input for $\mathcal{A}$. We will run $\mathcal{A}$ on the input string, i.e. on its "definition", instead.
 
-More precisely,   $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether the word is in the form $1^{2^n}, n \in \mathbb{N}$ (if not, the word is rejected), and by taking up to $O(log(n))$ space, writes $n$'s binary representation on the 2nd tape (we will refer to it as the work tape ). It  then checks whether $n$'s binary representation is syntactically a valid $2u_pfa(k)$; if not, the word is rejected. Then, $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left\{0, \ldots, 2^n+1 \right \}$, $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
+More precisely,   $\mathcal{T}$ 1st tape contains $1^m, m \in \mathbb{N}$, $\mathcal{T}$ checks whether the word is in the form $1^{2^n}, n \in \mathbb{N}$ (if not, the word is rejected), and by taking up to $O(log(n))$ space, writes $n$'s binary representation on the 2nd tape (we will refer to it as the work tape ). It  then checks whether $n$'s binary representation is syntactically a valid $2\mathit{u_pfa}(k)$; if not, the word is rejected. Then, $\mathcal{T}$ designates a space on the work tape to be used for $k$ counters that will be used to represent $\mathcal{A}$'s head positions. Since the counter values can be in $\left\{0, \ldots, 2^n+1 \right \}$, $O(k \cdot log(2^n)) \sim O(k \cdot n)$ space is required.
 All previous actions are performed deterministically. Next, $\mathcal{T}$ is run on the input string similarly as it is shown in the previous section. (The head of the first tape is not used anymore; instead, a check is performed to determine whether or not the counters corresponding to head positions are inside word boundaries.)
 Consequently, $\mathcal{T}$ is with respective amplitudes in all of the possible configurations of $\mathcal{A}$ after processing the word. Afterwards, $\mathcal{T}$ checks whether the contents of the work tape suggest that $\mathcal{A}$ is in an accepting state, and halts in a rejecting state if $\mathcal{A}$ would have accepted the word; $\mathcal{T}$ halts in an accepting state if $\mathcal{A}$ would have rejected the word. Therefore, $\mathcal{T}$ yields the opposite result to that of $\mathcal{A}$ with the same amplitudes.
 
-Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2u_pfa(k)$ denoted by $\mathcal{J}$, there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$, or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$; namely,   $\mathcal{J}$'s specification. \qed
+Let us consider the language $L(\mathcal{T})$ recognized by $\mathcal{T}$. We can see that for every $2\mathit{u_pfa}(k)$ denoted by $\mathcal{J}$, there exists a word $w$ such that it is either in $L(\mathcal{T})$ but not in $L(\mathcal{J})$, or it is in $L(\mathcal{J})$ but not in $L(\mathcal{T})$; namely,   $\mathcal{J}$'s specification. \qed
 \end{proof}
 
 Similarly, as in \citep{Macarie1995} and \citep{Monien1980}, in the following proofs we will use the function
@@ -438,11 +438,11 @@ When $f_k$ is applied to a language, we refer to the following function: $f_k(L)
 \begin{lemma} \label{skaititaji}
 For every language $L \in \widehat{U_pTM}$ that is recognized by a 2-tape $u_ptm$ in logarithmic space, there exists a natural number $u$ such that:
 $
-	f_u(L) \in \widehat{2U_pFA(3)}.
+	f_u(L) \in \widehat{2\mathit{U_pFA}(3)}.
 $
 \end{lemma}
 \begin{proof}
-We will show how a $u_ptm$ denoted by $\mathcal{T}$ that recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$, which can then be replaced by a $p$-ultrametric $3$ register machine. From this, it easily follows that there exists a $2u_pfa(3)$ that recognizes a ``stretched"  variant of $L$, where stretching is done by $f_u$.
+We will show how a $u_ptm$ denoted by $\mathcal{T}$ that recognizes $L$ can be transformed into a $u_ptm$ called $\mathcal{T'}$, which can then be replaced by a $p$-ultrametric $3$ register machine. From this, it easily follows that there exists a $2\mathit{u_pfa}(3)$ that recognizes a ``stretched"  variant of $L$, where stretching is done by $f_u$.
 
 We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T'}$ will hold the following information on its work tape:
 \begin{itemize}
@@ -453,7 +453,7 @@ We will construct $\mathcal{T'}$ so that it simulates $\mathcal{T}$. $\mathcal{T
 \end{itemize}
 The simulation of $\mathcal{T}$ on $\mathcal{T'}$'s work tape is less complicated than in the case of ultrametric automata, since $\mathcal{T'}$ can use the original finite control of $\mathcal{T}$, and the transitions are not required to be simulated on the tape. To simulate $\mathcal{T}$, $\mathcal{T'}$ uses only the work tape.
 
-We can see that given $\mathcal{T'}$, a corresponding $p$-ultrametric $3$ register machine can be constructed. If the input is of the form $1^{2^n}$, then the register machine starts with $n$ in the first register and with $0$ in the remaining registers. The contents of the work tape of $\mathcal{T'}$ can be simulated by manipulating the registers of the first two stored sub-words, $v$ and $h^{rev}$, and by using  the third as an auxiliary register. To do this, we use operations ``add $1$''"  and ``divide by 2", which can be carried out by using the auxiliary register.
+We can see that given $\mathcal{T'}$, a corresponding $p$-ultrametric $3$ register machine can be constructed. If the input is of the form $1^{2^n}$, then the register machine starts with $n$ in the first register and with $0$ in the remaining registers. The contents of the work tape of $\mathcal{T'}$ can be simulated by manipulating the registers of the first two stored sub-words, $v$ and $h^{rev}$, and by using  the third as an auxiliary register. To do this, we use operations ``add $1$"  and ``divide by 2", which can be carried out by using the auxiliary register.
 
 
 Since a position of a multi-head automaton directly corresponds to a number in a register, and the simulated Turing machine has $log$-space space complexity, a $3$ register machine can be replaced with a $p$-ultrametric $3$ head automaton. However, since its heads cannot cross word boundaries and therefore cannot simulate arbitrarily large numbers, the input words must be sufficiently long. This is achieved by selecting a large enough $u$. \qed
@@ -471,11 +471,11 @@ Since a position of a multi-head automaton directly corresponds to a number in a
 \begin{lemma} \label{reizinajums}
 For all languages $L \in \widehat{U_pTM}$ and all $u, v \geq 1, u, v \in \mathbb{N}$:
 $
-	f_u(L) \in \widehat{2U_pFA(v)} \Rightarrow L \in \widehat{2U_pFA(u \cdot v)}.
+	f_u(L) \in \widehat{2\mathit{U_pFA}(v)} \Rightarrow L \in \widehat{2\mathit{U_pFA}(u \cdot v)}.
 $
 \end{lemma}
 \begin{proof}
-Let the $2u_pfa(v)$ in the premise be $\mathcal{A}$ and the $2u_pfa(u \cdot v)$ in the conclusion -- $\mathcal{A'}$.
+Let the $2\mathit{u_pfa}(v)$ in the premise be $\mathcal{A}$ and the $2\mathit{u_pfa}(u \cdot v)$ in the conclusion---$\mathcal{A'}$.
 
 Consider the operation of $\mathcal{A}$ on a word $f_u(l), l = 1^{2^n} \in L, n \in \mathbb{N}$.
 The position of each of $v$ heads of $\mathcal{A}$ can be described with an integer $h_i \in \left[0, 2^{u \cdot n} -1 \right]$.
@@ -490,11 +490,11 @@ Note that this simulation is performed  analogously as for deterministic automat
 \begin{lemma} \label{plus1}
 For every language $L \in \widehat{U_pTM}$ and every $u > v > 1, u, v \in \mathbb{N}$:
 \[
-	f_{u+1}(L) \in \widehat{2U_pFA(v)} \Rightarrow f_u(L) \in \widehat{U_pFA(v + 1)}.
+	f_{u+1}(L) \in \widehat{2\mathit{U_pFA}(v)} \Rightarrow f_u(L) \in \widehat{2\mathit{U_pFA}(v + 1)}.
 \]
 \end{lemma}
 \begin{proof}
-Let the $2u_pfa(v)$ in the premise be $\mathcal{A}$ and the $2u_pfa(v + 1)$ in the conclusion -- $\mathcal{A'}$.
+Let the $2\mathit{u_pfa}(v)$ in the premise be $\mathcal{A}$ and the $2\mathit{u_pfa}(v + 1)$ in the conclusion---$\mathcal{A'}$.
 
 Consider the operation of $\mathcal{A}$ on a word $f_{u+1}(l), l = 1^{2^n} \in L, n \in \mathbb{N}$.
 
@@ -524,20 +524,20 @@ The result concerning the superiority of  a $k+1$ head over $k$ heads follows fr
 \begin{theorem}
 For all $k \geq 2 \in \mathbb{N}$:
 \[
-	\widehat{2U_pFA(k)} \subsetneqq \widehat{2U_pFA(k + 1)}.
+	\widehat{2\mathit{U_pFA}(k)} \subsetneqq \widehat{2\mathit{U_pFA}(k + 1)}.
 \]
 \end{theorem}
 \begin{proof}
-We prove from the contrary by showing that if there exists such $h \geq 2$ that $\widehat{2U_pFA(h)} = \widehat{2U_pFA(h + 1)}$, it implies $\widehat{2U_pFA(h \cdot (h + 1))} = \widehat{U_pTM}$, which contradicts \ref{atdalisana}.
+We prove from the contrary by showing that if there exists such $h \geq 2$ that $\widehat{2\mathit{U_pFA}(h)} = \widehat{2\mathit{U_pFA}(h + 1)}$, it implies $\widehat{2\mathit{U_pFA}(h \cdot (h + 1))} = \widehat{U_pTM}$, which contradicts \ref{atdalisana}.
 
-Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2U_pFA(3)}$. Consequently, $f_m(L) \in \widehat{2U_pFA(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$, then $f_{m-1}(L) \in \widehat{2U_pFA(h + 1)} = \widehat{2U_pFA(h)}$.
+Take $L \in \widehat{U_pTM}$ for some prime $p$. Lemma \ref{skaititaji} implies that there exists $m \in \mathbb{N}$ such that $f_m(L) \in \widehat{2\mathit{U_pFA}(3)}$. Consequently, $f_m(L) \in \widehat{2\mathit{U_pFA}(h)}$. Lemma \ref{plus1} implies that if $m > h + 1$, then $f_{m-1}(L) \in \widehat{2\mathit{U_pFA}(h + 1)} = \widehat{2\mathit{U_pFA}(h)}$.
 % Take $m = m - 1$ 
-Reduce $m$ by $1$ and repeat until we get $f_m(L) \in \widehat{2U_pFA(h)}$ and $m = h + 1$. Lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{2U_pFA(h)}$, then $L \in \widehat{2U_pFA(h \cdot m)} = \widehat{2U_pFA(h \cdot (h + 1))}$. Contradiction with Theorem \ref{atdalisana}. \qed
+Reduce $m$ by $1$ and repeat until we get $f_m(L) \in \widehat{2\mathit{U_pFA}(h)}$ and $m = h + 1$. Lemma \ref{reizinajums} implies that if $f_m(L) \in \widehat{2\mathit{U_pFA}(h)}$, then $L \in \widehat{2\mathit{U_pFA}(h \cdot m)} = \widehat{2\mathit{U_pFA}(h \cdot (h + 1))}$. Contradiction with Theorem \ref{atdalisana}. \qed
 \end{proof}
 \begin{corollary}
-Since $2U_pFA(k + 1)$ is a superset of $2U_pFA(k)$ and we proved that there exists a language that can be recognized with $k+1$ heads and not by $k$,  the head hierarchy result holds for languages in multi-letter alphabets as well:
+Since $2\mathit{U_pFA}(k + 1)$ is a superset of $2\mathit{U_pFA}(k)$ and we proved that there exists a language that can be recognized with $k+1$ heads and not by $k$,  the head hierarchy result holds for languages in multi-letter alphabets as well:
 \[
-	2U_pFA(k) \subsetneqq 2U_pFA(k + 1).
+	2\mathit{U_pFA}(k) \subsetneqq 2\mathit{U_pFA}(k + 1).
 \]
 \end{corollary}
 
@@ -609,7 +609,7 @@ Since $2U_pFA(k + 1)$ is a superset of $2U_pFA(k)$ and we proved that there exis
 %\item $d(x,y) \leq d(x,z) + d(z,y)$ for all $z \in X$.
 %\end{enumerate}
 %
-%If the third property can be replaced by its stronger variant --  the strong triangle inequality $d(x,y) \leq max\left\{d(x,z), d(z,y)\right\}$ -- the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Freivalds2012}
+%If the third property can be replaced by its stronger variant--- the strong triangle inequality $d(x,y) \leq max\left\{d(x,z), d(z,y)\right\}$---the norm is called ultrametric. Otherwise, it is called Archimedean. \cite{Freivalds2012}
 %
 %If the set $X$ is equipped with the addition and multiplication operations (and forms a vector space), then a notion of norm can be introduced.
 %The metric function is used to find the distances among the elements of a set. The distance of a given element to zero $d(x,0)$ is called the norm or absolute value of the element and is denoted by $\|x\|$.
